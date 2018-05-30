@@ -167,6 +167,7 @@ export const canTurnTo = (name, access, routes) => {
 }
 
 export const getParams = url => {
+  if (url.indexOf('?') === -1) return {}
   const keyValueArr = url.split('?')[1].split('&')
   let paramObj = {}
   keyValueArr.forEach(item => {

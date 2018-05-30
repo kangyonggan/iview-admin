@@ -24,4 +24,9 @@ html,body{
 #app {
   .size;
 }
+
+.bg-white {
+  background: #fff;
+  padding: 8px;
+}
 </style>

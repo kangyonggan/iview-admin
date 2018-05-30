@@ -22,7 +22,9 @@
           </div>
           <Content>
             <keep-alive :include="cacheList">
-              <router-view/>
+              <div style="margin: 10px;">
+                <router-view/>
+              </div>
             </keep-alive>
           </Content>
         </Layout>
@@ -37,8 +39,6 @@ import tagsNav from './components/tags-nav'
 import user from './components/user'
 import { mapMutations, mapActions } from 'vuex'
 import { getNewTagList } from '@/libs/util'
-import minLogo from '@/assets/images/logo-min.jpg'
-import maxLogo from '@/assets/images/logo.jpg'
 import './main.less'
 export default {
   name: 'Main',
