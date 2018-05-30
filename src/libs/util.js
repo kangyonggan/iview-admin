@@ -63,9 +63,11 @@ export const getBreadCrumbList = (routeMetched) => {
   res = res.filter(item => {
     return !item.meta.hideInMenu
   })
+
   return [{
     name: 'home',
-    to: '/home'
+    to: '/home',
+    meta: {title: '首页'}
   }, ...res]
 }
 

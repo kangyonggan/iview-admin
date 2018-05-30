@@ -26,102 +26,46 @@ export default [
         name: 'home',
         meta: {
           hideInMenu: true,
-          notCache: true
+          notCache: true,
+          title: '首页'
         },
-        component: () => import('@/view/single-page/home')
+        component: () => import('@/view/home/index')
       }
     ]
   },
   {
-    path: '/components',
-    name: 'components',
+    path: '/system',
+    name: 'system',
     meta: {
-      icon: 'social-buffer',
-      title: '组件'
+      icon: 'gear-b',
+      title: '系统'
     },
     component: Main,
     children: [
       {
-        path: 'count_to',
-        name: 'count_to',
+        path: 'user',
+        name: 'user',
         meta: {
-          icon: 'arrow-graph-up-right',
-          title: '数字渐变'
+          title: '用户管理'
         },
-        component: () => import('@/view/components/count-to/count-to.vue')
-      }
-    ]
-  },
-  {
-    path: '/multilevel',
-    name: 'multilevel',
-    meta: {
-      icon: 'arrow-graph-up-right',
-      title: '多级菜单'
-    },
-    component: Main,
-    children: [
-      {
-        path: 'level_2_1',
-        name: 'level_2_1',
-        meta: {
-          icon: 'arrow-graph-up-right',
-          title: '二级-1'
-        },
-        component: () => import('@/view/multilevel/level-1.vue')
+        component: () => import('@/view/system/user/index')
       },
       {
-        path: 'level_2_2',
-        name: 'level_2_2',
+        path: 'role',
+        name: 'role',
         meta: {
-          access: ['super_admin'],
-          icon: 'arrow-graph-up-right',
-          title: '二级-2'
+          title: '角色管理'
         },
-        component: parentView,
-        children: [
-          {
-            path: 'level_2_2_1',
-            name: 'level_2_2_1',
-            meta: {
-              icon: 'arrow-graph-up-right',
-              title: '三级'
-            },
-            component: () => import('@/view/multilevel/level-2/level-2-1.vue')
-          }
-        ]
+        component: () => import('@/view/system/role/index')
       },
       {
-        path: 'level_2_3',
-        name: 'level_2_3',
+        path: 'menu',
+        name: 'menu',
         meta: {
-          icon: 'arrow-graph-up-right',
-          title: '二级-3'
+          title: '菜单管理'
         },
-        component: parentView,
-        children: [
-          {
-            path: 'level_2_3_1',
-            name: 'level_2_3_1',
-            meta: {
-              access: ['super_admin'],
-              icon: 'arrow-graph-up-right',
-              title: '三级-1'
-            },
-            component: () => import('@/view/multilevel/level-2/level-2-1.vue')
-          },
-          {
-            path: 'level_2_3_2',
-            name: 'level_2_3_2',
-            meta: {
-              access: ['super_admin', 'admin'],
-              icon: 'arrow-graph-up-right',
-              title: '三级-2'
-            },
-            component: () => import('@/view/multilevel/level-2/level-2-1.vue')
-          }
-        ]
-      }
+        component: () => import('@/view/system/menu/index')
+      },
     ]
   },
   {
