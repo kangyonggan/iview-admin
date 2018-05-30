@@ -1,5 +1,4 @@
 import Main from '@/view/main'
-import parentView from '@/components/parent-view'
 
 export default [
   {
@@ -65,7 +64,7 @@ export default [
           title: '菜单管理'
         },
         component: () => import('@/view/system/menu/index')
-      },
+      }
     ]
   },
   {

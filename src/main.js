@@ -10,15 +10,13 @@ import './common'
 import config from '@/config'
 import 'iview/dist/styles/iview.css'
 import env from '../config/env'
-import AppTable from '@/components/app/app-table'
-import AppDatePicker from '@/components/app/app-date-picker'
+import './components/app/table'
+import './components/app/data-picker'
+import './components/app/modal'
 if (env === 'development') require('@/mock')
 
 Vue.use(iView)
 Vue.config.productionTip = false
-
-Vue.component('AppTable', AppTable)
-Vue.component('AppDatePicker', AppDatePicker)
 
 /**
  * @description 全局注册应用配置

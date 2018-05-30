@@ -17,16 +17,22 @@
       <Row>
         <Button type="info" icon="ios-search" @click="$refs.table.refresh()">查询</Button>
         <Button type="warning" icon="ios-refresh-empty" @click="$refs.queryForm.resetFields()">清除</Button>
+        <Button type="primary" icon="plus" @click="$refs.formModal.show({})">新增</Button>
       </Row>
     </Form>
 
     <!--表格-->
     <AppTable ref="table" url="system/user" :columns="columns" :form="$refs.queryForm"/>
+
+    <!--新增/编辑用户的界面-->
+    <FormModal ref="formModal" @success="$refs.table.refresh()"/>
   </div>
 </template>
 
 <script>
+import FormModal from './form-modal.vue'
 export default {
+  components: {FormModal},
   name: 'index',
   data () {
     return {
@@ -39,11 +45,6 @@ export default {
        */
       columns: [
         {
-          type: 'selection',
-          width: 60,
-          align: 'center'
-        },
-        {
           title: 'ID',
           key: 'id',
           sortable: true
@@ -54,7 +55,7 @@ export default {
           sortable: true
         },
         {
-          title: '真实姓名',
+          title: '姓名',
           key: 'name',
           sortable: true
         },
@@ -77,7 +78,44 @@ export default {
           sortable: true
         },
         {
-          title: '操作'
+          title: '操作',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    this.$refs.formModal.show({
+                      id: params.row.id,
+                      username: params.row.username,
+                      name: params.row.name
+                    })
+                  }
+                }
+              }, '编辑'),
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    this.$refs.roleModal.show({
+                      username: params.row.username
+                    })
+                  }
+                }
+              }, '设置角色')])
+          }
         }]
     }
   },

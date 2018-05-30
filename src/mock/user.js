@@ -73,7 +73,7 @@ const list = [{
 export const getUserPage = req => {
   return {
     code: 200,
-    msg: '',
+    msg: '操作成功',
     data: {
       pageInfo: {
         pageNum: 1,
@@ -87,5 +87,19 @@ export const getUserPage = req => {
         list: list
       }
     }
+  }
+}
+
+export const save = req => {
+  return {
+    code: 200,
+    msg: '保存成功'
+  }
+}
+
+export const update = req => {
+  return {
+    code: 200,
+    msg: '更新成功'
   }
 }
