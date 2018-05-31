@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import qs from 'qs'
 import baseURL from '_conf/url'
 import { Message } from 'iview'
 import Cookies from 'js-cookie'
@@ -22,11 +23,13 @@ class httpRequest {
   interceptors (instance, url) {
     // 添加请求拦截器
     instance.interceptors.request.use(config => {
-      if (!config.url.includes('/users')) {
-        config.headers['x-access-token'] = Cookies.get(TOKEN_KEY)
-      }
+      config.headers['x-access-token'] = Cookies.get(TOKEN_KEY)
       // Spin.show()
       // 在发送请求之前做些什么
+      if (config.method === 'post') {
+        config.data = qs.stringify(config.data)
+      }
+
       return config
     }, error => {
       // 对请求错误做些什么
@@ -35,25 +38,11 @@ class httpRequest {
 
     // 添加响应拦截器
     instance.interceptors.response.use((res) => {
-      let { data } = res
-      const is = this.destroy(url)
-      if (!is) {
-        setTimeout(() => {
-          // Spin.hide()
-        }, 500)
-      }
-      if (!(data instanceof Blob)) {
-        if (data.code !== 200) {
-          // 后端服务在个别情况下回报201，待确认
-          if (data.code === 401) {
-            Cookies.remove(TOKEN_KEY)
-            window.location.href = '/#/login'
-            Message.error('未登录，或登录失效，请登录')
-          } else {
-            if (data.msg) Message.error(data.msg)
-          }
-          return false
-        }
+      let data = res.data || {}
+      this.destroy(url)
+      if (data.respCo !== '0000') {
+        Message.error(data.respMsg)
+        return Promise.reject(data.respMsg)
       }
       return data
     }, (error) => {
@@ -68,19 +57,41 @@ class httpRequest {
       baseURL: baseURL,
       // timeout: 2000,
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'X-URL-PATH': location.pathname
+        // 'Content-Type': 'application/json; charset=utf-8',
+        // 'X-URL-PATH': location.pathname
       }
     }
     return Axios.create(conf)
   }
-  // 合并请求实例
-  mergeReqest (instances = []) {
-    //
-  }
   // 请求实例
   request (options) {
-    var instance = this.create()
+    let instance = this.create()
+    this.interceptors(instance, options.url)
+    options = Object.assign({}, options)
+    this.queue[options.url] = instance
+    return instance(options)
+  }
+  // POST请求实例
+  post (url, data) {
+    let options = {
+      url: url,
+      data,
+      method: 'post'
+    }
+    let instance = this.create()
+    this.interceptors(instance, options.url)
+    options = Object.assign({}, options)
+    this.queue[options.url] = instance
+    return instance(options)
+  }
+  // GET请求实例
+  get (url, data) {
+    let options = {
+      url: url,
+      data,
+      method: 'get'
+    }
+    let instance = this.create()
     this.interceptors(instance, options.url)
     options = Object.assign({}, options)
     this.queue[options.url] = instance
