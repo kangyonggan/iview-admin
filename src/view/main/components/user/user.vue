@@ -1,7 +1,7 @@
 <template>
   <div class="user-avator-dropdown">
     <Dropdown @on-click="handleClick">
-      <Avatar :src="userAvator"/>
+      <span>{{name}} </span>
       <Icon :size="12" type="arrow-down-b"></Icon>
       <DropdownMenu slot="list">
         <DropdownItem name="logout">退出登录</DropdownItem>
@@ -16,19 +16,19 @@ import { mapActions } from 'vuex'
 export default {
   name: 'user',
   props: {
-    userAvator: {
-      type: String,
-      default: ''
+    name: {
+      required: true,
+      type: String
     }
   },
   methods: {
     ...mapActions([
-      'handleLogOut'
+      'logout'
     ]),
     handleClick (name) {
       switch (name) {
         case 'logout':
-          this.handleLogOut().then(() => {
+          this.logout().then(() => {
             this.$router.push({
               name: 'login'
             })

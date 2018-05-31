@@ -17,13 +17,13 @@ export default {
   },
   actions: {
     // 登录
-    handleLogin ({commit}, user) {
-      return new Promise((resolve, reject) => {
+    login ({commit}, user) {
+      return new Promise((resolve) => {
         login(user).then(data => {
           commit('setToken', data.token)
+          resolve(true)
+        }).catch(() => {
           resolve()
-        }).catch(err => {
-          reject(err)
         })
       })
     },
@@ -33,13 +33,13 @@ export default {
         getUserInfo(state.token).then(data => {
           commit('setUser', data.user)
           resolve(data)
-        }).catch(err => {
-          reject(err)
+        }).catch(() => {
+          resolve()
         })
       })
     },
     // 登出请求
-    handleLogOut ({commit}) {
+    logout ({commit}) {
       return new Promise((resolve, reject) => {
         logout().then(() => {
           commit('setToken', '')

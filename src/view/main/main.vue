@@ -12,7 +12,7 @@
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user :user-avator="userAvator"/>
+          <user :name="name"/>
         </header-bar>
       </Header>
       <Content>
@@ -57,8 +57,8 @@ export default {
     tagNavList () {
       return this.$store.state.app.tagNavList
     },
-    userAvator () {
-      return this.$store.state.user.avatorImgPath
+    name () {
+      return this.$store.state.user.user.name
     },
     cacheList () {
       return this.tagNavList.length ? this.tagNavList.map(item => item.name).filter(item => !(item.meta && item.meta.notCache)) : []
