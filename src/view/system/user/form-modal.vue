@@ -37,7 +37,7 @@ export default {
        */
       rules: {
         username: [
-          {validator: this.validateUsername, trigger: 'blur'}
+          {required: true, validator: this.validateUsername, trigger: 'blur'}
         ],
         name: [
           {required: true, message: '真实姓名为必填项', trigger: 'blur'}
