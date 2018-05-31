@@ -84,9 +84,11 @@ export default {
     handleCollapsedChange (state) {
       this.collapsed = state
     },
-    handleCloseTag (res, type) {
+    handleCloseTag (res, name) {
       this.setTagNavList(res)
-      if (type === 'all') this.turnToPage('home')
+      if (name) {
+        this.turnToPage(name)
+      }
     },
     handleClick (item) {
       this.turnToPage(item.name)
