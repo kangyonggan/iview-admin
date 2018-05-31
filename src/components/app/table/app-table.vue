@@ -71,9 +71,13 @@ export default {
      * 刷新
      */
     refresh: function () {
+      this.loading = true
       let params = this.form ? Object.assign(this.params, this.form.model || {}) : this.params
       httpGet(this.url, params).then(data => {
         this.pageInfo = data.pageInfo
+        this.loading = false
+      }).catch(() => {
+        this.loading = false
       })
     },
     /**
