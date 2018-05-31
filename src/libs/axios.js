@@ -45,6 +45,7 @@ class httpRequest {
       return data
     }, (error) => {
       // 对响应错误做点什么
+      error = '网络异常，请稍后再试！'
       return Promise.reject(error)
     })
   }
