@@ -1,7 +1,6 @@
 import Axios from 'axios'
 import qs from 'qs'
 import baseURL from '_conf/url'
-import { Message } from 'iview'
 import Cookies from 'js-cookie'
 import { TOKEN_KEY } from '@/libs/util'
 class httpRequest {
@@ -41,12 +40,10 @@ class httpRequest {
       let data = res.data || {}
       this.destroy(url)
       if (data.respCo !== '0000') {
-        Message.error(data.respMsg)
         return Promise.reject(data.respMsg)
       }
       return data
     }, (error) => {
-      Message.error('服务内部错误')
       // 对响应错误做点什么
       return Promise.reject(error)
     })
@@ -86,9 +83,11 @@ class httpRequest {
   }
   // GET请求实例
   get (url, data) {
+    if (data) {
+      url = url + '?' + qs.stringify(data)
+    }
     let options = {
       url: url,
-      data,
       method: 'get'
     }
     let instance = this.create()

@@ -109,9 +109,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.$refs.roleModal.show({
-                      username: params.row.username
-                    })
+                    this.$Message.success('开发中')
                   }
                 }
               }, '设置角色')])

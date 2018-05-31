@@ -1,5 +1,6 @@
-import { login, logout, getUserInfo } from '@/api/user'
-import { setToken, getToken } from '@/libs/util'
+import { httpGet, httpPost } from '@/api/common'
+import { getToken, setToken } from '@/libs/util'
+import { Message } from 'iview'
 
 export default {
   state: {
@@ -19,33 +20,36 @@ export default {
     // 登录
     login ({commit}, user) {
       return new Promise((resolve) => {
-        login(user).then(data => {
+        httpPost('login', user).then(data => {
           commit('setToken', data.token)
           resolve(true)
-        }).catch(() => {
+        }).catch(respMsg => {
+          Message.error(respMsg)
           resolve()
         })
       })
     },
     // 获取用户信息
-    getUserInfo ({state, commit}) {
-      return new Promise((resolve, reject) => {
-        getUserInfo(state.token).then(data => {
+    getUserInfo ({commit}) {
+      return new Promise((resolve) => {
+        httpGet('user/info').then(data => {
           commit('setUser', data.user)
           resolve(data)
-        }).catch(() => {
+        }).catch(respMsg => {
+          Message.error(respMsg)
           resolve()
         })
       })
     },
     // 登出请求
     logout ({commit}) {
-      return new Promise((resolve, reject) => {
-        logout().then(() => {
+      return new Promise((resolve) => {
+        httpGet('logout').then(() => {
           commit('setToken', '')
+          resolve(true)
+        }).catch(respMsg => {
+          Message.error(respMsg)
           resolve()
-        }).catch(err => {
-          reject(err)
         })
       })
     }

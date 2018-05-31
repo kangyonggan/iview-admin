@@ -63,12 +63,10 @@ export default {
         return
       }
 
-      httpGet('validate/user?username=' + value).then(res => {
-        if (res) {
-          callback()
-        } else {
-          callback(new Error('用户名已存在'))
-        }
+      httpGet('validate/user?username=' + value).then(() => {
+        callback()
+      }).catch(() => {
+        callback(new Error('用户名已存在'))
       })
     },
     show: function (user) {

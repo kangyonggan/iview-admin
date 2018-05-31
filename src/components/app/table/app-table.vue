@@ -5,7 +5,7 @@
            @on-sort-change="sortChange"/>
 
     <!--分页-->
-    <Page v-if="pagination" :total="pageInfo.total" show-total show-sizer show-elevator :style="{marginTop: '20px'}"
+    <Page v-if="pagination" :current="params.pageNum" :total="pageInfo.total" show-total show-sizer show-elevator :style="{marginTop: '20px'}"
           @on-change="jump"
           @on-page-size-change="changePageSize"></Page>
   </div>
@@ -33,6 +33,12 @@ export default {
   },
   data () {
     return {
+      /**
+       * 分页参数
+       */
+      params: {
+        pageNum: 1
+      },
       /**
        * 分页信息
        */
@@ -65,58 +71,23 @@ export default {
      * 刷新
      */
     refresh: function () {
-      httpGet(this.url + this.getFormParams()).then(res => {
-        if (res) {
-          this.pageInfo = res.data.pageInfo
-        } else {
-          this.$Message.error('服务器内部错误，请联系管理员！')
-        }
-      }).catch(() => {
-        this.$Message.error('网络错误，请稍后再试！')
+      let params = this.form ? Object.assign(this.params, this.form.model || {}) : this.params
+      httpGet(this.url, params).then(data => {
+        this.pageInfo = data.pageInfo
       })
-    },
-    /**
-     * 获取查询表单的参数
-     */
-    getFormParams: function () {
-      let params = ''
-      if (this.form) {
-        let model = this.form.model
-        for (let key in model) {
-          if (model[key]) {
-            if (params === '') {
-              params += '?'
-            } else {
-              params += '&'
-            }
-            params += key + '='
-            params += model[key]
-          }
-        }
-      }
-
-      return params
     },
     /**
      * 修改分页大小
      */
     changePageSize: function (pageSize) {
-      let form = this.form
-      if (form && form.model) {
-        form.model.pageSize = pageSize
-        form.model.pageNum = 1
-      }
-
-      this.refresh()
+      this.params.pageSize = pageSize
+      this.jump(1)
     },
     /**
      * 跳转
      */
     jump: function (pageNum) {
-      let form = this.form
-      if (form && form.model) {
-        form.model.pageNum = pageNum
-      }
+      this.params.pageNum = pageNum
 
       this.refresh()
     },
@@ -124,20 +95,15 @@ export default {
      * 排序
      */
     sortChange: function (e) {
-      let form = this.form
-      if (form) {
-        let model = form.model
-        if (model) {
-          if (e.order !== 'normal') {
-            model.sort = e.key
-            model.order = e.order
-          } else {
-            model.sort = null
-            model.order = null
-          }
-        }
-        this.refresh()
+      if (e.order !== 'normal') {
+        this.params.sort = e.key
+        this.params.order = e.order
+      } else {
+        this.params.sort = null
+        this.params.order = null
       }
+
+      this.jump(1)
     },
     /**
      * 判断是否有选中的行

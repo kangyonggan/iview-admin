@@ -66,20 +66,17 @@ export default {
       this.$children[0].$children[0].validate((valid) => {
         if (valid) {
           this.loading()
-          console.log(this.action)
-          httpPost(this.action, this.model).then(res => {
-            if (res) {
-              this.$Message.success(res.msg)
-              this.hide()
-              if (this.success) {
-                this.success(res)
-              }
-            } else {
-              this.stop()
-              this.$Message.error('网络错误，请稍后再试！')
-              if (this.failure) {
-                this.failure()
-              }
+          httpPost(this.action, this.model).then(data => {
+            this.$Message.success(data.respMsg)
+            this.hide()
+            if (this.success) {
+              this.success(data)
+            }
+          }).catch(respMsg => {
+            this.stop()
+            this.$Message.error(respMsg)
+            if (this.failure) {
+              this.failure()
             }
           })
         }
