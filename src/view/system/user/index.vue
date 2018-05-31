@@ -81,38 +81,16 @@ export default {
           title: '操作',
           render: (h, params) => {
             return h('div', [
-              h('Button', {
-                props: {
-                  type: 'primary',
-                  size: 'small'
-                },
-                style: {
-                  marginRight: '5px'
-                },
-                on: {
-                  click: () => {
-                    this.$refs.formModal.show({
-                      id: params.row.id,
-                      username: params.row.username,
-                      name: params.row.name
-                    })
-                  }
-                }
-              }, '编辑'),
-              h('Button', {
-                props: {
-                  type: 'primary',
-                  size: 'small'
-                },
-                style: {
-                  marginRight: '5px'
-                },
-                on: {
-                  click: () => {
-                    this.$Message.success('开发中')
-                  }
-                }
-              }, '设置角色')])
+              h('Button', {props: {type: 'primary'}, style: {borderTopRightRadius: '0', borderBottomRightRadius: '0'}}, '编辑'),
+              h('Dropdown', {props: {placement: 'bottom-end', trigger: 'click'}}, [
+                h('Button', {props: {type: 'primary'}, style: {borderTopLeftRadius: '0', borderBottomLeftRadius: '0', paddingLeft: '0px', paddingRight: '6px', marginLeft: '1px'}},
+                  [h('Icon', {props: {type: 'arrow-down-b'}, style: {paddingLeft: '9px'}})]),
+                h('DropdownMenu', {slot: 'list'}, [
+                  h('DropdownItem', '逻辑删除'),
+                  h('DropdownItem', '设置角色')
+                ])
+              ])
+            ])
           }
         }]
     }
