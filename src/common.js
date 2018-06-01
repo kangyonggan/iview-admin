@@ -49,8 +49,8 @@ function status (h, params, url, table) {
           }
           let that = this
           that.$Modal.confirm({
-            title: '删除确认',
-            content: '确认删除所选记录吗？',
+            title: '禁用确认',
+            content: '确认禁用所选记录吗？',
             loading: true,
             closable: true,
             onOk: function () {
@@ -71,6 +71,23 @@ function status (h, params, url, table) {
   ])
 }
 
-function deleteItem (row) {
-  console.log('delete' + row)
+function deleteItem (url, table) {
+  let that = this
+  that.$Modal.confirm({
+    title: '删除确认',
+    content: '确认删除所选记录吗？',
+    loading: true,
+    closable: true,
+    onOk: function () {
+      httpGet(url).then(data => {
+        that.$Message.success(data.respMsg)
+        if (table) {
+          table.jump(1)
+        }
+      }).catch(err => {
+        that.$Message.error(err)
+      })
+      that.$Modal.remove()
+    }
+  })
 }

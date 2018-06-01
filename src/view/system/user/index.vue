@@ -97,7 +97,7 @@ export default {
                   if (name === 'setRole') {
                     this.$Message.warning('开发中')
                   } else if (name === 'delete') {
-                    this.delete(row)
+                    this.delete('system/user/' + row.id + '/delete', this.$refs.table)
                   }
                 }
               }}, [
