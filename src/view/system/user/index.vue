@@ -26,13 +26,17 @@
 
     <!--新增/编辑用户的界面-->
     <FormModal ref="formModal" @success="$refs.table.refresh()"/>
+
+    <!--设置角色的界面-->
+    <RoleModal ref="roleModal"/>
   </div>
 </template>
 
 <script>
 import FormModal from './form-modal.vue'
+import RoleModal from './role-modal.vue'
 export default {
-  components: {FormModal},
+  components: {FormModal, RoleModal},
   name: 'index',
   data () {
     return {
@@ -95,14 +99,17 @@ export default {
                 },
                 select: (name) => {
                   if (name === 'setRole') {
-                    this.$Message.warning('开发中')
+                    this.$refs.roleModal.show(row.username)
                   } else if (name === 'delete') {
                     this.delete('system/user/' + row.id + '/delete', this.$refs.table)
+                  } else if (name === 'editPassword') {
+                    this.$Message.success('修改密码正在开发')
                   }
                 }
               }}, [
               h('DropdownItem', {props: {name: 'delete'}, style: {display: row.status ? '' : 'none'}}, '物理删除'),
-              h('DropdownItem', {props: {name: 'setRole'}}, '设置角色')
+              h('DropdownItem', {props: {name: 'setRole'}}, '设置角色'),
+              h('DropdownItem', {props: {name: 'editPassword'}}, '修改密码')
             ])
           }
         }]
