@@ -37,13 +37,14 @@ export default {
        */
       rules: {
         username: [
-          {required: true, validator: this.validateUsername, trigger: 'blur'}
+          {required: true, min: 5, max: 32, trigger: 'blur'},
+          {validator: this.validateUsername, trigger: 'blur'}
         ],
         name: [
-          {required: true, message: '真实姓名为必填项', trigger: 'blur'}
+          {required: true, min: 1, max: 32, trigger: 'blur'}
         ],
         password: [
-          {required: true, message: '密码为必填项', trigger: 'blur'}
+          {required: true, min: 6, max: 32, trigger: 'blur'}
         ]
       }
     }
@@ -53,11 +54,6 @@ export default {
      * 校验用户名是否存在
      */
     validateUsername: function (rule, value, callback) {
-      if (!value) {
-        callback(new Error('用户名为必填项'))
-        return
-      }
-
       if (value === this.oldUsername) {
         callback()
         return

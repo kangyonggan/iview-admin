@@ -20,7 +20,7 @@ export default {
        */
       rules: {
         password: [
-          {required: true, message: '密码为必填项', trigger: 'blur'}
+          {required: true, min: 6, max: 32, trigger: 'blur'}
         ]
       }
     }
