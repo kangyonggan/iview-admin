@@ -31,6 +31,7 @@
 
 <script>
 import FormModal from './form-modal.vue'
+import { httpGet } from '@/api/common'
 export default {
   components: {FormModal},
   name: 'index',
@@ -80,25 +81,50 @@ export default {
         {
           title: '操作',
           render: (h, params) => {
+            let row = params.row
             return h('AppDropDown', {
               props: {text: '编辑'},
               on: {
                 click: () => {
                   this.$refs.formModal.show({
-                    id: params.row.id,
-                    username: params.row.username,
-                    name: params.row.name
+                    id: row.id,
+                    username: row.username,
+                    name: row.name
                   })
+                },
+                select: (name) => {
+                  let that = this
+                  let title = row.isDeleted ? '恢复' : '删除'
+                  if (name === 'delete') {
+                    that.$Modal.confirm({
+                      title: title + '确认',
+                      content: '确认' + title + row.name + '吗？',
+                      loading: true,
+                      closable: true,
+                      onOk: function () {
+                        httpGet('system/user/' + row.username + '/' + (row.isDeleted ? 'recovery' : 'delete')).then(data => {
+                          that.$Message.success(data.respMsg)
+                          that.$refs.table.refresh()
+                        }).catch(err => {
+                          that.$Message.error(err)
+                        })
+                        that.$Modal.remove()
+                      }
+                    })
+                  } else if (name === 'setRole') {
+                    console.log('设置角色')
+                  }
                 }
               }}, [
-              h('DropdownItem', '逻辑删除'),
-              h('DropdownItem', '设置角色')
+              h('DropdownItem', {props: {name: 'delete'}}, row.isDeleted ? '恢复' : '逻辑删除'),
+              h('DropdownItem', {props: {name: 'setRole'}}, '设置角色')
             ])
           }
         }]
     }
   },
   methods: {
+
   }
 }
 </script>

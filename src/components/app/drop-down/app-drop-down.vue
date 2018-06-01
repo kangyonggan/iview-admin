@@ -3,7 +3,7 @@
     <Button :type="type" size="small" @click="handleClick" :style="{borderTopRightRadius: '0', borderBottomRightRadius: '0'}">
       {{text}}
     </Button>
-    <Dropdown placement="bottom-end" trigger="click">
+    <Dropdown placement="bottom-end" trigger="click" @on-click="handleSelect">
       <Button :type="type" size="small" :style="{borderTopLeftRadius: '0', borderBottomLeftRadius: '0', paddingLeft: '0px', paddingRight: '3px', marginLeft: '-2px'}">
         <Icon type="arrow-down-b" :style="{paddingLeft: '3px'}"/>
       </Button>
@@ -29,6 +29,9 @@ export default {
   methods: {
     handleClick: function (e) {
       this.$emit('click', e)
+    },
+    handleSelect: function (e) {
+      this.$emit('select', e)
     }
   }
 }
