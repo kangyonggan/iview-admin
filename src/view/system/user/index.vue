@@ -31,7 +31,6 @@
 
 <script>
 import FormModal from './form-modal.vue'
-import { httpGet } from '@/api/common'
 export default {
   components: {FormModal},
   name: 'index',
@@ -61,11 +60,11 @@ export default {
           sortable: true
         },
         {
-          title: '逻辑删除',
-          key: 'isDeleted',
+          title: '状态',
+          key: 'status',
           sortable: true,
           render: (h, params) => {
-            return this.yesNo(h, params)
+            return this.status(h, params.row, 'system/user', this.$refs.table)
           }
         },
         {
@@ -93,31 +92,15 @@ export default {
                   })
                 },
                 select: (name) => {
-                  let that = this
-                  let title = row.isDeleted ? '恢复' : '删除'
-                  if (name === 'delete') {
-                    that.$Modal.confirm({
-                      title: title + '确认',
-                      content: '确认' + title + row.name + '吗？',
-                      loading: true,
-                      closable: true,
-                      onOk: function () {
-                        httpGet('system/user/' + row.username + '/' + (row.isDeleted ? 'recovery' : 'delete')).then(data => {
-                          that.$Message.success(data.respMsg)
-                          that.$refs.table.refresh()
-                        }).catch(err => {
-                          that.$Message.error(err)
-                        })
-                        that.$Modal.remove()
-                      }
-                    })
-                  } else if (name === 'setRole') {
-                    console.log('设置角色')
+                  if (name === 'setRole') {
+                    this.$Message.warning('开发中')
+                  } else if (name === 'delete') {
+                    this.$Message.warning('开发中')
                   }
                 }
               }}, [
-              h('DropdownItem', {props: {name: 'delete'}}, row.isDeleted ? '恢复' : '逻辑删除'),
-              h('DropdownItem', {props: {name: 'setRole'}}, '设置角色')
+              h('DropdownItem', {props: {name: 'setRole'}}, '设置角色'),
+              h('DropdownItem', {props: {name: 'delete'}}, '彻底删除')
             ])
           }
         }]
