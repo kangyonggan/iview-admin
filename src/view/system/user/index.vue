@@ -80,16 +80,19 @@ export default {
         {
           title: '操作',
           render: (h, params) => {
-            return h('div', [
-              h('Button', {props: {type: 'primary'}, style: {borderTopRightRadius: '0', borderBottomRightRadius: '0'}}, '编辑'),
-              h('Dropdown', {props: {placement: 'bottom-end', trigger: 'click'}}, [
-                h('Button', {props: {type: 'primary'}, style: {borderTopLeftRadius: '0', borderBottomLeftRadius: '0', paddingLeft: '0px', paddingRight: '6px', marginLeft: '1px'}},
-                  [h('Icon', {props: {type: 'arrow-down-b'}, style: {paddingLeft: '9px'}})]),
-                h('DropdownMenu', {slot: 'list'}, [
-                  h('DropdownItem', '逻辑删除'),
-                  h('DropdownItem', '设置角色')
-                ])
-              ])
+            return h('AppDropDown', {
+              props: {text: '编辑'},
+              on: {
+                click: () => {
+                  this.$refs.formModal.show({
+                    id: params.row.id,
+                    username: params.row.username,
+                    name: params.row.name
+                  })
+                }
+              }}, [
+              h('DropdownItem', '逻辑删除'),
+              h('DropdownItem', '设置角色')
             ])
           }
         }]

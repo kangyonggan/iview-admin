@@ -13,6 +13,7 @@ import env from '../config/env'
 import './components/app/table'
 import './components/app/data-picker'
 import './components/app/modal'
+import './components/app/drop-down'
 if (env === 'development') require('@/mock')
 
 Vue.use(iView)
