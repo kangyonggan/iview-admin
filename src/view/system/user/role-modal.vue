@@ -1,6 +1,6 @@
 <template>
   <!--设置角色-->
-  <AppModal ref="modal" :action="'system/user/' + user.id + '/role'" title="设置用户角色" :model="user">
+  <AppModal ref="modal" :action="'system/user/' + user.username + '/role'" title="设置用户角色" :model="user">
     <FormItem prop="roleCodes">
       <CheckboxGroup v-model="user.roleCodes">
         <Checkbox v-for="(role, index) in roles" :key="index" :label="role.code">
@@ -19,7 +19,10 @@ export default {
       /**
        * 用户信息
        */
-      user: {},
+      user: {
+        username: '',
+        roleCodes: []
+      },
       /**
        * 全部角色
        */

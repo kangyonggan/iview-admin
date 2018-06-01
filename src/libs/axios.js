@@ -1,8 +1,7 @@
 import Axios from 'axios'
-import qs from 'qs'
 import baseURL from '_conf/url'
 import Cookies from 'js-cookie'
-import { TOKEN_KEY } from '@/libs/util'
+import { TOKEN_KEY, params } from '@/libs/util'
 class httpRequest {
   constructor () {
     this.options = {
@@ -26,7 +25,7 @@ class httpRequest {
       // Spin.show()
       // 在发送请求之前做些什么
       if (config.method === 'post') {
-        config.data = qs.stringify(config.data)
+        config.data = params(config.data).join('&')
       }
 
       return config
@@ -85,7 +84,7 @@ class httpRequest {
   // GET请求实例
   get (url, data) {
     if (data) {
-      url = url + '?' + qs.stringify(data)
+      url += '?' + params(data).join('&')
     }
     let options = {
       url: url,

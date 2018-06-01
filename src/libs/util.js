@@ -176,3 +176,35 @@ export const getParams = url => {
   })
   return paramObj
 }
+
+/**
+ * 拼接请求参数
+ *
+ * @param data
+ * @returns {*}
+ */
+export const params = (data) => {
+  if (data.constructor !== Object) {
+    return data
+  }
+
+  let arr = []
+  for (let key in data) {
+    let obj = data[key]
+    if (obj === undefined) {
+      continue
+    }
+    if (obj.constructor === Array) {
+      let a = []
+      for (let i in obj) {
+        a.push(params(obj[i]))
+      }
+      arr.push(key + '=' + a.join(','))
+    } else if (obj.constructor === Object) {
+      arr.push(key + '=' + params(obj))
+    } else {
+      arr.push(key + '=' + obj)
+    }
+  }
+  return arr
+}
