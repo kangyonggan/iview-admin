@@ -101,7 +101,7 @@ export default {
                   }
                 }
               }}, [
-              h('DropdownItem', {props: {name: 'delete', disabled: !row.status}}, '物理删除'),
+              h('DropdownItem', {props: {name: 'delete'}, style: {display: row.status ? '' : 'none'}}, '物理删除'),
               h('DropdownItem', {props: {name: 'setRole'}}, '设置角色')
             ])
           }
