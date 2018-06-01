@@ -64,7 +64,9 @@ export default {
           key: 'status',
           sortable: true,
           render: (h, params) => {
-            return this.status(h, params, this.$refs.table)
+            return this.status(h, params,
+              'system/user/' + params.row.id + '/status/' + 1 * !params.row.status,
+              this.$refs.table)
           }
         },
         {
@@ -95,12 +97,12 @@ export default {
                   if (name === 'setRole') {
                     this.$Message.warning('开发中')
                   } else if (name === 'delete') {
-                    this.$Message.warning('开发中')
+                    this.delete(row)
                   }
                 }
               }}, [
-              h('DropdownItem', {props: {name: 'setRole'}}, '设置角色'),
-              h('DropdownItem', {props: {name: 'delete'}}, '彻底删除')
+              h('DropdownItem', {props: {name: 'delete', disabled: !row.status}}, '物理删除'),
+              h('DropdownItem', {props: {name: 'setRole'}}, '设置角色')
             ])
           }
         }]

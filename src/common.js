@@ -3,16 +3,19 @@ import { httpGet } from '@/api/common'
 
 // 定义全局方法
 Vue.prototype.status = status
+Vue.prototype.delete = deleteItem
 
-function status (h, params, table, url) {
+function status (h, params, url, table) {
   let row = params.row
-  url = url || table.url
   if (row.status) {
     return h('Tag', {props: {type: 'dot', color: 'red'}}, [
       h('a', {
         style: {color: '#495060'},
         on: {
           click: () => {
+            if (!url) {
+              return
+            }
             let that = this
             that.$Modal.confirm({
               title: '恢复确认',
@@ -20,7 +23,7 @@ function status (h, params, table, url) {
               loading: true,
               closable: true,
               onOk: function () {
-                httpGet(url + '/' + row.id + '/status/0').then(data => {
+                httpGet(url).then(data => {
                   that.$Message.success(data.respMsg)
                   if (table) {
                     table.refresh()
@@ -41,6 +44,9 @@ function status (h, params, table, url) {
       style: {color: '#495060'},
       on: {
         click: () => {
+          if (!url) {
+            return
+          }
           let that = this
           that.$Modal.confirm({
             title: '删除确认',
@@ -48,7 +54,7 @@ function status (h, params, table, url) {
             loading: true,
             closable: true,
             onOk: function () {
-              httpGet(url + '/' + row.id + '/status/1').then(data => {
+              httpGet(url).then(data => {
                 that.$Message.success(data.respMsg)
                 if (table) {
                   table.refresh()
@@ -63,4 +69,8 @@ function status (h, params, table, url) {
       }
     }, '可用')
   ])
+}
+
+function deleteItem (row) {
+  console.log('delete' + row)
 }
