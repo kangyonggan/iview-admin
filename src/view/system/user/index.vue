@@ -64,7 +64,7 @@ export default {
           key: 'status',
           sortable: true,
           render: (h, params) => {
-            return this.status(h, params.row, 'system/user', this.$refs.table)
+            return this.status(h, params, this.$refs.table)
           }
         },
         {

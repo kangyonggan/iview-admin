@@ -4,7 +4,9 @@ import { httpGet } from '@/api/common'
 // 定义全局方法
 Vue.prototype.status = status
 
-function status (h, row, url, table) {
+function status (h, params, table, url) {
+  let row = params.row
+  url = url || table.url
   if (row.status) {
     return h('Tag', {props: {type: 'dot', color: 'red'}}, [
       h('a', {
