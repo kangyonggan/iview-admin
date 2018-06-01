@@ -27,14 +27,6 @@ export default {
       required: true,
       type: String
     },
-    success: {
-      required: false,
-      type: Function
-    },
-    failure: {
-      required: false,
-      type: Function
-    },
     rules: {
       required: false,
       type: Object
@@ -69,15 +61,11 @@ export default {
           httpPost(this.action, this.model).then(data => {
             this.$Message.success(data.respMsg)
             this.hide()
-            if (this.success) {
-              this.success(data)
-            }
+            this.$emit('success', data)
           }).catch(respMsg => {
             this.stop()
             this.$Message.error(respMsg)
-            if (this.failure) {
-              this.failure()
-            }
+            this.$emit('failure', respMsg)
           })
         }
       })

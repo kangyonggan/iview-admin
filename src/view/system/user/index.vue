@@ -29,14 +29,18 @@
 
     <!--设置角色的界面-->
     <RoleModal ref="roleModal"/>
+
+    <!--修改密码-->
+    <PasswordModal ref="passwordModal" @success="$refs.table.refresh()"/>
   </div>
 </template>
 
 <script>
 import FormModal from './form-modal.vue'
 import RoleModal from './role-modal.vue'
+import PasswordModal from './password-modal.vue'
 export default {
-  components: {FormModal, RoleModal},
+  components: {FormModal, RoleModal, PasswordModal},
   name: 'index',
   data () {
     return {
@@ -103,7 +107,7 @@ export default {
                   } else if (name === 'delete') {
                     this.delete('system/user/' + row.id + '/delete', this.$refs.table)
                   } else if (name === 'editPassword') {
-                    this.$Message.success('修改密码正在开发')
+                    this.$refs.passwordModal.show(row.id)
                   }
                 }
               }}, [
