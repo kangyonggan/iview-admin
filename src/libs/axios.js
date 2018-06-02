@@ -49,10 +49,10 @@ class httpRequest {
         router.push({
           path: 'login'
         })
+      } else {
+        // 其他异常
+        return Promise.reject(data.respMsg)
       }
-
-      // 其他异常
-      return Promise.reject(data.respMsg)
     }, (error) => {
       // 对响应错误做点什么
       error = '网络异常，请稍后再试！'
