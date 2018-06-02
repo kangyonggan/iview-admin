@@ -1,6 +1,7 @@
-import Main from '@/view/main'
+import { httpGet } from '@/api/common'
+import components from './components'
 
-export default [
+let defaultRoutes = [
   {
     path: '/login',
     name: 'login',
@@ -14,7 +15,7 @@ export default [
     path: '/',
     name: 'index',
     redirect: '/home',
-    component: Main,
+    component: () => import('@/view/main'),
     meta: {
       hideInMenu: true,
       notCache: true
@@ -31,58 +32,68 @@ export default [
         component: () => import('@/view/home/index')
       }
     ]
-  },
-  {
-    path: '/system',
-    name: 'system',
-    meta: {
-      icon: 'gear-b',
-      title: '系统'
-    },
-    component: Main,
-    children: [
-      {
-        path: 'user',
-        name: 'user',
-        meta: {
-          title: '用户管理',
-          access: 'user'
-        },
-        component: () => import('@/view/system/user/index')
-      },
-      {
-        path: 'role',
-        name: 'role',
-        meta: {
-          title: '角色管理',
-          access: 'role'
-        },
-        component: () => import('@/view/system/role/index')
-      },
-      {
-        path: 'menu',
-        name: 'menu',
-        meta: {
-          title: '菜单管理',
-          access: 'menu'
-        },
-        component: () => import('@/view/system/menu/index')
-      }
-    ]
-  },
-  {
-    path: '/401',
-    name: 'error_401',
-    component: () => import('@/view/error-page/401.vue')
-  },
-  {
-    path: '/500',
-    name: 'error_500',
-    component: () => import('@/view/error-page/500.vue')
-  },
-  {
-    path: '*',
-    name: 'error_404',
-    component: () => import('@/view/error-page/404.vue')
   }
 ]
+
+export default defaultRoutes
+
+/**
+ * 加载路由
+ *
+ * @param router
+ */
+export const loadRoutes = (router) => {
+  httpGet('menus').then(data => {
+    if (data && data.menus) {
+      for (let i in data.menus) {
+        let route = loadMenuRoutes(data.menus[i])
+        if (route) {
+          defaultRoutes.push(route)
+        }
+      }
+      defaultRoutes.push({
+        path: '*',
+        name: 'error_404',
+        component: () => import('@/view/error/404')
+      })
+    } else {
+      defaultRoutes.push({
+        path: '*',
+        name: 'error_404',
+        component: () => import('@/view/error/404')
+      })
+    }
+
+    router.addRoutes(defaultRoutes)
+  })
+}
+
+/**
+ * 加载菜单的路由及子路由
+ *
+ * @param menu
+ */
+function loadMenuRoutes (menu) {
+  let children = []
+  let route = {
+    path: '/' + menu.code,
+    name: menu.code,
+    meta: {
+      icon: menu.icon,
+      title: menu.name
+    },
+    component: () => components[menu.code]
+  }
+
+  if (menu.leaf && menu.leaf.length) {
+    for (let i in menu.leaf) {
+      children.push(loadMenuRoutes(menu.leaf[i]))
+    }
+  }
+
+  if (children.length > 0) {
+    route.children = children
+  }
+
+  return route
+}

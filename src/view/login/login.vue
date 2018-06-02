@@ -59,9 +59,7 @@ export default {
             if (res) {
               this.getUserInfo().then(res => {
                 if (res) {
-                  this.$router.push({
-                    name: 'home'
-                  })
+                  window.location.reload()
                 } else {
                   this.loading = false
                 }
