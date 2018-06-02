@@ -45,7 +45,8 @@ export default [
         path: 'user',
         name: 'user',
         meta: {
-          title: '用户管理'
+          title: '用户管理',
+          access: 'user'
         },
         component: () => import('@/view/system/user/index')
       },
@@ -53,7 +54,8 @@ export default [
         path: 'role',
         name: 'role',
         meta: {
-          title: '角色管理'
+          title: '角色管理',
+          access: 'role'
         },
         component: () => import('@/view/system/role/index')
       },
@@ -61,7 +63,8 @@ export default [
         path: 'menu',
         name: 'menu',
         meta: {
-          title: '菜单管理'
+          title: '菜单管理',
+          access: 'menu'
         },
         component: () => import('@/view/system/menu/index')
       }

@@ -1,6 +1,6 @@
 <template>
   <div class="user-avator-dropdown">
-    <Dropdown @on-click="handleClick">
+    <Dropdown @on-click="handleClick" trigger="click" >
       <span>{{name}} </span>
       <Icon :size="12" type="arrow-down-b"></Icon>
       <DropdownMenu slot="list">
