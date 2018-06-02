@@ -23,17 +23,11 @@ export const hasChild = (item) => {
   return item.children && item.children.length !== 0
 }
 
-const showThisMenuEle = (item, access) => {
-  if (item.meta && item.meta.access && item.meta.access.length) {
-    if (hasOneOf(item.meta.access, access)) return true
-    else return false
-  } else return true
-}
 /**
  * @param {Array} list 通过路由列表得到菜单列表
  * @returns {Array}
  */
-export const getMenuByRouter = (list, access) => {
+export const getMenuByRouter = (list) => {
   let res = []
   forEach(list, item => {
     if (item.meta && !item.meta.hideInMenu) {
@@ -42,10 +36,10 @@ export const getMenuByRouter = (list, access) => {
         name: item.name,
         meta: item.meta
       }
-      if (hasChild(item) && showThisMenuEle(item, access)) {
-        obj.children = getMenuByRouter(item.children, access)
+      if (hasChild(item)) {
+        obj.children = getMenuByRouter(item.children)
       }
-      if (showThisMenuEle(item, access)) res.push(obj)
+      res.push(obj)
     }
   })
   return res
