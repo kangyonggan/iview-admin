@@ -1,7 +1,9 @@
 import Axios from 'axios'
 import baseURL from '_conf/url'
 import Cookies from 'js-cookie'
-import { TOKEN_KEY, params } from '@/libs/util'
+import { TOKEN_KEY, removeToken, params } from '@/libs/util'
+import router from '../router'
+
 class httpRequest {
   constructor () {
     this.options = {
@@ -38,10 +40,19 @@ class httpRequest {
     instance.interceptors.response.use((res) => {
       let data = res.data || {}
       this.destroy(url)
-      if (data.respCo !== '0000') {
-        return Promise.reject(data.respMsg)
+      if (data.respCo === '0000') {
+        // 成功
+        return data
+      } else if (data.respCo === '9998') {
+        // 登录已失效
+        removeToken()
+        router.push({
+          path: 'login'
+        })
       }
-      return data
+
+      // 其他异常
+      return Promise.reject(data.respMsg)
     }, (error) => {
       // 对响应错误做点什么
       error = '网络异常，请稍后再试！'

@@ -15,6 +15,10 @@ export const getToken = () => {
   else return false
 }
 
+export const removeToken = () => {
+  Cookies.set(TOKEN_KEY, '', {expires: -1})
+}
+
 export const hasChild = (item) => {
   return item.children && item.children.length !== 0
 }
