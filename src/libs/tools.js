@@ -34,8 +34,10 @@ export const getIntersection = (arr1, arr2) => {
  * @description 判断要查询的数组是否至少有一个元素包含在目标数组中
  */
 export const hasOneOf = (target, arr) => {
-  if (target.constructor !== Array) {
-    return false
+  if (target.constructor === Array) {
+    return target.some(_ => arr.indexOf(_) > -1)
+  } else if (arr.constructor === Array) {
+    return arr.some(_ => target.indexOf(_) > -1)
   }
-  return target.some(_ => arr.indexOf(_) > -1)
+  return false
 }
