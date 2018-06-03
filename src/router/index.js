@@ -41,8 +41,14 @@ router.beforeEach((to, from, next) => {
       })
     } else {
       store.dispatch('getUserInfo').then(data => {
-        if (data) {
+        if (data.respCo === '0000') {
           next()
+        } else {
+          if (Vue.config.lang === 'zh-CN') {
+            iView.Message.error('您尚未登录或登录已失效！')
+          } else {
+            iView.Message.error('Has Not Login Or Invalid Login!')
+          }
         }
       })
     }

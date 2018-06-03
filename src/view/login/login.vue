@@ -60,16 +60,18 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true
-          this.login(this.user, this.loading).then(res => {
-            if (res) {
-              this.getUserInfo().then(res => {
-                if (res) {
+          this.login(this.user, this.loading).then(data => {
+            if (data.respCo === '0000') {
+              this.getUserInfo().then(data => {
+                if (data.respCo === '0000') {
                   window.location.reload()
                 } else {
+                  this.$Message.success(this.$t('msg.code' + data.respCo))
                   this.loading = false
                 }
               })
             } else {
+              this.$Message.success(this.$t('msg.code' + data.respCo))
               this.loading = false
             }
           })

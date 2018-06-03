@@ -31,12 +31,12 @@ function status (that, h, params, url, table) {
               closable: true,
               onOk: function () {
                 httpPut(url).then(data => {
-                  that.$Message.success(data.respMsg)
+                  that.$Message.success(that.$t('msg.code' + data.respCo))
                   if (table) {
                     table.refresh()
                   }
-                }).catch(err => {
-                  that.$Message.error(err)
+                }).catch(respCo => {
+                  that.$Message.error(that.$t('msg.code' + respCo))
                 })
                 that.$Modal.remove()
               }
@@ -62,12 +62,12 @@ function status (that, h, params, url, table) {
             closable: true,
             onOk: function () {
               httpPut(url).then(data => {
-                that.$Message.success(data.respMsg)
+                that.$Message.success(that.$t('msg.code' + data.respCo))
                 if (table) {
                   table.refresh()
                 }
-              }).catch(err => {
-                that.$Message.error(err)
+              }).catch(respCo => {
+                that.$Message.error(that.$t('msg.code' + respCo))
               })
               that.$Modal.remove()
             }
@@ -87,12 +87,12 @@ function deleteItem (url, table) {
     closable: true,
     onOk: function () {
       httpDelete(url).then(data => {
-        that.$Message.success(data.respMsg)
+        that.$Message.success(that.$t('msg.code' + data.respCo))
         if (table) {
           table.jump(1)
         }
-      }).catch(err => {
-        that.$Message.error(err)
+      }).catch(respCo => {
+        that.$Message.error(that.$t('msg.code' + respCo))
       })
       that.$Modal.remove()
     }

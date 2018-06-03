@@ -5,7 +5,12 @@ export default {
   },
   msg: {
     err401: 'Oh~~You do not have permission to do this!~',
-    err404: 'Oh~~Your page was missing!~'
+    err404: 'Oh~~Your page was missing!~',
+    code9999: 'Unknown Error, Please connect admin!',
+    code9998: 'Has Not Login Or Invalid Login!',
+    code9997: 'You do not have permission!',
+    code9996: 'Network Error, Please retry later!',
+    code0000: 'Operate Success!'
   },
   route: {
     login: 'Login',

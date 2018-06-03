@@ -56,11 +56,11 @@ class httpRequest {
         })
       } else {
         // 其他异常
-        return Promise.reject(data.respMsg)
+        return Promise.reject(data.respCo)
       }
     }, (error) => {
       // 对响应错误做点什么
-      error = '网络异常，请稍后再试！'
+      error = '9996'
       return Promise.reject(error)
     })
   }
