@@ -1,28 +1,28 @@
 <template>
   <div class="login" @keydown.enter="submit">
     <div class="login-con">
-      <Card icon="log-in" title="欢迎登录" :bordered="false">
+      <Card icon="log-in" :title="$t('login.title')" :bordered="false">
         <div class="form-con">
           <Form ref="loginForm" :model="user" :rules="rules">
             <FormItem prop="username">
-              <Input v-model="user.username" placeholder="请输入用户名">
+              <Input v-model="user.username" :placeholder="$t('login.placeholderUsername')">
                 <span slot="prepend">
                   <Icon :size="16" type="person"></Icon>
                 </span>
               </Input>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="user.password" placeholder="请输入密码">
+              <Input type="password" v-model="user.password" :placeholder="$t('login.placeholderPassword')">
                 <span slot="prepend">
                   <Icon :size="14" type="locked"></Icon>
                 </span>
               </Input>
             </FormItem>
             <FormItem>
-              <Button @click="submit" :loading="loading" type="primary" long>登录</Button>
+              <Button @click="submit" :loading="loading" type="primary" long>{{ $t('login.submit') }}</Button>
             </FormItem>
           </Form>
-          <p class="login-tip">体验账号：guest/123456</p>
+          <p class="login-tip">{{ $t('login.experience') }}：guest/123456</p>
         </div>
       </Card>
     </div>

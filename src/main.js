@@ -6,7 +6,7 @@ import router from './router'
 import store from './store'
 import iView from 'iview'
 import './common'
-// import i18n from '@/locale'
+import '@/locale'
 import config from '@/config'
 import 'iview/dist/styles/iview.css'
 import env from '../config/env'
@@ -29,6 +29,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  // i18n,
   render: h => h(App)
 })
