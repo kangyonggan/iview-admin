@@ -64,12 +64,12 @@ export default {
         if (valid) {
           this.loading()
           http(this.method, this.action, this.model).then(data => {
-            this.$Message.success(this.$t('msg.code' + data.respCo))
+            this.$Notice.success({title: this.$t('msg.code' + data.respCo)})
             this.hide()
             this.$emit('success', data)
           }).catch(respCo => {
             this.stop()
-            this.$Message.error(this.$t('msg.code' + respCo))
+            this.$Notice.error({title: this.$t('msg.code' + respCo)})
             this.$emit('failure', respCo)
           })
         }
