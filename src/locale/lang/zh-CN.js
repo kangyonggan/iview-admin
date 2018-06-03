@@ -39,7 +39,9 @@ export default {
     setRole: '设置角色',
     editPwd: '修改密码',
     backHome: '返回首页',
-    backPrev: '返回上一页'
+    backPrev: '返回上一页',
+    closeOther: '关闭其他',
+    closeAll: '关闭所有'
   },
   entity: {
     user: '用户',

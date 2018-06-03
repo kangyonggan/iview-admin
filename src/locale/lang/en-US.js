@@ -39,7 +39,9 @@ export default {
     setRole: 'GrantRole',
     editPwd: 'EditPassword',
     backHome: 'Back To Home',
-    backPrev: 'Back To Previous'
+    backPrev: 'Back To Previous',
+    closeOther: 'Close Other',
+    closeAll: 'Close All'
   },
   entity: {
     user: 'User',

@@ -6,8 +6,8 @@
           <Icon :size="18" type="ios-close-outline"></Icon>
         </Button>
         <DropdownMenu slot="list">
-          <DropdownItem name="close-all">关闭所有</DropdownItem>
-          <DropdownItem name="close-others">关闭其他</DropdownItem>
+          <DropdownItem name="close-all">{{$t('btn.closeAll')}}</DropdownItem>
+          <DropdownItem name="close-others">{{$t('btn.closeOther')}}</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
