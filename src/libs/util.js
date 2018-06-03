@@ -4,6 +4,7 @@ import config from '@/config'
 import { forEach, hasOneOf } from '@/libs/tools'
 
 export const TOKEN_KEY = 'token'
+export const LANG_KEY = 'lang'
 
 export const setToken = (token) => {
   Cookies.set(TOKEN_KEY, token, {expires: config.cookieExpires || 1})
@@ -13,6 +14,16 @@ export const getToken = () => {
   const token = Cookies.get(TOKEN_KEY)
   if (token) return token
   else return false
+}
+
+export const setLang = (lang) => {
+  Cookies.set(LANG_KEY, lang, {expires: config.cookieExpires || 1})
+}
+
+export const getLang = () => {
+  const lang = Cookies.get(LANG_KEY)
+  if (lang) return lang
+  else return 'zh-CN'
 }
 
 export const removeToken = () => {

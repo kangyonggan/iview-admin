@@ -14,7 +14,7 @@
 
 <script>
 import './user.less'
-import Vue from 'vue'
+import { getLang, setLang } from '@/libs/util'
 import { mapActions } from 'vuex'
 export default {
   name: 'user',
@@ -26,7 +26,7 @@ export default {
   },
   data () {
     return {
-      language: Vue.config.lang
+      language: getLang()
     }
   },
   methods: {
@@ -45,12 +45,12 @@ export default {
           })
           break
         case 'language-en':
-          this.language = 'en-US'
-          Vue.config.lang = this.language
+          setLang('en-US')
+          window.location.reload()
           break
         case 'language-zh':
-          this.language = 'zh-CN'
-          Vue.config.lang = this.language
+          setLang('zh-CN')
+          window.location.reload()
           break
       }
     }
