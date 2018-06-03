@@ -4,9 +4,7 @@ import axios from '@/libs/api.request'
 export const httpGet = (url, data) => {
   return new Promise((resolve, reject) => {
     axios.get(url, data).then(data => {
-      if (data) {
-        resolve(data)
-      }
+      resolve(data)
     }).catch(err => {
       reject(err)
     })
@@ -17,9 +15,7 @@ export const httpGet = (url, data) => {
 export const httpPost = (url, data) => {
   return new Promise((resolve, reject) => {
     axios.post(url, data).then(data => {
-      if (data) {
-        resolve(data)
-      }
+      resolve(data)
     }).catch(err => {
       reject(err)
     })
