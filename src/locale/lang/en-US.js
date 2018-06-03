@@ -1,5 +1,13 @@
 export default {
-  login: {
+  appName: 'BManagerS',
+  appShortName: 'BMS',
+  login: 'Login',
+  home: 'Home',
+  system: 'System',
+  user: 'User Namage',
+  role: 'Role Manage',
+  menu: 'Menu Manage',
+  loginPage: {
     title: 'Welcome Login',
     placeholderUsername: 'Please Input Username',
     placeholderPassword: 'Please Input Password',
@@ -9,13 +17,5 @@ export default {
   valid: {
     usernameRequired: 'username can not be none',
     passwordRequired: 'password can not be none'
-  },
-  menu: {
-    login: 'login',
-    home: 'home',
-    system: 'system',
-    user: 'User Namage',
-    role: 'Role Manage',
-    menu: 'Menu Manage'
   }
 }

@@ -5,24 +5,24 @@
         <div class="form-con">
           <Form ref="loginForm" :model="user" :rules="rules">
             <FormItem prop="username">
-              <Input v-model="user.username" :placeholder="$t('login.placeholderUsername')">
+              <Input v-model="user.username" :placeholder="$t('loginPage.placeholderUsername')">
                 <span slot="prepend">
                   <Icon :size="16" type="person"></Icon>
                 </span>
               </Input>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="user.password" :placeholder="$t('login.placeholderPassword')">
+              <Input type="password" v-model="user.password" :placeholder="$t('loginPage.placeholderPassword')">
                 <span slot="prepend">
                   <Icon :size="14" type="locked"></Icon>
                 </span>
               </Input>
             </FormItem>
             <FormItem>
-              <Button @click="submit" :loading="loading" type="primary" long>{{ $t('login.submit') }}</Button>
+              <Button @click="submit" :loading="loading" type="primary" long>{{ $t('loginPage.submit') }}</Button>
             </FormItem>
           </Form>
-          <p class="login-tip">{{ $t('login.experience') }}：guest/123456</p>
+          <p class="login-tip">{{ $t('loginPage.experience') }}：guest/123456</p>
         </div>
       </Card>
     </div>
