@@ -1,7 +1,7 @@
 <template>
   <div class="login" @keydown.enter="submit">
     <div class="login-con">
-      <Card icon="log-in" :title="$t('login.title')" :bordered="false">
+      <Card icon="log-in" :title="$t('loginPage.title')" :bordered="false">
         <div class="form-con">
           <Form ref="loginForm" :model="user" :rules="rules">
             <FormItem prop="username">
@@ -38,10 +38,14 @@ export default {
       loading: false,
       rules: {
         username: [
-          {required: true, message: this.$t('valid.usernameRequired'), trigger: 'blur'}
+          {required: true, message: this.$t('valid.usernameRequired'), trigger: 'blur'},
+          {min: 5, message: this.$t('valid.usernameMin', 5), trigger: 'blur'},
+          {max: 32, message: this.$t('valid.usernameMax', 32), trigger: 'blur'}
         ],
         password: [
-          {required: true, message: this.$t('valid.passwordRequired'), trigger: 'blur'}
+          {required: true, message: this.$t('valid.passwordRequired'), trigger: 'blur'},
+          {min: 6, message: this.$t('valid.passwordMin', 6), trigger: 'blur'},
+          {max: 32, message: this.$t('valid.passwordMax', 32), trigger: 'blur'}
         ]
       }
     }
