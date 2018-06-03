@@ -53,8 +53,8 @@ export default {
     username: 'Please Input Username',
     password: 'Please Input Password',
     name: 'Please Input Name',
-    startDate: 'Please Input Start Date',
-    endDate: 'Please Input End Date'
+    startDate: 'Please Input Create Start Date',
+    endDate: 'Please Input Create End Date'
   },
   loginPage: {
     title: 'Welcome Login',
