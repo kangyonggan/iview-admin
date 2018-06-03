@@ -31,7 +31,9 @@ export default {
   status: {
     enable: '可用',
     disable: '禁用',
-    locked: '已锁定'
+    locked: '已锁定',
+    fullScreen: '全屏',
+    exitFullScreen: '跳出全屏'
   },
   btn: {
     query: '查询',

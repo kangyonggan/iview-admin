@@ -12,6 +12,7 @@
     <Layout>
       <Header class="header-con">
         <lock-screen></lock-screen>
+        <fullscreen v-model="isFullScreen"></fullscreen>
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
           <user :name="name"/>
         </header-bar>
@@ -38,6 +39,7 @@ import sideMenu from './components/side-menu'
 import headerBar from './components/header-bar'
 import tagsNav from './components/tags-nav'
 import lockScreen from './components/lockscreen'
+import fullscreen from './components/fullscreen'
 import user from './components/user'
 import { mapMutations, mapActions } from 'vuex'
 import { getNewTagList } from '@/libs/util'
@@ -49,10 +51,12 @@ export default {
     headerBar,
     tagsNav,
     lockScreen,
+    fullscreen,
     user
   },
   data () {
     return {
+      isFullScreen: false,
       collapsed: false
     }
   },

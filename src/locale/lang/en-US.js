@@ -32,7 +32,9 @@ export default {
   status: {
     enable: 'Enable',
     disable: 'Disable',
-    locked: 'Locked'
+    locked: 'Locked',
+    fullScreen: 'Full Screen',
+    exitFullScreen: 'Exit Full Screen'
   },
   btn: {
     query: 'Query',
