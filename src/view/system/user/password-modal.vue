@@ -20,7 +20,9 @@ export default {
        */
       rules: {
         password: [
-          {required: true, min: 6, max: 32, trigger: 'blur'}
+          {required: true, message: this.$t('valid.passwordRequired'), trigger: 'blur'},
+          {min: 6, message: this.$t('valid.passwordMin', 6), trigger: 'blur'},
+          {max: 32, message: this.$t('valid.passwordMax', 32), trigger: 'blur'}
         ]
       }
     }

@@ -63,6 +63,14 @@ export default {
   },
   valid: {
     usernameRequired: 'username can not be none',
-    passwordRequired: 'password can not be none'
+    usernameMin: 'username min length is {0}',
+    usernameMax: 'username max length is {0}',
+    usernameExists: 'username already exists',
+    passwordRequired: 'password can not be none',
+    passwordMin: 'password min length is {0}',
+    passwordMax: 'password max length is {0}',
+    nameRequired: 'password can not be none',
+    nameMin: 'name min length is {0}',
+    nameMax: 'name max length is {0}'
   }
 }

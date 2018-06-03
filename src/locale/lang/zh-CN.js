@@ -63,6 +63,14 @@ export default {
   },
   valid: {
     usernameRequired: '用户名为必填项',
-    passwordRequired: '密码为必填项'
+    usernameMin: '用户名最少为{0}位',
+    usernameMax: '用户名最多为{0}位',
+    usernameExists: '用户名已存在',
+    passwordRequired: '密码为必填项',
+    passwordMin: '密码最少为{0}位',
+    passwordMax: '密码最多为{0}位',
+    nameRequired: '密码为必填项',
+    nameMin: '姓名最少为{0}位',
+    nameMax: '姓名最多为{0}位'
   }
 }

@@ -38,14 +38,20 @@ export default {
        */
       rules: {
         username: [
-          {required: true, min: 5, max: 32, trigger: 'blur'},
+          {required: true, message: this.$t('valid.usernameRequired'), trigger: 'blur'},
+          {min: 5, message: this.$t('valid.usernameMin', 5), trigger: 'blur'},
+          {max: 32, message: this.$t('valid.usernameMax', 32), trigger: 'blur'},
           {validator: this.validateUsername, trigger: 'blur'}
         ],
         name: [
-          {required: true, min: 1, max: 32, trigger: 'blur'}
+          {required: true, message: this.$t('valid.nameRequired'), trigger: 'blur'},
+          {min: 1, message: this.$t('valid.nameMin', 1), trigger: 'blur'},
+          {max: 32, message: this.$t('valid.nameMax', 32), trigger: 'blur'}
         ],
         password: [
-          {required: true, min: 6, max: 32, trigger: 'blur'}
+          {required: true, message: this.$t('valid.passwordRequired'), trigger: 'blur'},
+          {min: 6, message: this.$t('valid.passwordMin', 6), trigger: 'blur'},
+          {max: 32, message: this.$t('valid.passwordMax', 32), trigger: 'blur'}
         ]
       }
     }
@@ -63,7 +69,7 @@ export default {
       httpGet('validate/user?username=' + value).then(() => {
         callback()
       }).catch(() => {
-        callback(new Error('用户名已存在'))
+        callback(new Error(this.$t('valid.usernameExists')))
       })
     },
     show: function (user) {
