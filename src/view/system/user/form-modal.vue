@@ -1,16 +1,16 @@
 <template>
   <!--新增/编辑用户-->
   <AppModal ref="modal" action="system/user" :method="user.id ? 'put' : 'post'"
-            :title="(user.id ? '编辑' : '新增') + '用户'" :model="user" :rules="rules" @success="handleSuccess">
+            :title="(user.id ? $t('btn.edit') : $t('btn.create')) + $t('entity.user')" :model="user" :rules="rules" @success="handleSuccess">
     <input v-if="user.id" :value="user.id" name="id" type="hidden"/>
-    <FormItem label="用户名" prop="username">
-      <Input v-model="user.username" :readonly="!!user.id" placeholder="请输入用户名"/>
+    <FormItem :label="$t('field.username')" prop="username">
+      <Input v-model="user.username" :readonly="!!user.id" :placeholder="$t('placeholder.username')"/>
     </FormItem>
-    <FormItem label="真实姓名" prop="name">
-      <Input v-model="user.name" placeholder="请输入真实姓名"/>
+    <FormItem :label="$t('field.name')" prop="name">
+      <Input v-model="user.name" :placeholder="$t('placeholder.name')"/>
     </FormItem>
-    <FormItem label="密码" prop="password" v-if="!user.id">
-      <Input type="password" v-model="user.password" placeholder="请输入密码"/>
+    <FormItem :label="$t('field.password')" prop="password" v-if="!user.id">
+      <Input type="password" v-model="user.password" :placeholder="$t('placeholder.password')"/>
     </FormItem>
   </AppModal>
 </template>

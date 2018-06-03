@@ -7,9 +7,6 @@ export default {
   user: '用户管理',
   role: '角色管理',
   menu: '菜单管理',
-  query: '查询',
-  clear: '清除',
-  create: '新增',
   confirm: {
     recoveryTitle: '恢复确认',
     recoveryContent: '确认恢复所选记录？',
@@ -23,16 +20,25 @@ export default {
     disable: '禁用'
   },
   btn: {
+    query: '查询',
+    cancel: '取消',
+    submit: '提交',
+    clear: '清除',
+    create: '新增',
     edit: '编辑',
     delete: '物理删除',
     setRole: '设置角色',
     editPwd: '修改密码'
+  },
+  entity: {
+    user: '用户'
   },
   field: {
     id: 'ID',
     username: '用户名',
     name: '姓名',
     status: '状态',
+    password: '密码',
     createdTime: '创建时间',
     updatedTime: '更新时间',
     operation: '操作'

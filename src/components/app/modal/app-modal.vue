@@ -5,8 +5,8 @@
     </Form>
 
     <template slot="footer">
-      <Button icon="close" @click="cancel">取消</Button>
-      <Button type="success" icon="checkmark" :loading="isLoading" @click="submit">提交</Button>
+      <Button icon="close" @click="cancel">{{$t('btn.cancel')}}</Button>
+      <Button type="success" icon="checkmark" :loading="isLoading" @click="submit">{{$t('btn.submit')}}</Button>
     </template>
   </Modal>
 </template>

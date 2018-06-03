@@ -7,9 +7,6 @@ export default {
   user: 'User Namage',
   role: 'Role Manage',
   menu: 'Menu Manage',
-  query: 'Query',
-  clear: 'Clear',
-  create: 'Create',
   confirm: {
     recoveryTitle: 'Recovery Confirm',
     recoveryContent: 'Confirm To Recovery This Item?',
@@ -23,16 +20,25 @@ export default {
     disable: 'Disable'
   },
   btn: {
+    query: 'Query',
+    cancel: 'Cancel',
+    submit: 'Submit',
+    clear: 'Clear',
+    create: 'Create',
     edit: 'Edit',
     delete: 'Delete',
     setRole: 'GrantRole',
     editPwd: 'EditPassword'
+  },
+  entity: {
+    user: 'User'
   },
   field: {
     id: 'ID',
     username: 'Username',
     name: 'Name',
     status: 'Status',
+    password: 'Password',
     createdTime: 'CreatedTime',
     updatedTime: 'UpdateTime',
     operation: 'Operation'

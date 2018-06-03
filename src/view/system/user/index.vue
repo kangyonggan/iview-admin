@@ -15,9 +15,9 @@
         <AppDatePicker :model="user" prop="endDate" :placeholder="$t('placeholder.endDate')"/>
       </FormItem>
       <Row>
-        <Button type="info" icon="ios-search" @click="$refs.table.refresh()">{{$t('query')}}</Button>
-        <Button type="warning" icon="ios-refresh-empty" @click="$refs.queryForm.resetFields()">{{$t('clear')}}</Button>
-        <Button type="primary" icon="plus" @click="$refs.formModal.show({})">{{$t('create')}}</Button>
+        <Button type="info" icon="ios-search" @click="$refs.table.refresh()">{{$t('btn.query')}}</Button>
+        <Button type="warning" icon="ios-refresh-empty" @click="$refs.queryForm.resetFields()">{{$t('btn.clear')}}</Button>
+        <Button type="primary" icon="plus" @click="$refs.formModal.show({})">{{$t('btn.create')}}</Button>
       </Row>
     </Form>
 
