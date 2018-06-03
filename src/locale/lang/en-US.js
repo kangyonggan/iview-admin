@@ -14,6 +14,7 @@ export default {
   },
   route: {
     login: 'Login',
+    lock: 'Lock Screen',
     home: 'Home',
     system: 'System',
     user: 'User Namage',

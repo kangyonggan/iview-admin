@@ -13,6 +13,7 @@ export default {
   },
   route: {
     login: '登录',
+    lock: '锁屏',
     home: '首页',
     system: '系统',
     user: '用户管理',
