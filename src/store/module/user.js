@@ -33,8 +33,13 @@ export default {
     getUserInfo ({commit}) {
       return new Promise((resolve) => {
         httpGet('user/info').then(data => {
-          commit('setUser', data.user)
-          resolve(data)
+          if (!data) {
+            Message.error('登录已失效，请重新登录！')
+            resolve()
+          } else {
+            commit('setUser', data.user)
+            resolve(data)
+          }
         }).catch(respMsg => {
           Message.error(respMsg)
           resolve()
