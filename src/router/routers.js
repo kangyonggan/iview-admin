@@ -64,7 +64,7 @@ function loadCommonRoutes () {
   defaultRoutes.push({
     path: '/locking',
     name: 'locking',
-    component: () => import('@/view/main/components/lockscreen/components/locking-page.vue')
+    component: () => import('@/view/main/components/lockscreen/components/locking-page')
   })
   defaultRoutes.push({
     path: '/401',
