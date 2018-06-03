@@ -38,10 +38,10 @@ export default {
       loading: false,
       rules: {
         username: [
-          {required: true, message: '用户名为必填项', trigger: 'blur'}
+          {required: true, message: this.$t('valid.usernameRequired'), trigger: 'blur'}
         ],
         password: [
-          {required: true, message: '密码为必填项', trigger: 'blur'}
+          {required: true, message: this.$t('valid.passwordRequired'), trigger: 'blur'}
         ]
       }
     }
