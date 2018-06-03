@@ -53,46 +53,46 @@ export default {
        */
       columns: [
         {
-          title: 'ID',
+          title: this.$t('field.id'),
           key: 'id',
           sortable: true
         },
         {
-          title: '用户名',
+          title: this.$t('field.username'),
           key: 'username',
           sortable: true
         },
         {
-          title: '姓名',
+          title: this.$t('field.name'),
           key: 'name',
           sortable: true
         },
         {
-          title: '状态',
+          title: this.$t('field.status'),
           key: 'status',
           sortable: true,
           render: (h, params) => {
-            return this.status(h, params,
+            return this.status(this, h, params,
               'system/user/' + params.row.id + '/status/' + 1 * !params.row.status,
               this.$refs.table)
           }
         },
         {
-          title: '创建时间',
+          title: this.$t('field.createdTime'),
           key: 'createdTime',
           sortable: true
         },
         {
-          title: '更新时间',
+          title: this.$t('field.updatedTime'),
           key: 'updatedTime',
           sortable: true
         },
         {
-          title: '操作',
+          title: this.$t('field.operation'),
           render: (h, params) => {
             let row = params.row
             return h('AppDropDown', {
-              props: {text: '编辑'},
+              props: {text: this.$t('btn.edit')},
               on: {
                 click: () => {
                   this.$refs.formModal.show({
@@ -106,14 +106,14 @@ export default {
                     this.$refs.roleModal.show(row.username)
                   } else if (name === 'delete') {
                     this.delete('system/user/' + row.id, this.$refs.table)
-                  } else if (name === 'editPassword') {
+                  } else if (name === 'editPwd') {
                     this.$refs.passwordModal.show(row.id)
                   }
                 }
               }}, [
-              h('DropdownItem', {props: {name: 'delete'}, style: {display: row.status ? '' : 'none'}}, '物理删除'),
-              h('DropdownItem', {props: {name: 'setRole'}}, '设置角色'),
-              h('DropdownItem', {props: {name: 'editPassword'}}, '修改密码')
+              h('DropdownItem', {props: {name: 'delete'}, style: {display: row.status ? '' : 'none'}}, this.$t('btn.delete')),
+              h('DropdownItem', {props: {name: 'setRole'}}, this.$t('btn.setRole')),
+              h('DropdownItem', {props: {name: 'editPwd'}}, this.$t('btn.editPwd'))
             ])
           }
         }]

@@ -10,6 +10,33 @@ export default {
   query: '查询',
   clear: '清除',
   create: '新增',
+  confirm: {
+    recoveryTitle: '恢复确认',
+    recoveryContent: '确认恢复所选记录？',
+    disableTitle: '禁用确认',
+    disableContent: '确认禁用所选记录？',
+    deleteTitle: '删除确认',
+    deleteContent: '确认删除所选记录？'
+  },
+  status: {
+    enable: '可用',
+    disable: '禁用'
+  },
+  btn: {
+    edit: '编辑',
+    delete: '物理删除',
+    setRole: '设置角色',
+    editPwd: '修改密码'
+  },
+  field: {
+    id: 'ID',
+    username: '用户名',
+    name: '姓名',
+    status: '状态',
+    createdTime: '创建时间',
+    updatedTime: '更新时间',
+    operation: '操作'
+  },
   placeholder: {
     username: '请输入用户名',
     password: '请输入密码',

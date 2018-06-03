@@ -5,7 +5,7 @@ import { httpPut, httpDelete } from '@/api/common'
 Vue.prototype.status = status
 Vue.prototype.delete = deleteItem
 
-function status (h, params, url, table) {
+function status (that, h, params, url, table) {
   let row = params.row
   if (row.status) {
     return h('Tag', {props: {type: 'dot', color: 'red'}}, [
@@ -18,8 +18,8 @@ function status (h, params, url, table) {
             }
             let that = this
             that.$Modal.confirm({
-              title: '恢复确认',
-              content: '确认恢复所选记录吗？',
+              title: that.$t('confirm.recoveryTitle'),
+              content: that.$t('confirm.recoveryContent'),
               loading: true,
               closable: true,
               onOk: function () {
@@ -36,7 +36,7 @@ function status (h, params, url, table) {
             })
           }
         }
-      }, '禁用')
+      }, that.$t('status.disable'))
     ])
   }
   return h('Tag', {props: {type: 'dot', color: 'green'}}, [
@@ -49,8 +49,8 @@ function status (h, params, url, table) {
           }
           let that = this
           that.$Modal.confirm({
-            title: '禁用确认',
-            content: '确认禁用所选记录吗？',
+            title: that.$t('confirm.disableTitle'),
+            content: that.$t('confirm.disableContent'),
             loading: true,
             closable: true,
             onOk: function () {
@@ -67,15 +67,15 @@ function status (h, params, url, table) {
           })
         }
       }
-    }, '可用')
+    }, that.$t('status.enable'))
   ])
 }
 
 function deleteItem (url, table) {
   let that = this
   that.$Modal.confirm({
-    title: '删除确认',
-    content: '确认删除所选记录吗？',
+    title: that.$t('confirm.deleteTitle'),
+    content: that.$t('confirm.deleteContent'),
     loading: true,
     closable: true,
     onOk: function () {
