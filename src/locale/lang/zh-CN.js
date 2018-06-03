@@ -32,7 +32,8 @@ export default {
     editPwd: '修改密码'
   },
   entity: {
-    user: '用户'
+    user: '用户',
+    role: '角色'
   },
   field: {
     id: 'ID',

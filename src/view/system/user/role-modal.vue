@@ -1,6 +1,6 @@
 <template>
   <!--设置角色-->
-  <AppModal ref="modal" :action="'system/user/' + user.username + '/role'" :title="$t('btn.edit') + $t('field.password')" method="put" :model="user">
+  <AppModal ref="modal" :action="'system/user/' + user.username + '/role'" :title="$t('btn.setRole')" method="put" :model="user">
     <FormItem prop="roleCodes">
       <CheckboxGroup v-model="user.roleCodes">
         <Checkbox v-for="(role, index) in roles" :key="index" :label="role.code">

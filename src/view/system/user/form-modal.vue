@@ -1,7 +1,7 @@
 <template>
   <!--新增/编辑用户-->
   <AppModal ref="modal" action="system/user" :method="user.id ? 'put' : 'post'"
-            :title="(user.id ? $t('btn.edit') : $t('btn.setRole'))" :model="user" :rules="rules" @success="handleSuccess">
+            :title="(user.id ? $t('btn.edit') : $t('btn.create')) + $t('entity.user')" :model="user" :rules="rules" @success="handleSuccess">
     <input v-if="user.id" :value="user.id" name="id" type="hidden"/>
     <FormItem :label="$t('field.username')" prop="username">
       <Input v-model="user.username" :readonly="!!user.id" :placeholder="$t('placeholder.username')"/>

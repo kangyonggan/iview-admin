@@ -32,7 +32,8 @@ export default {
     editPwd: 'EditPassword'
   },
   entity: {
-    user: 'User'
+    user: 'User',
+    role: 'Role'
   },
   field: {
     id: 'ID',
