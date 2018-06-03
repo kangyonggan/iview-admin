@@ -4,9 +4,9 @@
       <span>{{name}} </span>
       <Icon :size="12" type="arrow-down-b"></Icon>
       <DropdownMenu slot="list">
-        <DropdownItem name="logout">{{$t('btn.logout')}}</DropdownItem>
         <DropdownItem name="language-en" v-if="language === 'zh-CN'">英语</DropdownItem>
         <DropdownItem name="language-zh" v-if="language === 'en-US'">Chinese</DropdownItem>
+        <DropdownItem name="logout">{{$t('btn.logout')}}</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </div>
