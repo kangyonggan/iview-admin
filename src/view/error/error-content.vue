@@ -8,6 +8,7 @@
       </div>
       <back-btn-group class="back-btn-group"></back-btn-group>
     </div>
+    <slot></slot>
   </div>
 </template>
 

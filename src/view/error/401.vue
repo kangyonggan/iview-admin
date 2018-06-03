@@ -1,5 +1,7 @@
 <template>
-  <error-content code="401" :desc="$t('msg.err401')" :src="src"/>
+  <error-content code="401" :desc="$t('msg.err401')" :src="src">
+    <div v-title>401</div>
+  </error-content>
 </template>
 
 <script>

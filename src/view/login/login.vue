@@ -1,5 +1,6 @@
 <template>
   <div class="login" @keydown.enter="submit">
+    <div v-title>{{$t('route.login')}}</div>
     <div class="login-con">
       <Card icon="log-in" :title="$t('loginPage.title')" :bordered="false">
         <div class="form-con">

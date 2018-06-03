@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-title>{{$t('route.menu')}}</div>
     菜单管理
   </div>
 </template>

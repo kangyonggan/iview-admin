@@ -1,6 +1,13 @@
 import Vue from 'vue'
 import { httpPut, httpDelete } from '@/api/common'
 
+Vue.directive('title', {
+  inserted: function (el) {
+    document.title = el.innerText
+    el.remove()
+  }
+})
+
 // 定义全局方法
 Vue.prototype.status = status
 Vue.prototype.delete = deleteItem
