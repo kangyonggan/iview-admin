@@ -39,11 +39,11 @@ export default {
         that.user.roleCodes = data.roleCodes
         httpGet('system/role').then(data => {
           that.roles = data.roles
-        }).catch(respMsg => {
-          that.$Message.error(respMsg)
+        }).catch(respCo => {
+          that.$Notice.error({title: that.$t('msg.code' + respCo)})
         })
-      }).catch(respMsg => {
-        that.$Message.error(respMsg)
+      }).catch(respCo => {
+        that.$Notice.error({title: that.$t('msg.code' + respCo)})
       })
     }
   }
