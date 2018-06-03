@@ -7,10 +7,18 @@ export default {
   user: '用户管理',
   role: '角色管理',
   menu: '菜单管理',
+  query: '查询',
+  clear: '清除',
+  create: '新增',
+  placeholder: {
+    username: '请输入用户名',
+    password: '请输入密码',
+    name: '请输入姓名',
+    startDate: '请选择创建开始日期',
+    endDate: '请选择创建结束日期'
+  },
   loginPage: {
     title: '欢迎登录',
-    placeholderUsername: '请输入用户名',
-    placeholderPassword: '请输入密码',
     submit: '登录',
     experience: '体验账号'
   },

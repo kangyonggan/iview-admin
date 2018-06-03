@@ -7,10 +7,16 @@ export default {
   user: 'User Namage',
   role: 'Role Manage',
   menu: 'Menu Manage',
+  query: 'Query',
+  clear: 'Clear',
+  create: 'Create',
+  placeholder: {
+    username: 'Please Input Username',
+    password: 'Please Input Password',
+    name: 'Please Input Name'
+  },
   loginPage: {
     title: 'Welcome Login',
-    placeholderUsername: 'Please Input Username',
-    placeholderPassword: 'Please Input Password',
     submit: 'Login',
     experience: 'Experience Account'
   },

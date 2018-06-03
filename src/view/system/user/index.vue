@@ -3,21 +3,21 @@
     <!--搜索表单-->
     <Form ref="queryForm" :model="user" class="bg-white" inline>
       <FormItem prop="username">
-        <Input v-model="user.username" placeholder="请输入用户名"/>
+        <Input v-model="user.username" :placeholder="$t('placeholder.username')"/>
       </FormItem>
       <FormItem prop="name">
-        <Input v-model="user.name" placeholder="请输入姓名"/>
+        <Input v-model="user.name" :placeholder="$t('placeholder.name')"/>
       </FormItem>
       <FormItem prop="startDate">
-        <AppDatePicker :model="user" prop="startDate" placeholder="请选择创建开始日期"/>
+        <AppDatePicker :model="user" prop="startDate" :placeholder="$t('placeholder.startDate')"/>
       </FormItem>
       <FormItem prop="endDate">
-        <AppDatePicker :model="user" prop="endDate" placeholder="请选择创建结束日期"/>
+        <AppDatePicker :model="user" prop="endDate" :placeholder="$t('placeholder.endDate')"/>
       </FormItem>
       <Row>
-        <Button type="info" icon="ios-search" @click="$refs.table.refresh()">查询</Button>
-        <Button type="warning" icon="ios-refresh-empty" @click="$refs.queryForm.resetFields()">清除</Button>
-        <Button type="primary" icon="plus" @click="$refs.formModal.show({})">新增</Button>
+        <Button type="info" icon="ios-search" @click="$refs.table.refresh()">{{$t('query')}}</Button>
+        <Button type="warning" icon="ios-refresh-empty" @click="$refs.queryForm.resetFields()">{{$t('clear')}}</Button>
+        <Button type="primary" icon="plus" @click="$refs.formModal.show({})">{{$t('create')}}</Button>
       </Row>
     </Form>
 

@@ -5,14 +5,14 @@
         <div class="form-con">
           <Form ref="loginForm" :model="user" :rules="rules">
             <FormItem prop="username">
-              <Input v-model="user.username" :placeholder="$t('loginPage.placeholderUsername')">
+              <Input v-model="user.username" :placeholder="$t('placeholder.username')">
                 <span slot="prepend">
                   <Icon :size="16" type="person"></Icon>
                 </span>
               </Input>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="user.password" :placeholder="$t('loginPage.placeholderPassword')">
+              <Input type="password" v-model="user.password" :placeholder="$t('placeholder.password')">
                 <span slot="prepend">
                   <Icon :size="14" type="locked"></Icon>
                 </span>
