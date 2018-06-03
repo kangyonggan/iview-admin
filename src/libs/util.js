@@ -69,7 +69,7 @@ export const getBreadCrumbList = (routeMetched) => {
   }, ...res]
 }
 
-export const showTitle = (item, vm) => vm.$config.useI18n ? vm.$t(item.name) : ((item.meta && item.meta.title) || item.name)
+export const showTitle = (item, vm) => vm.$config.useI18n ? vm.$t('route.' + item.name) : ((item.meta && item.meta.title) || item.name)
 
 /**
  * @description 本地存储和获取标签导航列表

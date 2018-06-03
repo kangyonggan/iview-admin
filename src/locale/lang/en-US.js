@@ -1,12 +1,16 @@
 export default {
-  appName: 'BManagerS',
-  appShortName: 'BMS',
-  login: 'Login',
-  home: 'Home',
-  system: 'System',
-  user: 'User Namage',
-  role: 'Role Manage',
-  menu: 'Menu Manage',
+  app: {
+    name: 'BManagerS',
+    shortName: 'BMS'
+  },
+  route: {
+    login: 'Login',
+    home: 'Home',
+    system: 'System',
+    user: 'User Namage',
+    role: 'Role Manage',
+    menu: 'Menu Manage'
+  },
   confirm: {
     recoveryTitle: 'Recovery Confirm',
     recoveryContent: 'Confirm To Recovery This Item?',
@@ -48,7 +52,9 @@ export default {
   placeholder: {
     username: 'Please Input Username',
     password: 'Please Input Password',
-    name: 'Please Input Name'
+    name: 'Please Input Name',
+    startDate: 'Please Input Start Date',
+    endDate: 'Please Input End Date'
   },
   loginPage: {
     title: 'Welcome Login',

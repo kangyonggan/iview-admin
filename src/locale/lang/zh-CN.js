@@ -1,12 +1,16 @@
 export default {
-  appName: '后台管理系统',
-  appShortName: '后管',
-  login: '登录',
-  home: '首页',
-  system: '系统',
-  user: '用户管理',
-  role: '角色管理',
-  menu: '菜单管理',
+  app: {
+    name: '后台管理系统',
+    shortName: '后管'
+  },
+  route: {
+    login: '登录',
+    home: '首页',
+    system: '系统',
+    user: '用户管理',
+    role: '角色管理',
+    menu: '菜单管理'
+  },
   confirm: {
     recoveryTitle: '恢复确认',
     recoveryContent: '确认恢复所选记录？',
