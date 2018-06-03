@@ -3,7 +3,7 @@
   <AppModal ref="modal" :action="'system/user/' + (user.id ? 'update' : 'save')"
             :title="(user.id ? '编辑' : '新增') + '用户'" :model="user" :rules="rules" @success="handleSuccess">
     <FormItem label="用户名" prop="username">
-      <Input v-model="user.username" placeholder="请输入用户名"/>
+      <Input v-model="user.username" :readonly="!!user.id" placeholder="请输入用户名"/>
     </FormItem>
     <FormItem label="真实姓名" prop="name">
       <Input v-model="user.name" placeholder="请输入真实姓名"/>
