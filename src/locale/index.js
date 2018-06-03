@@ -6,14 +6,7 @@ import zhLocale from 'iview/src/locale/lang/zh-CN'
 import enLocale from 'iview/src/locale/lang/en-US'
 
 Vue.use(VueI18n)
-
-// 自动设置语言
-const navLang = navigator.language
-const localLang = (navLang === 'zh-CN' || navLang === 'en-US') ? navLang : false
-let lang = window.localStorage.lang || localLang || 'zh-CN'
-lang = 'en-US'
-
-Vue.config.lang = lang
+Vue.config.lang = 'zh-CN'
 
 // 多语言配置
 const mergeZH = Object.assign(zhLocale, customZhCn)

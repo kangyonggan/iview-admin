@@ -5,6 +5,8 @@
       <Icon :size="12" type="arrow-down-b"></Icon>
       <DropdownMenu slot="list">
         <DropdownItem name="logout">{{$t('btn.logout')}}</DropdownItem>
+        <DropdownItem name="language-en" v-if="language === 'zh-CN'">英语</DropdownItem>
+        <DropdownItem name="language-zh" v-if="language === 'en-US'">Chinese</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </div>
@@ -12,6 +14,7 @@
 
 <script>
 import './user.less'
+import Vue from 'vue'
 import { mapActions } from 'vuex'
 export default {
   name: 'user',
@@ -19,6 +22,11 @@ export default {
     name: {
       required: true,
       type: String
+    }
+  },
+  data () {
+    return {
+      language: Vue.config.lang
     }
   },
   methods: {
@@ -35,6 +43,14 @@ export default {
               })
             }
           })
+          break
+        case 'language-en':
+          this.language = 'en-US'
+          Vue.config.lang = this.language
+          break
+        case 'language-zh':
+          this.language = 'zh-CN'
+          Vue.config.lang = this.language
           break
       }
     }
