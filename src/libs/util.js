@@ -75,8 +75,7 @@ export const getBreadCrumbList = (routeMetched) => {
 
   return [{
     name: 'home',
-    to: '/home',
-    meta: {title: '首页'}
+    to: '/home'
   }, ...res]
 }
 
