@@ -1,6 +1,7 @@
 import { httpGet, httpPost } from '@/api/common'
 import { getToken, setToken } from '@/libs/util'
 import { Message } from 'iview'
+import Vue from 'vue'
 
 export default {
   state: {
@@ -34,7 +35,11 @@ export default {
       return new Promise((resolve) => {
         httpGet('info').then(data => {
           if (!data) {
-            Message.error('登录已失效，请重新登录！')
+            if (Vue.config.lang === 'zh-CN') {
+              Message.error('登录已失效，请重新登录！')
+            } else {
+              Message.error('Invalid Login, Please Login Again!')
+            }
             resolve()
           } else {
             commit('setUser', data.user)

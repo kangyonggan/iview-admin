@@ -1,5 +1,5 @@
 <template>
-  <error-content code="401" desc="Oh~~您的权限貌似有点点不足~" :src="src"/>
+  <error-content code="401" :desc="$t('msg.err401')" :src="src"/>
 </template>
 
 <script>

@@ -3,6 +3,10 @@ export default {
     name: '后台管理系统',
     shortName: '后管'
   },
+  msg: {
+    err401: 'Oh~~您的权限貌似有点点不足~',
+    err404: 'Oh~~您的页面好像飞走了~'
+  },
   route: {
     login: '登录',
     home: '首页',
@@ -33,7 +37,9 @@ export default {
     logout: '安全退出',
     delete: '物理删除',
     setRole: '设置角色',
-    editPwd: '修改密码'
+    editPwd: '修改密码',
+    backHome: '返回首页',
+    backPrev: '返回上一页'
   },
   entity: {
     user: '用户',

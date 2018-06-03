@@ -3,6 +3,10 @@ export default {
     name: 'BManagerS',
     shortName: 'BMS'
   },
+  msg: {
+    err401: 'Oh~~You do not have permission to do this!~',
+    err404: 'Oh~~Your page was missing!~'
+  },
   route: {
     login: 'Login',
     home: 'Home',
@@ -33,7 +37,9 @@ export default {
     logout: 'Logout',
     delete: 'Delete',
     setRole: 'GrantRole',
-    editPwd: 'EditPassword'
+    editPwd: 'EditPassword',
+    backHome: 'Back To Home',
+    backPrev: 'Back To Previous'
   },
   entity: {
     user: 'User',
