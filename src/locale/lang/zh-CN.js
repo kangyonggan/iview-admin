@@ -29,7 +29,8 @@ export default {
   },
   status: {
     enable: '可用',
-    disable: '禁用'
+    disable: '禁用',
+    locked: '已锁定'
   },
   btn: {
     query: '查询',
@@ -66,7 +67,12 @@ export default {
     password: '请输入密码',
     name: '请输入姓名',
     startDate: '请选择创建开始日期',
-    endDate: '请选择创建结束日期'
+    endDate: '请选择创建结束日期',
+    lockPwd: '密码同登录密码'
+  },
+  lockPage: {
+    lockScreen: '锁屏',
+    lock: '解锁'
   },
   loginPage: {
     title: '欢迎登录',

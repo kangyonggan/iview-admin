@@ -11,6 +11,7 @@
     </Sider>
     <Layout>
       <Header class="header-con">
+        <lock-screen></lock-screen>
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
           <user :name="name"/>
         </header-bar>
@@ -36,6 +37,7 @@
 import sideMenu from './components/side-menu'
 import headerBar from './components/header-bar'
 import tagsNav from './components/tags-nav'
+import lockScreen from './components/lockscreen'
 import user from './components/user'
 import { mapMutations, mapActions } from 'vuex'
 import { getNewTagList } from '@/libs/util'
@@ -46,6 +48,7 @@ export default {
     sideMenu,
     headerBar,
     tagsNav,
+    lockScreen,
     user
   },
   data () {

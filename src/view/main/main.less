@@ -1,13 +1,38 @@
 .main{
   .logo-con{
-    height: 64px;
+    height: 60px;
     padding: 10px;
     color: #fff;
     text-align: center;
   }
   .header-con{
+    height: 60px;
     background: #fff;
-    padding: 0 20px;
+    box-shadow: 0 2px 1px 1px rgba(100, 100, 100, 0.1);
+    position: relative;
+    z-index: 1;
+    .lock-screen-btn-con{
+      position: absolute;
+      right: 120px;
+      top: 0;
+      z-index: 999;
+      display: inline-block;
+      width: 30px;
+      text-align: center;
+      cursor: pointer;
+      i{
+        vertical-align: middle;
+      }
+    }
+    .header-bar {
+      position: absolute;
+      left: 10px;
+      top: 0;
+      right: 340px;
+      bottom: 0;
+      padding: 10px;
+      overflow: hidden;
+    }
   }
   .tag-nav-wrapper{
     padding: 0;
@@ -15,4 +40,9 @@
     background:#F0F0F0;
     overflow: hidden;
   }
+}
+
+.user-dropdown-innercon {
+  height: 46px;
+  margin-right: 20px;
 }

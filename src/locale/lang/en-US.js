@@ -30,7 +30,8 @@ export default {
   },
   status: {
     enable: 'Enable',
-    disable: 'Disable'
+    disable: 'Disable',
+    locked: 'Locked'
   },
   btn: {
     query: 'Query',
@@ -67,7 +68,12 @@ export default {
     password: 'Please Input Password',
     name: 'Please Input Name',
     startDate: 'Please Input Create Start Date',
-    endDate: 'Please Input Create End Date'
+    endDate: 'Please Input Create End Date',
+    lockPwd: 'Equals to Login Password'
+  },
+  lockPage: {
+    lockScreen: 'Lock Screen',
+    lock: 'Unlock'
   },
   loginPage: {
     title: 'Welcome Login',

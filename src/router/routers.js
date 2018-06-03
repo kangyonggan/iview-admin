@@ -62,6 +62,11 @@ export const loadRoutes = (router) => {
 
 function loadCommonRoutes () {
   defaultRoutes.push({
+    path: '/locking',
+    name: 'locking',
+    component: () => import('@/view/main/components/lockscreen/components/locking-page.vue')
+  })
+  defaultRoutes.push({
     path: '/401',
     name: 'error-401',
     component: () => import('@/view/error/401')
