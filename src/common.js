@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { httpGet } from '@/api/common'
+import { httpPut, httpDelete } from '@/api/common'
 
 // 定义全局方法
 Vue.prototype.status = status
@@ -23,7 +23,7 @@ function status (h, params, url, table) {
               loading: true,
               closable: true,
               onOk: function () {
-                httpGet(url).then(data => {
+                httpPut(url).then(data => {
                   that.$Message.success(data.respMsg)
                   if (table) {
                     table.refresh()
@@ -54,7 +54,7 @@ function status (h, params, url, table) {
             loading: true,
             closable: true,
             onOk: function () {
-              httpGet(url).then(data => {
+              httpPut(url).then(data => {
                 that.$Message.success(data.respMsg)
                 if (table) {
                   table.refresh()
@@ -79,7 +79,7 @@ function deleteItem (url, table) {
     loading: true,
     closable: true,
     onOk: function () {
-      httpGet(url).then(data => {
+      httpDelete(url).then(data => {
         that.$Message.success(data.respMsg)
         if (table) {
           table.jump(1)

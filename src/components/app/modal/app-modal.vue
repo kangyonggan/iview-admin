@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { httpPost } from '@/api/common'
+import { http } from '@/api/common'
 export default {
   props: {
     title: {
@@ -26,6 +26,11 @@ export default {
     action: {
       required: true,
       type: String
+    },
+    method: {
+      required: false,
+      type: String,
+      default: 'post'
     },
     rules: {
       required: false,
@@ -58,7 +63,7 @@ export default {
       this.$children[0].$children[0].validate((valid) => {
         if (valid) {
           this.loading()
-          httpPost(this.action, this.model).then(data => {
+          http(this.method, this.action, this.model).then(data => {
             this.$Message.success(data.respMsg)
             this.hide()
             this.$emit('success', data)

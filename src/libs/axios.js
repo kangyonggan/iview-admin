@@ -26,7 +26,7 @@ class httpRequest {
       config.headers['x-access-token'] = Cookies.get(TOKEN_KEY)
       // Spin.show()
       // 在发送请求之前做些什么
-      if (config.method === 'post') {
+      if (config.data) {
         config.data = params(config.data).join('&')
       }
 
@@ -84,12 +84,51 @@ class httpRequest {
     this.queue[options.url] = instance
     return instance(options)
   }
+  // http请求实例
+  http (method, url, data) {
+    let options = {
+      url: url,
+      data,
+      method: method
+    }
+    let instance = this.create()
+    this.interceptors(instance, options.url)
+    options = Object.assign({}, options)
+    this.queue[options.url] = instance
+    return instance(options)
+  }
   // POST请求实例
   post (url, data) {
     let options = {
       url: url,
       data,
       method: 'post'
+    }
+    let instance = this.create()
+    this.interceptors(instance, options.url)
+    options = Object.assign({}, options)
+    this.queue[options.url] = instance
+    return instance(options)
+  }
+  // PUT请求实例
+  put (url, data) {
+    let options = {
+      url: url,
+      data,
+      method: 'put'
+    }
+    let instance = this.create()
+    this.interceptors(instance, options.url)
+    options = Object.assign({}, options)
+    this.queue[options.url] = instance
+    return instance(options)
+  }
+  // DELETE请求实例
+  delete (url, data) {
+    let options = {
+      url: url,
+      data,
+      method: 'delete'
     }
     let instance = this.create()
     this.interceptors(instance, options.url)

@@ -32,7 +32,7 @@ export default {
     // 获取用户信息
     getUserInfo ({commit}) {
       return new Promise((resolve) => {
-        httpGet('user/info').then(data => {
+        httpGet('info').then(data => {
           if (!data) {
             Message.error('登录已失效，请重新登录！')
             resolve()

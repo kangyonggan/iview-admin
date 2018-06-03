@@ -1,6 +1,6 @@
 <template>
   <!--设置角色-->
-  <AppModal ref="modal" :action="'system/user/' + user.username + '/role'" title="设置用户角色" :model="user">
+  <AppModal ref="modal" :action="'system/user/' + user.username + '/role'" title="设置用户角色" method="put" :model="user">
     <FormItem prop="roleCodes">
       <CheckboxGroup v-model="user.roleCodes">
         <Checkbox v-for="(role, index) in roles" :key="index" :label="role.code">
@@ -37,7 +37,7 @@ export default {
       let that = this
       httpGet('system/user/' + username + '/role').then(data => {
         that.user.roleCodes = data.roleCodes
-        httpGet('system/role/all').then(data => {
+        httpGet('system/role').then(data => {
           that.roles = data.roles
         }).catch(respMsg => {
           that.$Message.error(respMsg)

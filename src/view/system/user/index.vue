@@ -105,7 +105,7 @@ export default {
                   if (name === 'setRole') {
                     this.$refs.roleModal.show(row.username)
                   } else if (name === 'delete') {
-                    this.delete('system/user/' + row.id + '/delete', this.$refs.table)
+                    this.delete('system/user/' + row.id, this.$refs.table)
                   } else if (name === 'editPassword') {
                     this.$refs.passwordModal.show(row.id)
                   }

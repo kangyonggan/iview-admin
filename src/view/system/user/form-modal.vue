@@ -1,7 +1,8 @@
 <template>
   <!--新增/编辑用户-->
-  <AppModal ref="modal" :action="'system/user/' + (user.id ? 'update' : 'save')"
+  <AppModal ref="modal" action="system/user" :method="user.id ? 'put' : 'post'"
             :title="(user.id ? '编辑' : '新增') + '用户'" :model="user" :rules="rules" @success="handleSuccess">
+    <input v-if="user.id" :value="user.id" name="id" type="hidden"/>
     <FormItem label="用户名" prop="username">
       <Input v-model="user.username" :readonly="!!user.id" placeholder="请输入用户名"/>
     </FormItem>

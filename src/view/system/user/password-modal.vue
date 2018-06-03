@@ -1,6 +1,6 @@
 <template>
   <!--修改密码-->
-  <AppModal ref="modal" :action="'system/user/' + user.id + '/password'" title="修改密码" :model="user" :rules="rules" @success="handleSuccess">
+  <AppModal ref="modal" :action="'system/user/' + user.id + '/password'" title="修改密码" method="put" :model="user" :rules="rules" @success="handleSuccess">
     <FormItem label="新密码" prop="password">
       <Input type="password" v-model="user.password" placeholder="请输入新密码"/>
     </FormItem>
