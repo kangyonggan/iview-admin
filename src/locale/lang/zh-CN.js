@@ -26,6 +26,7 @@ export default {
     clear: '清除',
     create: '新增',
     edit: '编辑',
+    logout: '安全退出',
     delete: '物理删除',
     setRole: '设置角色',
     editPwd: '修改密码'

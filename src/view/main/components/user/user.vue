@@ -4,7 +4,7 @@
       <span>{{name}} </span>
       <Icon :size="12" type="arrow-down-b"></Icon>
       <DropdownMenu slot="list">
-        <DropdownItem name="logout">退出登录</DropdownItem>
+        <DropdownItem name="logout">{{$t('btn.logout')}}</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </div>

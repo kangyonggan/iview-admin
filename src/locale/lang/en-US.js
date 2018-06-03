@@ -26,6 +26,7 @@ export default {
     clear: 'Clear',
     create: 'Create',
     edit: 'Edit',
+    logout: 'Logout',
     delete: 'Delete',
     setRole: 'GrantRole',
     editPwd: 'EditPassword'
