@@ -51,20 +51,25 @@ export const loadRoutes = (router) => {
           defaultRoutes.push(route)
         }
       }
-      defaultRoutes.push({
-        path: '*',
-        name: 'error_404',
-        component: () => import('@/view/error/404')
-      })
+      loadCommonRoutes()
     } else {
-      defaultRoutes.push({
-        path: '*',
-        name: 'error_404',
-        component: () => import('@/view/error/404')
-      })
+      loadCommonRoutes()
     }
 
     router.addRoutes(defaultRoutes)
+  })
+}
+
+function loadCommonRoutes () {
+  defaultRoutes.push({
+    path: '/401',
+    name: 'error-401',
+    component: () => import('@/view/error/401')
+  })
+  defaultRoutes.push({
+    path: '*',
+    name: 'error-404',
+    component: () => import('@/view/error/404')
   })
 }
 

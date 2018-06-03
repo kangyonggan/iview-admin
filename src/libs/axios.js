@@ -49,6 +49,11 @@ class httpRequest {
         router.push({
           path: 'login'
         })
+      } else if (data.respCo === '9997') {
+        // 权限不足
+        router.push({
+          path: '401'
+        })
       } else {
         // 其他异常
         return Promise.reject(data.respMsg)
