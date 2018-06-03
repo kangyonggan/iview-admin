@@ -1,18 +1,18 @@
 <template>
   <div class="user-dropdown-menu-con">
-    <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
-      <Dropdown transfer trigger="click" @on-click="handleClick">
-        <a href="javascript:void(0)">
-          <span class="main-user-name">{{ name }}</span>
+    <Dropdown transfer trigger="click" @on-click="handleClick" placement="bottom-end">
+      <a href="javascript:void(0)">
+        <span class="main-user-name">
+          {{ name }}
           <Icon type="arrow-down-b"></Icon>
-        </a>
-        <DropdownMenu slot="list">
-          <DropdownItem name="language-en" v-if="language === 'zh-CN'">英语</DropdownItem>
-          <DropdownItem name="language-zh" v-if="language === 'en-US'">Chinese</DropdownItem>
-          <DropdownItem name="logout">{{$t('btn.logout')}}</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    </Row>
+        </span>
+      </a>
+      <DropdownMenu slot="list">
+        <DropdownItem name="language-en" v-if="language === 'zh-CN'">英语</DropdownItem>
+        <DropdownItem name="language-zh" v-if="language === 'en-US'">Chinese</DropdownItem>
+        <DropdownItem name="logout">{{$t('btn.logout')}}</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
   </div>
 </template>
 
