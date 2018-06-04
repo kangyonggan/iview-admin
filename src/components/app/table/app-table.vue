@@ -76,8 +76,9 @@ export default {
       httpGet(this.url, params).then(data => {
         this.pageInfo = data.pageInfo
         this.loading = false
-      }).catch(() => {
+      }).catch(respCo => {
         this.loading = false
+        this.error(respCo)
       })
     },
     /**

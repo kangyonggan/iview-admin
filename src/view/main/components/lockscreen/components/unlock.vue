@@ -17,7 +17,7 @@
       <div class="unlock-input-con">
         <div class="unlock-input-overflow-con">
           <div class="unlock-overflow-body" :style="{right: inputLeft}">
-            <input ref="inputEle" v-model="password" class="unlock-input" type="password" :placeholder="$t('placeholder.lockPwd')"/>
+            <input ref="inputEle" v-model="user.password" class="unlock-input" type="password" :placeholder="$t('placeholder.lockPwd')"/>
             <button ref="unlockBtn" @mousedown="unlockMousedown" @mouseup="unlockMouseup" @click="handleUnlock"
                     class="unlock-btn">
               <Icon color="white" type="key"></Icon>
@@ -31,7 +31,8 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie'
+import { unlock } from '@/libs/util'
+import { httpPost } from '@/api/common'
 
 export default {
   name: 'Unlock',
@@ -39,7 +40,9 @@ export default {
     return {
       avatorLeft: '0px',
       inputLeft: '400px',
-      password: '',
+      user: {
+        password: ''
+      },
       check: null
     }
   },
@@ -65,15 +68,16 @@ export default {
       this.$refs.inputEle.focus()
     },
     handleUnlock () {
-      if (this.validator()) {
+      httpPost('validate/password', this.user).then(data => {
         this.avatorLeft = '0px'
         this.inputLeft = '400px'
-        this.password = ''
-        Cookies.set('locking', '0')
+        this.user.password = ''
+        unlock()
         this.$emit('on-unlock')
-      } else {
-        this.$Notice.error({title: '密码错误,请重新输入。如果忘了密码，清除浏览器缓存重新登录即可，这里没有做后端验证'})
-      }
+      }).catch(respCo => {
+        this.$Notice.error({title: this.$t('msg.code' + respCo)})
+        this.error(respCo)
+      })
     },
     unlockMousedown () {
       this.$refs.unlockBtn.className = 'unlock-btn click-unlock-btn'

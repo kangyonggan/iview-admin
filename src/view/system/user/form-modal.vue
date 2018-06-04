@@ -66,10 +66,12 @@ export default {
         return
       }
 
+      let that = this
       httpGet('validate/user?username=' + value).then(() => {
         callback()
-      }).catch(() => {
+      }).catch(respCo => {
         callback(new Error(this.$t('valid.usernameExists')))
+        that.error(respCo)
       })
     },
     show: function (user) {

@@ -8,7 +8,7 @@
 
 <script>
 import unlock from './unlock.vue'
-import Cookies from 'js-cookie'
+import { getLockPage } from '@/libs/util'
 
 export default {
   components: {
@@ -23,7 +23,7 @@ export default {
     handleUnlock () {
       this.showUnlock = false
       this.$router.push({
-        name: Cookies.get('last_page_name') // 解锁之后跳转到锁屏之前的页面
+        name: getLockPage() // 解锁之后跳转到锁屏之前的页面
       })
     }
   },

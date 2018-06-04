@@ -1,8 +1,6 @@
 import Axios from 'axios'
 import baseURL from '_conf/url'
-import Cookies from 'js-cookie'
-import { TOKEN_KEY, removeToken, params } from '@/libs/util'
-import router from '../router'
+import { getToken, params } from '@/libs/util'
 
 class httpRequest {
   constructor () {
@@ -23,7 +21,7 @@ class httpRequest {
   interceptors (instance, url) {
     // 添加请求拦截器
     instance.interceptors.request.use(config => {
-      config.headers['x-access-token'] = Cookies.get(TOKEN_KEY)
+      config.headers['x-access-token'] = getToken()
       // Spin.show()
       // 在发送请求之前做些什么
       if (config.data) {
@@ -43,19 +41,8 @@ class httpRequest {
       if (data.respCo === '0000') {
         // 成功
         return data
-      } else if (data.respCo === '9998') {
-        // 登录已失效
-        removeToken()
-        router.push({
-          path: 'login'
-        })
-      } else if (data.respCo === '9997') {
-        // 权限不足
-        router.push({
-          path: '401'
-        })
       } else {
-        // 其他异常
+        // 各种失败
         return Promise.reject(data.respCo)
       }
     }, (error) => {

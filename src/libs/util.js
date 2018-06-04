@@ -6,6 +6,24 @@ import { forEach, hasOneOf } from '@/libs/tools'
 export const TOKEN_KEY = 'token'
 export const LANG_KEY = 'lang'
 
+export const setLockPage = (pageName) => {
+  Cookies.set('last_page_name', pageName)
+  Cookies.set('locking', '1')
+}
+
+export const unlock = () => {
+  Cookies.set('locking', '0')
+}
+
+export const getLockPage = () => {
+  let lastPageName = Cookies.get('last_page_name')
+  if (lastPageName) {
+    return lastPageName
+  }
+
+  return 'home'
+}
+
 export const setToken = (token) => {
   Cookies.set(TOKEN_KEY, token, {expires: config.cookieExpires || 1})
 }

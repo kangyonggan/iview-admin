@@ -23,7 +23,7 @@ export default {
           commit('setToken', data.token)
           resolve(data)
         }).catch(respCo => {
-          resolve(respCo)
+          resolve({respCo: respCo})
         })
       })
     },
@@ -38,7 +38,7 @@ export default {
             resolve(data)
           }
         }).catch(respCo => {
-          resolve(respCo)
+          resolve({respCo: respCo})
         })
       })
     },
@@ -49,7 +49,7 @@ export default {
           commit('setToken', '')
           resolve(data)
         }).catch(respCo => {
-          resolve(respCo)
+          resolve({respCo: respCo})
         })
       })
     }

@@ -1,5 +1,6 @@
 import { httpGet } from '@/api/common'
 import components from './components'
+import { getToken } from '@/libs/util'
 
 let defaultRoutes = [
   {
@@ -43,35 +44,37 @@ export default defaultRoutes
  * @param router
  */
 export const loadRoutes = (router) => {
-  httpGet('menus').then(data => {
-    if (data && data.menus) {
-      for (let i in data.menus) {
-        let route = loadMenuRoutes(data.menus[i])
-        if (route) {
-          defaultRoutes.push(route)
+  if (getToken()) {
+    httpGet('menus').then(data => {
+      if (data && data.menus) {
+        for (let i in data.menus) {
+          let route = loadMenuRoutes(data.menus[i])
+          if (route) {
+            defaultRoutes.push(route)
+          }
         }
       }
-      loadCommonRoutes()
-    } else {
-      loadCommonRoutes()
-    }
-
+      loadCommonRoutes(defaultRoutes)
+      router.addRoutes(defaultRoutes)
+    })
+  } else {
+    loadCommonRoutes(defaultRoutes)
     router.addRoutes(defaultRoutes)
-  })
+  }
 }
 
-function loadCommonRoutes () {
-  defaultRoutes.push({
+function loadCommonRoutes (userRoutes) {
+  userRoutes.push({
     path: '/locking',
     name: 'locking',
-    component: () => import('@/view/main/components/lockscreen/components/locking-page')
+    component: () => components['locking']
   })
-  defaultRoutes.push({
+  userRoutes.push({
     path: '/401',
     name: 'error-401',
     component: () => import('@/view/error/401')
   })
-  defaultRoutes.push({
+  userRoutes.push({
     path: '*',
     name: 'error-404',
     component: () => import('@/view/error/404')

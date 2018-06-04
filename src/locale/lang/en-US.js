@@ -10,6 +10,8 @@ export default {
     code9998: 'Has Not Login Or Invalid Login!',
     code9997: 'You do not have permission!',
     code9996: 'Network Error, Please retry later!',
+    code1001: 'Username Or Password Error!',
+    code1002: 'Password Error, Clear Cookie If Forgot！',
     code0000: 'Operate Success!'
   },
   route: {

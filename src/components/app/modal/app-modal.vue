@@ -71,6 +71,7 @@ export default {
             this.stop()
             this.$Notice.error({title: this.$t('msg.code' + respCo)})
             this.$emit('failure', respCo)
+            this.error(respCo)
           })
         }
       })

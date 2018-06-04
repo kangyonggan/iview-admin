@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie'
+import { setLockPage } from '@/libs/util'
 
 export default {
   name: 'lockscreen',
@@ -21,8 +21,7 @@ export default {
     lockScreen () {
       this.showUnlock = true
       // 本地存储锁屏之前打开的页面以便解锁后打开
-      Cookies.set('last_page_name', this.$route.name)
-      Cookies.set('locking', '1')
+      setLockPage(this.$route.name)
       this.$router.push({
         name: 'locking'
       })

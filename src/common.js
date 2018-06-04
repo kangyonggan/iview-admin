@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import { httpPut, httpDelete } from '@/api/common'
+import { httpDelete, httpPut } from '@/api/common'
+import router from './router'
 
 Vue.directive('title', {
   inserted: function (el) {
@@ -11,6 +12,7 @@ Vue.directive('title', {
 // 定义全局方法
 Vue.prototype.status = status
 Vue.prototype.delete = deleteItem
+Vue.prototype.error = error
 
 function status (that, h, params, url, table) {
   let row = params.row
@@ -97,4 +99,18 @@ function deleteItem (url, table) {
       that.$Modal.remove()
     }
   })
+}
+
+function error (respCo) {
+  if (respCo === '9998') {
+    // 登录已失效
+    router.push({
+      path: 'login'
+    })
+  } else if (respCo === '9997') {
+    // 权限不足
+    router.push({
+      path: '401'
+    })
+  }
 }

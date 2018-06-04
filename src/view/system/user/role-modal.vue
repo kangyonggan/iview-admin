@@ -41,9 +41,11 @@ export default {
           that.roles = data.roles
         }).catch(respCo => {
           that.$Notice.error({title: that.$t('msg.code' + respCo)})
+          that.error(respCo)
         })
       }).catch(respCo => {
         that.$Notice.error({title: that.$t('msg.code' + respCo)})
+        that.error(respCo)
       })
     }
   }

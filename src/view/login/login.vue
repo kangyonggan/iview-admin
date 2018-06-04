@@ -62,16 +62,9 @@ export default {
           this.loading = true
           this.login(this.user, this.loading).then(data => {
             if (data.respCo === '0000') {
-              this.getUserInfo().then(data => {
-                if (data.respCo === '0000') {
-                  window.location.reload()
-                } else {
-                  this.$Message.success(this.$t('msg.code' + data.respCo))
-                  this.loading = false
-                }
-              })
+              window.location.reload()
             } else {
-              this.$Message.success(this.$t('msg.code' + data.respCo))
+              this.$Message.error(this.$t('msg.code' + data.respCo))
               this.loading = false
             }
           })
