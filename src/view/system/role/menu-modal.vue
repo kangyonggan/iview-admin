@@ -2,7 +2,7 @@
   <!--设置菜单-->
   <Modal v-model="showModel" :title="$t('role.btn.setMenu')" :mask-closable="false" :closable="false">
     <div style="max-width: 600px;min-width: 300px;margin: 0 auto">
-      <Tree ref="tree" :data="data" showCheckbox multiple/>
+      <Tree ref="tree" :render="renderContent" :data="data" showCheckbox multiple/>
     </div>
 
     <template slot="footer">
@@ -46,6 +46,33 @@ export default {
         this.error(respCo)
       })
     },
+    renderContent (h, { root, node, data }) {
+      return h('span', {
+        style: {
+          display: 'inline-block',
+          width: '100%'
+        }
+      }, [
+        h('span', [
+          h('Icon', {
+            props: {
+              type: data.icon
+            },
+            style: {
+              marginRight: '8px'
+            }
+          }),
+          h('span', data.title)
+        ]),
+        h('span', {
+          style: {
+            display: 'inline-block',
+            float: 'right',
+            marginRight: '32px'
+          }
+        }, [])
+      ])
+    },
     cancel: function () {
       this.hide()
     },
@@ -70,7 +97,34 @@ export default {
             title: this.getTitle('all'),
             code: '',
             expand: true,
-            children: menus
+            children: menus,
+            render: (h, { root, node, data }) => {
+              return h('span', {
+                style: {
+                  display: 'inline-block',
+                  width: '100%'
+                }
+              }, [
+                h('span', [
+                  h('Icon', {
+                    props: {
+                      type: 'grid'
+                    },
+                    style: {
+                      marginRight: '8px'
+                    }
+                  }),
+                  h('span', data.title)
+                ]),
+                h('span', {
+                  style: {
+                    display: 'inline-block',
+                    float: 'right',
+                    marginRight: '32px'
+                  }
+                }, [])
+              ])
+            }
           }]
         }).catch(respCo => {
           this.error(respCo)

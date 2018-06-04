@@ -2,7 +2,7 @@
   <div class="bg-white" >
     <div v-title>{{$t('route.role')}}</div>
     <div style="max-width: 600px;min-width: 300px;margin: 0 auto">
-      <Tree :data="data" :render="renderContent" :loadData="loadData"></Tree>
+      <Tree :data="data" :render="renderContent"></Tree>
     </div>
 
     <!--新增/编辑菜单的界面-->
@@ -17,59 +17,68 @@ export default {
   data () {
     return {
       root: {},
-      data: [
-        {
-          title: this.getTitle('all'),
-          code: '',
-          loading: false,
-          children: [],
-          render: (h, { root, node, data }) => {
-            return h('span', {
-              style: {
-                display: 'inline-block',
-                width: '100%'
-              }
-            }, [
-              h('span', [
-                h('Icon', {
-                  props: {
-                    type: 'grid'
-                  },
-                  style: {
-                    marginRight: '8px'
-                  }
-                }),
-                h('span', data.title)
-              ]),
-              h('span', {
-                style: {
-                  display: 'inline-block',
-                  float: 'right',
-                  marginRight: '32px'
-                }
-              }, [
-                h('Button', {
-                  props: Object.assign({}, this.buttonProps, {
-                    icon: 'ios-plus-empty',
-                    type: 'primary'
-                  }),
-                  style: {
-                    width: '86px'
-                  },
-                  on: {
-                    click: () => { this.form(root, node) }
-                  }
-                })
-              ])
-            ])
-          }
-        }
-      ],
+      data: [],
       buttonProps: {
         type: 'ghost',
         size: 'small'
       }
     }
+  },
+  mounted: function () {
+    httpGet('system/menu').then(data => {
+      let menus = []
+      for (let i in data.menus) {
+        menus.push(this.loadMenu(data.menus[i]))
+      }
+      this.data = [{
+        title: this.getTitle('all'),
+        code: '',
+        expand: true,
+        children: menus,
+        render: (h, { root, node, data }) => {
+          return h('span', {
+            style: {
+              display: 'inline-block',
+              width: '100%'
+            }
+          }, [
+            h('span', [
+              h('Icon', {
+                props: {
+                  type: 'grid'
+                },
+                style: {
+                  marginRight: '8px'
+                }
+              }),
+              h('span', data.title)
+            ]),
+            h('span', {
+              style: {
+                display: 'inline-block',
+                float: 'right',
+                marginRight: '32px'
+              }
+            }, [
+              h('Button', {
+                props: Object.assign({}, this.buttonProps, {
+                  icon: 'ios-plus-empty',
+                  type: 'primary'
+                }),
+                style: {
+                  width: '86px'
+                },
+                on: {
+                  click: () => { this.form(root, node) }
+                }
+              })
+            ])
+          ])
+        }
+      }]
+    }).catch(respCo => {
+      this.error(respCo)
+    })
   },
   methods: {
     getTitle: function (code) {
@@ -163,17 +172,6 @@ export default {
         const index = parent.children.indexOf(data)
         parent.children.splice(index, 1)
       }, function (respCo) {
-      })
-    },
-    loadData (item, callback) {
-      httpGet('system/menu').then(data => {
-        let menus = []
-        for (let i in data.menus) {
-          menus.push(this.loadMenu(data.menus[i]))
-        }
-        callback(menus)
-      }).catch(respCo => {
-        this.error(respCo)
       })
     },
     loadMenu: function (item) {
