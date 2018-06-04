@@ -132,7 +132,7 @@ export default {
         for (let i in data.menus) {
           menus.push(this.loadMenu(data.menus[i]))
         }
-        this.$set(this.root, 'children', menus);
+        this.$set(this.root, 'children', menus)
       }).catch(respCo => {
         this.error(respCo)
       })
