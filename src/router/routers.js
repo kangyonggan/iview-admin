@@ -8,7 +8,6 @@ let defaultRoutes = [
     name: 'login',
     component: () => import('@/view/login/login.vue'),
     meta: {
-      title: '登录',
       hideInMenu: true
     }
   },
@@ -27,8 +26,7 @@ let defaultRoutes = [
         name: 'home',
         meta: {
           hideInMenu: true,
-          notCache: true,
-          title: '首页'
+          notCache: true
         },
         component: () => import('@/view/home/index')
       }
