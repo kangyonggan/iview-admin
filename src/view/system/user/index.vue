@@ -42,7 +42,6 @@ import RoleModal from './role-modal.vue'
 import PasswordModal from './password-modal.vue'
 export default {
   components: {FormModal, RoleModal, PasswordModal},
-  name: 'index',
   data () {
     return {
       /**

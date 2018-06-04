@@ -34,7 +34,6 @@
 import FormModal from './form-modal.vue'
 export default {
   components: {FormModal},
-  name: 'index',
   data () {
     return {
       /**

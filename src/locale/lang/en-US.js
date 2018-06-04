@@ -44,13 +44,16 @@ export default {
     closeAll: 'Close All'
   },
   route: {
+    all: 'All Menu',
     login: 'Login',
     lock: 'Lock Screen',
     home: 'Home',
     system: 'System',
     user: 'User Namage',
     role: 'Role Manage',
-    menu: 'Menu Manage'
+    menu: 'Menu Manage',
+    my: 'My',
+    info: 'Info'
   },
   login: {
     title: 'Welcome Login',
@@ -150,6 +153,38 @@ export default {
         required: 'role name can not be none',
         min: 'role name min length is {0}',
         max: 'role name max length is {0}'
+      }
+    }
+  },
+  menu: {
+    entity: 'Menu',
+    label: {
+      pcode: 'Parent Menu',
+      code: 'Menu Code',
+      icon: 'Menu Icon',
+      sort: 'Sort'
+    },
+    placeholder: {
+      code: 'Please Input Menu Code',
+      icon: 'Please Input Menu Icon',
+      sort: 'Please Input Sort（0 On Top）'
+    },
+    valid: {
+      code: {
+        required: 'menu code can not be none',
+        min: 'menu code min length is {0}',
+        max: 'menu code max length is {0}',
+        exists: 'menu code already exists'
+      },
+      icon: {
+        min: 'menu icon min length is {0}',
+        max: 'menu icon max length is {0}'
+      },
+      sort: {
+        required: 'menu sort can not be none',
+        number: 'menu sort must be number',
+        min: 'menu sort min length is {0}',
+        max: 'menu sort max length is {0}'
       }
     }
   }
