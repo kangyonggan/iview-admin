@@ -6,7 +6,7 @@
       <Input :value="$t('route.' + (menu.pcode ? menu.pcode : 'all'))" :readonly="true"/>
     </FormItem>
     <FormItem :label="$t('menu.label.code')" prop="code">
-      <Input v-model="menu.code" :readonly="!!menu.id" :placeholder="$t('menu.placeholder.code')"/>
+      <Input v-model="menu.code" :placeholder="$t('menu.placeholder.code')"/>
     </FormItem>
     <FormItem :label="$t('menu.label.icon')" prop="icon">
       <Input v-model="menu.icon" :placeholder="$t('menu.placeholder.icon')"/>
