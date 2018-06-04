@@ -93,7 +93,8 @@ export const getBreadCrumbList = (routeMetched) => {
 
   return [{
     name: 'home',
-    to: '/home'
+    to: '/home',
+    icon: 'ios-home'
   }, ...res]
 }
 
