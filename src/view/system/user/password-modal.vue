@@ -1,8 +1,8 @@
 <template>
   <!--修改密码-->
-  <AppModal ref="modal" :action="'system/user/' + user.id + '/password'" :title="$t('btn.editPwd')" method="put" :model="user" :rules="rules" @success="handleSuccess">
-    <FormItem :label="$t('field.password')" prop="password">
-      <Input type="password" v-model="user.password" :placeholder="$t('placeholder.password')"/>
+  <AppModal ref="modal" :action="'system/user/' + user.id + '/password'" :title="$t('user.btn.editPwd')" method="put" :model="user" :rules="rules" @success="handleSuccess">
+    <FormItem :label="$t('user.label.password')" prop="password">
+      <Input type="password" v-model="user.password" :placeholder="$t('user.placeholder.password')"/>
     </FormItem>
   </AppModal>
 </template>
@@ -20,9 +20,9 @@ export default {
        */
       rules: {
         password: [
-          {required: true, message: this.$t('valid.passwordRequired'), trigger: 'blur'},
-          {min: 6, message: this.$t('valid.passwordMin', 6), trigger: 'blur'},
-          {max: 32, message: this.$t('valid.passwordMax', 32), trigger: 'blur'}
+          {required: true, message: this.$t('user.valid.password.required'), trigger: 'blur'},
+          {min: 6, message: this.$t('user.valid.password.min', 6), trigger: 'blur'},
+          {max: 32, message: this.$t('user.valid.password.max', 32), trigger: 'blur'}
         ]
       }
     }

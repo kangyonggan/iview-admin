@@ -1,27 +1,18 @@
 export default {
   app: {
     name: 'BManagerS',
-    shortName: 'BMS'
+    shortName: 'BMS',
+    '401': 'Oh~~You do not have permission to do this!~',
+    '404': 'Oh~~Your page was missing!~'
   },
-  msg: {
-    err401: 'Oh~~You do not have permission to do this!~',
-    err404: 'Oh~~Your page was missing!~',
-    code9999: 'Unknown Error, Please connect admin!',
-    code9998: 'Has Not Login Or Invalid Login!',
-    code9997: 'You do not have permission!',
-    code9996: 'Network Error, Please retry later!',
-    code1001: 'Username Or Password Error!',
-    code1002: 'Password Error, Clear Cookie If Forgot！',
-    code0000: 'Operate Success!'
-  },
-  route: {
-    login: 'Login',
-    lock: 'Lock Screen',
-    home: 'Home',
-    system: 'System',
-    user: 'User Namage',
-    role: 'Role Manage',
-    menu: 'Menu Manage'
+  respCode: {
+    '9999': 'Unknown Error, Please connect admin!',
+    '9998': 'Has Not Login Or Invalid Login!',
+    '9997': 'You do not have permission!',
+    '9996': 'Network Error, Please retry later!',
+    '1001': 'Username Or Password Error!',
+    '1002': 'Password Error, Clear Cookie If Forgot！',
+    '0000': 'Operate Success!'
   },
   confirm: {
     recoveryTitle: 'Recovery Confirm',
@@ -47,54 +38,119 @@ export default {
     edit: 'Edit',
     logout: 'Logout',
     delete: 'Delete',
-    setRole: 'GrantRole',
-    editPwd: 'EditPassword',
     backHome: 'Back To Home',
     backPrev: 'Back To Previous',
     closeOther: 'Close Other',
     closeAll: 'Close All'
   },
-  entity: {
-    user: 'User',
-    role: 'Role'
+  route: {
+    login: 'Login',
+    lock: 'Lock Screen',
+    home: 'Home',
+    system: 'System',
+    user: 'User Namage',
+    role: 'Role Manage',
+    menu: 'Menu Manage'
   },
-  field: {
-    id: 'ID',
-    username: 'Username',
-    name: 'Name',
-    status: 'Status',
-    password: 'Password',
-    createdTime: 'CreatedTime',
-    updatedTime: 'UpdateTime',
-    operation: 'Operation'
-  },
-  placeholder: {
-    username: 'Please Input Username',
-    password: 'Please Input Password',
-    name: 'Please Input Name',
-    startDate: 'Please Input Create Start Date',
-    endDate: 'Please Input Create End Date',
-    lockPwd: 'Equals to Login Password'
-  },
-  lockPage: {
-    lockScreen: 'Lock Screen',
-    lock: 'Unlock'
-  },
-  loginPage: {
+  login: {
     title: 'Welcome Login',
     submit: 'Login',
-    experience: 'Experience Account'
+    experience: 'Experience Account',
+    placeholder: {
+      username: 'Please Input Username',
+      password: 'Please Input Password'
+    },
+    valid: {
+      username: {
+        required: 'username can not be none',
+        min: 'username min length is {0}',
+        max: 'username max length is {0}'
+      },
+      password: {
+        required: 'password can not be none',
+        min: 'password min length is {0}',
+        max: 'password max length is {0}'
+      }
+    }
   },
-  valid: {
-    usernameRequired: 'username can not be none',
-    usernameMin: 'username min length is {0}',
-    usernameMax: 'username max length is {0}',
-    usernameExists: 'username already exists',
-    passwordRequired: 'password can not be none',
-    passwordMin: 'password min length is {0}',
-    passwordMax: 'password max length is {0}',
-    nameRequired: 'password can not be none',
-    nameMin: 'name min length is {0}',
-    nameMax: 'name max length is {0}'
+  lock: {
+    lockScreen: 'Lock Screen',
+    unlock: 'Unlock',
+    placeholder: {
+      password: 'Equals to Login Password'
+    }
+  },
+  user: {
+    entity: 'User',
+    label: {
+      id: 'ID',
+      username: 'Username',
+      name: 'Name',
+      status: 'Status',
+      password: 'Password',
+      createdTime: 'CreatedTime',
+      updatedTime: 'UpdateTime',
+      operation: 'Operation'
+    },
+    placeholder: {
+      username: 'Please Input Username',
+      password: 'Please Input Password',
+      name: 'Please Input Name',
+      startDate: 'Please Input Create Start Date',
+      endDate: 'Please Input Create End Date'
+    },
+    valid: {
+      username: {
+        required: 'username can not be none',
+        min: 'username min length is {0}',
+        max: 'username max length is {0}',
+        exists: 'username already exists'
+      },
+      password: {
+        required: 'password can not be none',
+        min: 'password min length is {0}',
+        max: 'password max length is {0}'
+      },
+      name: {
+        required: 'user name can not be none',
+        min: 'user name min length is {0}',
+        max: 'user name max length is {0}'
+      }
+    },
+    btn: {
+      setRole: 'Set Role',
+      editPwd: 'Edit Password'
+    }
+  },
+  role: {
+    entity: 'Role',
+    label: {
+      id: 'ID',
+      code: 'Code',
+      name: 'Name',
+      status: 'Status',
+      createdTime: 'CreatedTime',
+      updatedTime: 'UpdateTime',
+      operation: 'Operation'
+    },
+    placeholder: {
+      code: 'Please Input Role Code',
+      name: 'Please Input Role Name',
+      startDate: 'Please Input Create Start Date',
+      endDate: 'Please Input Create End Date'
+    },
+    valid: {
+      code: {
+        required: 'role code can not be none',
+        min: 'role code min length is {0}',
+        max: 'role code max length is {0}',
+        exists: 'role code already exists'
+      },
+      name: {
+        required: 'role name can not be none',
+        min: 'role name min length is {0}',
+        max: 'role name max length is {0}'
+      }
+    }
   }
 }

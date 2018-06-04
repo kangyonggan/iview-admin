@@ -10,14 +10,14 @@
         <img class="unlock-avator-img" :src="avatorPath">
         <div class="unlock-avator-cover">
           <span><Icon type="unlocked" :size="30"></Icon></span>
-          <p>{{$t('lockPage.lock')}}</p>
+          <p>{{$t('lock.unlock')}}</p>
         </div>
       </div>
       <div class="unlock-avator-under-back" :style="{marginLeft: avatorLeft}"></div>
       <div class="unlock-input-con">
         <div class="unlock-input-overflow-con">
           <div class="unlock-overflow-body" :style="{right: inputLeft}">
-            <input ref="inputEle" v-model="user.password" class="unlock-input" type="password" :placeholder="$t('placeholder.lockPwd')"/>
+            <input ref="inputEle" v-model="user.password" class="unlock-input" type="password" :placeholder="$t('lock.placeholder.password')"/>
             <button ref="unlockBtn" @mousedown="unlockMousedown" @mouseup="unlockMouseup" @click="handleUnlock"
                     class="unlock-btn">
               <Icon color="white" type="key"></Icon>
@@ -75,7 +75,6 @@ export default {
         unlock()
         this.$emit('on-unlock')
       }).catch(respCo => {
-        this.$Notice.error({title: this.$t('msg.code' + respCo)})
         this.error(respCo)
       })
     },

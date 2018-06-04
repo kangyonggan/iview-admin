@@ -4,16 +4,16 @@
     <!--搜索表单-->
     <Form ref="queryForm" :model="user" class="bg-white" inline>
       <FormItem prop="username">
-        <Input v-model="user.username" :placeholder="$t('placeholder.username')"/>
+        <Input v-model="user.username" :placeholder="$t('user.placeholder.username')"/>
       </FormItem>
       <FormItem prop="name">
-        <Input v-model="user.name" :placeholder="$t('placeholder.name')"/>
+        <Input v-model="user.name" :placeholder="$t('user.placeholder.name')"/>
       </FormItem>
       <FormItem prop="startDate">
-        <AppDatePicker :model="user" prop="startDate" :placeholder="$t('placeholder.startDate')"/>
+        <AppDatePicker :model="user" prop="startDate" :placeholder="$t('user.placeholder.startDate')"/>
       </FormItem>
       <FormItem prop="endDate">
-        <AppDatePicker :model="user" prop="endDate" :placeholder="$t('placeholder.endDate')"/>
+        <AppDatePicker :model="user" prop="endDate" :placeholder="$t('user.placeholder.endDate')"/>
       </FormItem>
       <Row>
         <Button type="info" icon="ios-search" @click="$refs.table.refresh()">{{$t('btn.query')}}</Button>
@@ -54,42 +54,42 @@ export default {
        */
       columns: [
         {
-          title: this.$t('field.id'),
+          title: this.$t('user.label.id'),
           key: 'id',
           sortable: true
         },
         {
-          title: this.$t('field.username'),
+          title: this.$t('user.label.username'),
           key: 'username',
           sortable: true
         },
         {
-          title: this.$t('field.name'),
+          title: this.$t('user.label.name'),
           key: 'name',
           sortable: true
         },
         {
-          title: this.$t('field.status'),
+          title: this.$t('user.label.status'),
           key: 'status',
           sortable: true,
           render: (h, params) => {
-            return this.status(this, h, params,
+            return this.status(h, params,
               'system/user/' + params.row.id + '/status/' + 1 * !params.row.status,
               this.$refs.table)
           }
         },
         {
-          title: this.$t('field.createdTime'),
+          title: this.$t('user.label.createdTime'),
           key: 'createdTime',
           sortable: true
         },
         {
-          title: this.$t('field.updatedTime'),
+          title: this.$t('user.label.updatedTime'),
           key: 'updatedTime',
           sortable: true
         },
         {
-          title: this.$t('field.operation'),
+          title: this.$t('user.label.operation'),
           render: (h, params) => {
             let row = params.row
             return h('AppDropDown', {
@@ -113,19 +113,12 @@ export default {
                 }
               }}, [
               h('DropdownItem', {props: {name: 'delete'}, style: {display: row.status ? '' : 'none'}}, this.$t('btn.delete')),
-              h('DropdownItem', {props: {name: 'setRole'}}, this.$t('btn.setRole')),
-              h('DropdownItem', {props: {name: 'editPwd'}}, this.$t('btn.editPwd'))
+              h('DropdownItem', {props: {name: 'setRole'}}, this.$t('user.btn.setRole')),
+              h('DropdownItem', {props: {name: 'editPwd'}}, this.$t('user.btn.editPwd'))
             ])
           }
         }]
     }
-  },
-  methods: {
-
   }
 }
 </script>
-
-<style>
-
-</style>

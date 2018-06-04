@@ -1,5 +1,5 @@
 <template>
-  <error-content code="404" :desc="$t('msg.err404')" :src="src">
+  <error-content code="404" :desc="$t('app.404')" :src="src">
     <div v-title>404</div>
   </error-content>
 </template>

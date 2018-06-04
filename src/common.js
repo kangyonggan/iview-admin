@@ -13,8 +13,10 @@ Vue.directive('title', {
 Vue.prototype.status = status
 Vue.prototype.delete = deleteItem
 Vue.prototype.error = error
+Vue.prototype.success = success
 
-function status (that, h, params, url, table) {
+function status (h, params, url, table) {
+  let that = this
   let row = params.row
   if (row.status) {
     return h('Tag', {props: {type: 'dot', color: 'red'}}, [
@@ -33,12 +35,12 @@ function status (that, h, params, url, table) {
               closable: true,
               onOk: function () {
                 httpPut(url).then(data => {
-                  that.$Notice.success({title: that.$t('msg.code' + data.respCo)})
+                  that.success(data.respCo)
                   if (table) {
                     table.refresh()
                   }
                 }).catch(respCo => {
-                  that.$Notice.error({title: that.$t('msg.code' + respCo)})
+                  that.error(respCo)
                 })
                 that.$Modal.remove()
               }
@@ -64,12 +66,12 @@ function status (that, h, params, url, table) {
             closable: true,
             onOk: function () {
               httpPut(url).then(data => {
-                that.$Notice.success({title: that.$t('msg.code' + data.respCo)})
+                that.success(data.respCo)
                 if (table) {
                   table.refresh()
                 }
               }).catch(respCo => {
-                that.$Notice.error({title: that.$t('msg.code' + respCo)})
+                that.error(respCo)
               })
               that.$Modal.remove()
             }
@@ -89,19 +91,25 @@ function deleteItem (url, table) {
     closable: true,
     onOk: function () {
       httpDelete(url).then(data => {
-        that.$Notice.success({title: that.$t('msg.code' + data.respCo)})
+        that.success(data.respCo)
         if (table) {
           table.jump(1)
         }
       }).catch(respCo => {
-        that.$Notice.error({title: that.$t('msg.code' + respCo)})
+        that.error(respCo)
       })
       that.$Modal.remove()
     }
   })
 }
 
-function error (respCo) {
+function error (respCo, notShowNotice) {
+  if (!notShowNotice) {
+    this.$Notice.error({
+      title: this.$t('respCode.' + respCo),
+      duration: 2.5
+    })
+  }
   if (respCo === '9998') {
     // 登录已失效
     router.push({
@@ -113,4 +121,8 @@ function error (respCo) {
       path: '401'
     })
   }
+}
+
+function success (respCo) {
+  this.$Notice.success({title: this.$t('respCode.' + respCo)})
 }

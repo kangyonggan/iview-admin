@@ -1,6 +1,6 @@
 <template>
   <div @click='lockScreen' class='lock-screen-btn-con'>
-    <Tooltip :content="$t('lockPage.lockScreen')" placement='bottom'>
+    <Tooltip :content="$t('lock.lockScreen')" placement='bottom'>
       <Icon type='locked' :size='20'></Icon>
     </Tooltip>
   </div>

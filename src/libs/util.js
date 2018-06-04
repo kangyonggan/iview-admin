@@ -217,7 +217,7 @@ export const params = (data) => {
   let arr = []
   for (let key in data) {
     let obj = data[key]
-    if (obj === undefined) {
+    if (obj === undefined || obj === null) {
       continue
     }
     if (obj.constructor === Array) {

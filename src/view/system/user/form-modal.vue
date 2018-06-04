@@ -1,16 +1,16 @@
 <template>
   <!--新增/编辑用户-->
   <AppModal ref="modal" action="system/user" :method="user.id ? 'put' : 'post'"
-            :title="(user.id ? $t('btn.edit') : $t('btn.create')) + $t('entity.user')" :model="user" :rules="rules" @success="handleSuccess">
+            :title="(user.id ? $t('btn.edit') : $t('btn.create')) + $t('user.entity')" :model="user" :rules="rules" @success="handleSuccess">
     <input v-if="user.id" :value="user.id" name="id" type="hidden"/>
-    <FormItem :label="$t('field.username')" prop="username">
-      <Input v-model="user.username" :readonly="!!user.id" :placeholder="$t('placeholder.username')"/>
+    <FormItem :label="$t('user.label.username')" prop="username">
+      <Input v-model="user.username" :readonly="!!user.id" :placeholder="$t('user.placeholder.username')"/>
     </FormItem>
-    <FormItem :label="$t('field.name')" prop="name">
-      <Input v-model="user.name" :placeholder="$t('placeholder.name')"/>
+    <FormItem :label="$t('user.label.name')" prop="name">
+      <Input v-model="user.name" :placeholder="$t('user.placeholder.name')"/>
     </FormItem>
-    <FormItem :label="$t('field.password')" prop="password" v-if="!user.id">
-      <Input type="password" v-model="user.password" :placeholder="$t('placeholder.password')"/>
+    <FormItem :label="$t('user.label.password')" prop="password" v-if="!user.id">
+      <Input type="password" v-model="user.password" :placeholder="$t('user.placeholder.password')"/>
     </FormItem>
   </AppModal>
 </template>
@@ -38,20 +38,20 @@ export default {
        */
       rules: {
         username: [
-          {required: true, message: this.$t('valid.usernameRequired'), trigger: 'blur'},
-          {min: 5, message: this.$t('valid.usernameMin', 5), trigger: 'blur'},
-          {max: 32, message: this.$t('valid.usernameMax', 32), trigger: 'blur'},
+          {required: true, message: this.$t('user.valid.username.required'), trigger: 'blur'},
+          {min: 5, message: this.$t('user.valid.username.min', 5), trigger: 'blur'},
+          {max: 32, message: this.$t('user.valid.username.max', 32), trigger: 'blur'},
           {validator: this.validateUsername, trigger: 'blur'}
         ],
         name: [
-          {required: true, message: this.$t('valid.nameRequired'), trigger: 'blur'},
-          {min: 1, message: this.$t('valid.nameMin', 1), trigger: 'blur'},
-          {max: 32, message: this.$t('valid.nameMax', 32), trigger: 'blur'}
+          {required: true, message: this.$t('user.valid.name.required'), trigger: 'blur'},
+          {min: 1, message: this.$t('user.valid.name.min', 1), trigger: 'blur'},
+          {max: 32, message: this.$t('user.valid.name.max', 32), trigger: 'blur'}
         ],
         password: [
-          {required: true, message: this.$t('valid.passwordRequired'), trigger: 'blur'},
-          {min: 6, message: this.$t('valid.passwordMin', 6), trigger: 'blur'},
-          {max: 32, message: this.$t('valid.passwordMax', 32), trigger: 'blur'}
+          {required: true, message: this.$t('user.valid.password.required'), trigger: 'blur'},
+          {min: 6, message: this.$t('user.valid.password.min', 6), trigger: 'blur'},
+          {max: 32, message: this.$t('user.valid.password.max', 32), trigger: 'blur'}
         ]
       }
     }
@@ -70,8 +70,8 @@ export default {
       httpGet('validate/user?username=' + value).then(() => {
         callback()
       }).catch(respCo => {
-        callback(new Error(this.$t('valid.usernameExists')))
-        that.error(respCo)
+        callback(new Error(this.$t('user.valid.username.exists')))
+        that.error(respCo, true)
       })
     },
     show: function (user) {

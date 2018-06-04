@@ -2,28 +2,28 @@
   <div class="login" @keydown.enter="submit">
     <div v-title>{{$t('route.login')}}</div>
     <div class="login-con">
-      <Card icon="log-in" :title="$t('loginPage.title')" :bordered="false">
+      <Card icon="log-in" :title="$t('login.title')" :bordered="false">
         <div class="form-con">
           <Form ref="loginForm" :model="user" :rules="rules">
             <FormItem prop="username">
-              <Input v-model="user.username" :placeholder="$t('placeholder.username')">
+              <Input v-model="user.username" :placeholder="$t('login.placeholder.username')">
                 <span slot="prepend">
                   <Icon :size="16" type="person"></Icon>
                 </span>
               </Input>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="user.password" :placeholder="$t('placeholder.password')">
+              <Input type="password" v-model="user.password" :placeholder="$t('login.placeholder.password')">
                 <span slot="prepend">
                   <Icon :size="14" type="locked"></Icon>
                 </span>
               </Input>
             </FormItem>
             <FormItem>
-              <Button @click="submit" :loading="loading" type="primary" long>{{ $t('loginPage.submit') }}</Button>
+              <Button @click="submit" :loading="loading" type="primary" long>{{ $t('login.submit') }}</Button>
             </FormItem>
           </Form>
-          <p class="login-tip">{{ $t('loginPage.experience') }}：guest/123456</p>
+          <p class="login-tip">{{ $t('login.experience') }}：guest/123456</p>
         </div>
       </Card>
     </div>
@@ -39,14 +39,14 @@ export default {
       loading: false,
       rules: {
         username: [
-          {required: true, message: this.$t('valid.usernameRequired'), trigger: 'blur'},
-          {min: 5, message: this.$t('valid.usernameMin', 5), trigger: 'blur'},
-          {max: 32, message: this.$t('valid.usernameMax', 32), trigger: 'blur'}
+          {required: true, message: this.$t('login.valid.username.required'), trigger: 'blur'},
+          {min: 5, message: this.$t('login.valid.username.min', 5), trigger: 'blur'},
+          {max: 32, message: this.$t('login.valid.username.max', 32), trigger: 'blur'}
         ],
         password: [
-          {required: true, message: this.$t('valid.passwordRequired'), trigger: 'blur'},
-          {min: 6, message: this.$t('valid.passwordMin', 6), trigger: 'blur'},
-          {max: 32, message: this.$t('valid.passwordMax', 32), trigger: 'blur'}
+          {required: true, message: this.$t('login.valid.password.required'), trigger: 'blur'},
+          {min: 6, message: this.$t('login.valid.password.min', 6), trigger: 'blur'},
+          {max: 32, message: this.$t('login.valid.password.max', 32), trigger: 'blur'}
         ]
       }
     }
@@ -64,8 +64,8 @@ export default {
             if (data.respCo === '0000') {
               window.location.reload()
             } else {
-              this.$Message.error(this.$t('msg.code' + data.respCo))
               this.loading = false
+              this.error(data.respCo)
             }
           })
         }
