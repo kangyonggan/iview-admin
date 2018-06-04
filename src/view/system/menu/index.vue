@@ -186,9 +186,9 @@ export default {
         children: []
       }
       let children = []
-      if (item.leaf && item.leaf.length) {
-        for (let i in item.leaf) {
-          children.push(this.loadMenu(item.leaf[i]))
+      if (item.children && item.children.length) {
+        for (let i in item.children) {
+          children.push(this.loadMenu(item.children[i]))
         }
       }
       menu.children = children

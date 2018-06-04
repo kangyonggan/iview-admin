@@ -101,9 +101,9 @@ function loadMenuRoutes (menu) {
     component: () => components[menu.code]
   }
 
-  if (menu.leaf && menu.leaf.length) {
-    for (let i in menu.leaf) {
-      children.push(loadMenuRoutes(menu.leaf[i]))
+  if (menu.children && menu.children.length) {
+    for (let i in menu.children) {
+      children.push(loadMenuRoutes(menu.children[i]))
     }
   }
 
