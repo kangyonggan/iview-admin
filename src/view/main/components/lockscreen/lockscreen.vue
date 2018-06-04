@@ -9,12 +9,6 @@
 <script>
 import Cookies from 'js-cookie'
 
-const setLockBackSize = () => {
-  let x = document.body.clientWidth
-  let y = document.body.clientHeight
-  let r = Math.sqrt(x * x + y * y)
-  return parseInt(r)
-}
 export default {
   name: 'lockscreen',
   props: {
@@ -33,10 +27,6 @@ export default {
         name: 'locking'
       })
     }
-  },
-  mounted () {
-    let size = setLockBackSize()
-    this.lockScreenSize = size
   }
 }
 </script>
