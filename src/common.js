@@ -109,7 +109,8 @@ function deleteItem (url, callback, error) {
 function error (respCo, notShowNotice) {
   if (!notShowNotice) {
     this.$Notice.error({
-      title: this.$t('respCode.' + respCo),
+      title: this.$t('notice.title'),
+      desc: this.$t('respCode.' + respCo),
       duration: 2.5
     })
   }
@@ -127,5 +128,5 @@ function error (respCo, notShowNotice) {
 }
 
 function success (respCo) {
-  this.$Notice.success({title: this.$t('respCode.' + respCo)})
+  this.$Notice.success({title: this.$t('notice.title'), desc: this.$t('respCode.' + respCo)})
 }

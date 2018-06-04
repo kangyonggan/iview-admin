@@ -1,12 +1,12 @@
 <template>
   <Modal :title="title" v-model="showModel" :mask-closable="false" :closable="false">
-    <Form :model="model" :rules="rules">
+    <Form ref="form" :model="model" :rules="rules">
       <slot></slot>
     </Form>
 
     <template slot="footer">
       <Button icon="close" @click="cancel">{{$t('btn.cancel')}}</Button>
-      <Button type="success" icon="checkmark" :loading="isLoading" @click="submit">{{$t('btn.submit')}}</Button>
+      <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.form)">{{$t('btn.submit')}}</Button>
     </template>
   </Modal>
 </template>
@@ -20,11 +20,11 @@ export default {
       type: String
     },
     model: {
-      required: true,
+      required: false,
       type: Object
     },
     action: {
-      required: true,
+      required: false,
       type: String
     },
     method: {
@@ -35,6 +35,10 @@ export default {
     rules: {
       required: false,
       type: Object
+    },
+    submit: {
+      required: false,
+      type: Function
     }
   },
   data () {
@@ -46,7 +50,7 @@ export default {
   methods: {
     show: function () {
       this.stop()
-      this.$children[0].$children[0].resetFields()
+      this.$refs.form.resetFields()
       this.showModel = true
     },
     hide: function () {
@@ -59,8 +63,12 @@ export default {
     stop: function () {
       this.isLoading = false
     },
-    submit: function () {
-      this.$children[0].$children[0].validate((valid) => {
+    handleSubmit: function (e, form) {
+      if (this.submit) {
+        this.submit(e, form)
+        return
+      }
+      form.validate((valid) => {
         if (valid) {
           this.loading()
           http(this.method, this.action, this.model).then(data => {

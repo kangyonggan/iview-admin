@@ -1,15 +1,10 @@
 <template>
   <!--设置菜单-->
-  <Modal v-model="showModel" :title="$t('role.btn.setMenu')" :mask-closable="false" :closable="false">
+  <AppModal ref="modal" :title="$t('role.btn.setMenu')" :submit="submit">
     <div style="max-width: 600px;min-width: 300px;margin: 0 auto">
       <Tree ref="tree" :render="renderContent" :data="data" showCheckbox multiple/>
     </div>
-
-    <template slot="footer">
-      <Button icon="close" @click="cancel">{{$t('btn.cancel')}}</Button>
-      <Button type="success" icon="checkmark" :loading="isLoading" @click="submit">{{$t('btn.submit')}}</Button>
-    </template>
-  </Modal>
+  </AppModal>
 </template>
 
 <script>
@@ -17,32 +12,20 @@ import { httpGet, httpPut } from '@/api/common'
 export default {
   data () {
     return {
-      isLoading: false,
-      showModel: false,
       data: [],
       roleCode: '',
       roleCodes: []
     }
   },
   methods: {
-    hide: function () {
-      this.stop()
-      this.showModel = false
-    },
-    loading: function () {
-      this.isLoading = true
-    },
-    stop: function () {
-      this.isLoading = false
-    },
     submit: function () {
-      this.loading()
+      this.$refs.modal.loading()
       let selected = this.getSelectedMenuCodes()
       httpPut('system/role/' + this.roleCode + '/menu?menuCodes=' + selected).then(data => {
         this.success(data.respCo)
-        this.hide()
+        this.$refs.modal.hide()
       }).catch(respCo => {
-        this.stop()
+        this.$refs.modal.stop()
         this.error(respCo)
       })
     },
@@ -73,17 +56,13 @@ export default {
         }, [])
       ])
     },
-    cancel: function () {
-      this.hide()
-    },
     getTitle: function (code) {
       return this.$t('route.' + code)
     },
     show: function (roleCode) {
       this.roleCode = roleCode
 
-      this.stop()
-      this.showModel = true
+      this.$refs.modal.show()
 
       httpGet('system/role/' + roleCode + '/menu').then(data => {
         this.roleCodes = data.codes

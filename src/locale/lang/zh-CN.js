@@ -14,6 +14,9 @@ export default {
     '1002': '密码错误，如果忘记密码请清除Cookie！',
     '0000': '操作成功！'
   },
+  notice: {
+    title: '提示'
+  },
   confirm: {
     recoveryTitle: '恢复确认',
     recoveryContent: '确认恢复所选记录？',

@@ -14,6 +14,9 @@ export default {
     '1002': 'Password Error, Clear Cookie If Forgot！',
     '0000': 'Operate Success!'
   },
+  notice: {
+    title: 'Notice'
+  },
   confirm: {
     recoveryTitle: 'Recovery Confirm',
     recoveryContent: 'Confirm To Recovery This Item?',
