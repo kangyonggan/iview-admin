@@ -154,6 +154,9 @@ export default {
         min: '角色名称最少为{0}位',
         max: '角色名称最多为{0}位'
       }
+    },
+    btn: {
+      setMenu: '设置菜单'
     }
   },
   menu: {

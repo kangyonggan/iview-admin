@@ -27,13 +27,17 @@
 
     <!--新增/编辑角色的界面-->
     <FormModal ref="formModal" @success="$refs.table.refresh()"/>
+
+    <!--设置菜单的界面-->
+    <MenuModal ref="menuModal"/>
   </div>
 </template>
 
 <script>
 import FormModal from './form-modal.vue'
+import MenuModal from './menu-modal.vue'
 export default {
-  components: {FormModal},
+  components: {FormModal, MenuModal},
   data () {
     return {
       /**
@@ -100,9 +104,13 @@ export default {
                       that.$refs.table.jump(1)
                     })
                   }
+                  if (name === 'setMenu') {
+                    this.$refs.menuModal.show(row.code)
+                  }
                 }
               }}, [
-              h('DropdownItem', {props: {name: 'delete'}, style: {display: row.status ? '' : 'none'}}, this.$t('btn.delete'))
+              h('DropdownItem', {props: {name: 'delete'}, style: {display: row.status ? '' : 'none'}}, this.$t('btn.delete')),
+              h('DropdownItem', {props: {name: 'setMenu'}}, this.$t('role.btn.setMenu'))
             ])
           }
         }]

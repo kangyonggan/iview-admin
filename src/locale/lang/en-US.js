@@ -154,6 +154,9 @@ export default {
         min: 'role name min length is {0}',
         max: 'role name max length is {0}'
       }
+    },
+    btn: {
+      setMenu: 'Set Menu'
     }
   },
   menu: {
