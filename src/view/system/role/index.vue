@@ -95,7 +95,10 @@ export default {
                 },
                 select: (name) => {
                   if (name === 'delete') {
-                    this.delete('system/role/' + row.id, this.$refs.table)
+                    let that = this
+                    this.delete('system/role?id=' + row.id, function () {
+                      that.$refs.table.jump(1)
+                    })
                   }
                 }
               }}, [

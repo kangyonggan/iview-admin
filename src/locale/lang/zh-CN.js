@@ -158,6 +158,9 @@ export default {
   },
   menu: {
     entity: '菜单',
+    msg: {
+      hasChildren: '不能删除有子菜单的父菜单'
+    },
     label: {
       pcode: '上级菜单',
       code: '菜单代码',

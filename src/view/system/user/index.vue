@@ -105,7 +105,10 @@ export default {
                   if (name === 'setRole') {
                     this.$refs.roleModal.show(row.username)
                   } else if (name === 'delete') {
-                    this.delete('system/user/' + row.id, this.$refs.table)
+                    let that = this
+                    this.delete('system/user?id=' + row.id, function () {
+                      that.$refs.table.jump(1)
+                    })
                   } else if (name === 'editPwd') {
                     this.$refs.passwordModal.show(row.id)
                   }

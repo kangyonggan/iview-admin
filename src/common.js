@@ -82,7 +82,7 @@ function status (h, params, url, table) {
   ])
 }
 
-function deleteItem (url, table) {
+function deleteItem (url, callback, error) {
   let that = this
   that.$Modal.confirm({
     title: that.$t('confirm.deleteTitle'),
@@ -92,11 +92,14 @@ function deleteItem (url, table) {
     onOk: function () {
       httpDelete(url).then(data => {
         that.success(data.respCo)
-        if (table) {
-          table.jump(1)
+        if (callback) {
+          callback(data)
         }
       }).catch(respCo => {
         that.error(respCo)
+        if (error) {
+          error(respCo)
+        }
       })
       that.$Modal.remove()
     }

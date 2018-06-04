@@ -116,7 +116,7 @@ export default {
               icon: 'ios-minus-empty'
             }),
             on: {
-              click: () => { this.remove(node, data) }
+              click: () => { this.remove(root, node, data) }
             }
           })
         ])
@@ -138,10 +138,17 @@ export default {
       })
     },
     remove (root, node, data) {
-      const parentKey = root.find(el => el === node).parent
-      const parent = root.find(el => el.nodeKey === parentKey).node
-      const index = parent.children.indexOf(data)
-      parent.children.splice(index, 1)
+      if (node.node.children && node.node.children.length > 0) {
+        this.$Message.warning(this.$t('menu.msg.hasChildren'))
+        return
+      }
+      this.delete('system/menu?code=' + node.node.code, function (dt) {
+        const parentKey = root.find(el => el === node).parent
+        const parent = root.find(el => el.nodeKey === parentKey).node
+        const index = parent.children.indexOf(data)
+        parent.children.splice(index, 1)
+      }, function (respCo) {
+      })
     },
     loadData (item, callback) {
       httpGet('system/menu').then(data => {
