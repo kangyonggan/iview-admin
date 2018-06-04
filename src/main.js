@@ -31,3 +31,7 @@ new Vue({
   store,
   render: h => h(App)
 })
+
+iView.Notice.config({
+  duration: 1.5
+})
