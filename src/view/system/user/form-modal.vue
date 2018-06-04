@@ -3,13 +3,13 @@
   <AppModal ref="modal" action="system/user" :method="user.id ? 'put' : 'post'"
             :title="(user.id ? $t('btn.edit') : $t('btn.create')) + $t('user.entity')" :model="user" :rules="rules" @success="handleSuccess">
     <FormItem :label="$t('user.label.username')" prop="username">
-      <Input v-model="user.username" :readonly="!!user.id" :placeholder="$t('user.placeholder.username')"/>
+      <Input v-model="user.username" :readonly="!!user.id" :placeholder="$t('user.placeholder.username')" :clearable="!user.id"/>
     </FormItem>
     <FormItem :label="$t('user.label.name')" prop="name">
-      <Input v-model="user.name" :placeholder="$t('user.placeholder.name')"/>
+      <Input v-model="user.name" :placeholder="$t('user.placeholder.name')" clearable/>
     </FormItem>
     <FormItem :label="$t('user.label.password')" prop="password" v-if="!user.id">
-      <Input type="password" v-model="user.password" :placeholder="$t('user.placeholder.password')"/>
+      <Input type="password" v-model="user.password" :placeholder="$t('user.placeholder.password')" clearable/>
     </FormItem>
   </AppModal>
 </template>

@@ -3,10 +3,10 @@
   <AppModal ref="modal" action="system/role" :method="role.id ? 'put' : 'post'"
             :title="(role.id ? $t('btn.edit') : $t('btn.create')) + $t('role.entity')" :model="role" :rules="rules" @success="handleSuccess">
     <FormItem :label="$t('role.label.code')" prop="code">
-      <Input v-model="role.code" :readonly="!!role.id" :placeholder="$t('role.placeholder.code')"/>
+      <Input v-model="role.code" :readonly="!!role.id" :placeholder="$t('role.placeholder.code')" :clearable="!role.id"/>
     </FormItem>
     <FormItem :label="$t('role.label.name')" prop="name">
-      <Input v-model="role.name" :placeholder="$t('role.placeholder.name')"/>
+      <Input v-model="role.name" :placeholder="$t('role.placeholder.name')" clearable/>
     </FormItem>
   </AppModal>
 </template>

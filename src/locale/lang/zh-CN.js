@@ -55,7 +55,7 @@ export default {
     user: '用户管理',
     role: '角色管理',
     menu: '菜单管理',
-    my: '我的',
+    consumer: '我的',
     info: '个人信息'
   },
   login: {

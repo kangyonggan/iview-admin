@@ -4,10 +4,10 @@
     <!--搜索表单-->
     <Form ref="queryForm" :model="user" class="bg-white" inline>
       <FormItem prop="username">
-        <Input v-model="user.username" :placeholder="$t('user.placeholder.username')"/>
+        <Input v-model="user.username" :placeholder="$t('user.placeholder.username')" clearable />
       </FormItem>
       <FormItem prop="name">
-        <Input v-model="user.name" :placeholder="$t('user.placeholder.name')"/>
+        <Input v-model="user.name" :placeholder="$t('user.placeholder.name')" clearable />
       </FormItem>
       <FormItem prop="startDate">
         <AppDatePicker :model="user" prop="startDate" :placeholder="$t('user.placeholder.startDate')"/>

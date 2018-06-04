@@ -55,7 +55,7 @@ export default {
     user: 'User Namage',
     role: 'Role Manage',
     menu: 'Menu Manage',
-    my: 'My',
+    consumer: 'Consumer',
     info: 'Info'
   },
   login: {
