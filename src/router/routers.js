@@ -6,11 +6,11 @@ let defaultRoutes = [
   {
     path: '/login',
     name: 'login',
+    component: () => import('@/view/login/login.vue'),
     meta: {
       title: '登录',
       hideInMenu: true
-    },
-    component: () => import('@/view/login/login.vue')
+    }
   },
   {
     path: '/',
@@ -54,6 +54,9 @@ export const loadRoutes = (router) => {
           }
         }
       }
+      loadCommonRoutes(defaultRoutes)
+      router.addRoutes(defaultRoutes)
+    }).catch(() => {
       loadCommonRoutes(defaultRoutes)
       router.addRoutes(defaultRoutes)
     })

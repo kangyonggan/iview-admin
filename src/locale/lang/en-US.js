@@ -181,10 +181,7 @@ export default {
         max: 'menu icon max length is {0}'
       },
       sort: {
-        required: 'menu sort can not be none',
-        number: 'menu sort must be number',
-        min: 'menu sort min length is {0}',
-        max: 'menu sort max length is {0}'
+        number: 'menu sort must be number between 0 and 99'
       }
     }
   }

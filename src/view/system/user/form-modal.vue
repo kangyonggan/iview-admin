@@ -2,7 +2,6 @@
   <!--新增/编辑用户-->
   <AppModal ref="modal" action="system/user" :method="user.id ? 'put' : 'post'"
             :title="(user.id ? $t('btn.edit') : $t('btn.create')) + $t('user.entity')" :model="user" :rules="rules" @success="handleSuccess">
-    <input v-if="user.id" :value="user.id" name="id" type="hidden"/>
     <FormItem :label="$t('user.label.username')" prop="username">
       <Input v-model="user.username" :readonly="!!user.id" :placeholder="$t('user.placeholder.username')"/>
     </FormItem>

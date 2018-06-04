@@ -2,8 +2,6 @@
   <!--新增/编辑角色-->
   <AppModal ref="modal" action="system/menu" :method="menu.id ? 'put' : 'post'"
             :title="(menu.id ? $t('btn.edit') : $t('btn.create')) + $t('menu.entity')" :model="menu" :rules="rules" @success="handleSuccess">
-    <input v-if="menu.id" :value="menu.id" name="id" type="hidden"/>
-    <input type="hidden" :value="menu.pcode"/>
     <FormItem :label="$t('menu.label.pcode')">
       <Input :value="$t('route.' + (menu.pcode ? menu.pcode : 'all'))" :readonly="true"/>
     </FormItem>
@@ -49,10 +47,7 @@ export default {
           {max: 32, message: this.$t('menu.valid.icon.max', 32), trigger: 'blur'}
         ],
         sort: [
-          {required: true, message: this.$t('menu.valid.sort.required'), trigger: 'blur'},
-          {pattern: /^[0-9]+$/, message: this.$t('menu.valid.sort.number'), trigger: 'blur'},
-          {min: 0, message: this.$t('menu.valid.sort.min', 0), trigger: 'blur'},
-          {max: 99, message: this.$t('menu.valid.sort.max', 99), trigger: 'blur'}
+          {pattern: /^[0-9]+$/, message: this.$t('menu.valid.sort.number'), trigger: 'blur'}
         ]
       }
     }

@@ -54,7 +54,7 @@ export default {
                     type: 'primary'
                   }),
                   style: {
-                    width: '52px'
+                    width: '86px'
                   },
                   on: {
                     click: () => { this.form(root, node) }
@@ -115,8 +115,19 @@ export default {
             props: Object.assign({}, this.buttonProps, {
               icon: 'ios-minus-empty'
             }),
+            style: {
+              marginRight: '8px'
+            },
             on: {
               click: () => { this.remove(root, node, data) }
+            }
+          }),
+          h('Button', {
+            props: Object.assign({}, this.buttonProps, {
+              icon: 'edit'
+            }),
+            on: {
+              click: () => { this.edit(root, data) }
             }
           })
         ])
@@ -125,6 +136,10 @@ export default {
     form (root, node) {
       this.root = root[0].node
       this.$refs.formModal.show({pcode: node.node.code})
+    },
+    edit (root, data) {
+      this.root = root[0].node
+      this.$refs.formModal.show({pcode: data.pcode, code: data.code, icon: data.icon, sort: data.sort, id: data.id})
     },
     formSuccess: function () {
       httpGet('system/menu').then(data => {
@@ -164,6 +179,9 @@ export default {
     loadMenu: function (item) {
       let menu = {
         title: this.getTitle(item.code),
+        id: item.id,
+        pcode: item.pcode,
+        sort: item.sort,
         code: item.code,
         icon: item.icon,
         expand: true,

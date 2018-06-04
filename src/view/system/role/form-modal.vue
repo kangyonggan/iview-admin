@@ -2,7 +2,6 @@
   <!--新增/编辑角色-->
   <AppModal ref="modal" action="system/role" :method="role.id ? 'put' : 'post'"
             :title="(role.id ? $t('btn.edit') : $t('btn.create')) + $t('role.entity')" :model="role" :rules="rules" @success="handleSuccess">
-    <input v-if="role.id" :value="role.id" name="id" type="hidden"/>
     <FormItem :label="$t('role.label.code')" prop="code">
       <Input v-model="role.code" :readonly="!!role.id" :placeholder="$t('role.placeholder.code')"/>
     </FormItem>

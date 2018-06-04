@@ -183,10 +183,7 @@ export default {
         max: '菜单图标最多为{0}位'
       },
       sort: {
-        required: '排序为必填项',
-        number: '排序必须为自然数',
-        min: '排序最小为{0}',
-        max: '排序最大为{0}'
+        number: '排序必须为0~99之间的整数'
       }
     }
   }
