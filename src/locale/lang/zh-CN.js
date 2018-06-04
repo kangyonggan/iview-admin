@@ -176,7 +176,8 @@ export default {
       code: {
         required: '菜单代码为必填项',
         min: '菜单代码最少为{0}位',
-        max: '菜单代码最多为{0}位'
+        max: '菜单代码最多为{0}位',
+        exists: '菜单代码已存在'
       },
       icon: {
         min: '菜单图标最少为{0}位',

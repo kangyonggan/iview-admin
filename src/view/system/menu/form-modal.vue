@@ -32,6 +32,7 @@ export default {
        * 菜单信息
        */
       menu: {},
+      oldCode: '',
       /**
        * 表单的校验
        */
@@ -57,7 +58,7 @@ export default {
      * 校验菜单代码是否存在
      */
     validateMenu: function (rule, value, callback) {
-      if (this.menu.id) {
+      if (this.oldCode === value) {
         callback()
         return
       }
@@ -67,11 +68,12 @@ export default {
         callback()
       }).catch(respCo => {
         callback(new Error(this.$t('menu.valid.code.exists')))
-        that.error(respCo)
+        that.error(respCo, true)
       })
     },
     show: function (menu) {
       this.menu = menu
+      this.oldCode = menu.code
       this.$refs.modal.show()
     },
     handleSuccess () {

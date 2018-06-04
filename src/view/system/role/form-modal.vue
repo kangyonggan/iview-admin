@@ -58,7 +58,7 @@ export default {
         callback()
       }).catch(respCo => {
         callback(new Error(this.$t('role.valid.code.exists')))
-        that.error(respCo)
+        that.error(respCo, true)
       })
     },
     show: function (role) {
