@@ -94,6 +94,7 @@ export default {
       name: 'Name',
       status: 'Status',
       password: 'Password',
+      newPassword: 'New Password',
       createdTime: 'CreatedTime',
       updatedTime: 'UpdateTime',
       operation: 'Operation'

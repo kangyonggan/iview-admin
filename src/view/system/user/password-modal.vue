@@ -1,7 +1,7 @@
 <template>
   <!--修改密码-->
   <AppModal ref="modal" :action="'system/user/' + user.id + '/password'" :title="$t('user.btn.editPwd')" method="put" :model="user" :rules="rules" @success="handleSuccess">
-    <FormItem :label="$t('user.label.password')" prop="password">
+    <FormItem :label="$t('user.label.newPassword')" prop="password">
       <Input type="password" v-model="user.password" :placeholder="$t('user.placeholder.password')" clearable/>
     </FormItem>
   </AppModal>

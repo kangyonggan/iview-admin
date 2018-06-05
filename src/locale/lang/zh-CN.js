@@ -94,6 +94,7 @@ export default {
       name: '姓名',
       status: '状态',
       password: '密码',
+      newPassword: '新密码',
       createdTime: '创建时间',
       updatedTime: '更新时间',
       operation: '操作'
