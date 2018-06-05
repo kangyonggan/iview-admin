@@ -1,23 +1,24 @@
 <template>
   <div>
     <div v-title>{{$t('route.info')}}</div>
-    <Form ref="form" :model="user" label-position="top" class="bg-white" :rules="rules">
       <Tabs type="card">
-        <TabPane :label="$t('info.tag.basic')">
+        <TabPane :label="$t('info.tag.basic')" class="bg-white">
           <div class="content">
-            <FormItem prop="username" :label="$t('user.label.username')">
-              <Input v-model="user.username" :readonly="true" :placeholder="$t('user.placeholder.username')"/>
-            </FormItem>
-            <FormItem prop="name" :label="$t('user.label.name')">
-              <Input v-model="user.name" :placeholder="$t('user.placeholder.name')" clearable/>
-            </FormItem>
+            <Form ref="formBasic" :model="userBasic" label-position="top" :rules="rules">
+              <FormItem prop="username" :label="$t('user.label.username')">
+                <Input v-model="userBasic.username" :readonly="true" :placeholder="$t('user.placeholder.username')"/>
+              </FormItem>
+              <FormItem prop="name" :label="$t('user.label.name')">
+                <Input v-model="userBasic.name" :placeholder="$t('user.placeholder.name')" clearable/>
+              </FormItem>
+            </Form>
           </div>
 
           <div class="content">
-            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.form)">{{$t('btn.submit')}}</Button>
+            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.formBasic)">{{$t('btn.submit')}}</Button>
           </div>
         </TabPane>
-        <TabPane :label="$t('info.tag.avatar')">
+        <TabPane :label="$t('info.tag.avatar')" class="bg-white">
           <div class="content">
             <div style="text-align: center;">
               <img :src="user.avatar" class="avatar" @click="showBigAvatar = !showBigAvatar"/>
@@ -42,23 +43,24 @@
             </Upload>
           </div>
         </TabPane>
-        <TabPane :label="$t('info.tag.password')">
+        <TabPane :label="$t('info.tag.password')" class="bg-white">
           <div class="content">
-            <FormItem prop="password" :label="$t('user.label.newPassword')">
-              <Input :type="showPwd ? 'text' : 'password'" v-model="user.password" :placeholder="$t('user.placeholder.password')">
-                <span slot="append">
-                  <Icon :type="showPwd ? 'eye-disabled' : 'eye'" class="showPwd" @click="showPwd = !showPwd"></Icon>
-                </span>
-              </Input>
-            </FormItem>
+            <Form ref="formPassword" :model="userPwd" label-position="top" :rules="rules">
+              <FormItem prop="password" :label="$t('user.label.newPassword')">
+                <Input :type="showPwd ? 'text' : 'password'" v-model="userPwd.password" :placeholder="$t('user.placeholder.password')">
+                  <span slot="append">
+                    <Icon :type="showPwd ? 'eye-disabled' : 'eye'" class="showPwd" @click="showPwd = !showPwd"></Icon>
+                  </span>
+                </Input>
+              </FormItem>
+            </Form>
           </div>
 
           <div class="content">
-            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.form)">{{$t('btn.submit')}}</Button>
+            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.formPassword)">{{$t('btn.submit')}}</Button>
           </div>
         </TabPane>
       </Tabs>
-    </Form>
   </div>
 </template>
 
@@ -73,6 +75,8 @@ export default {
       showPwd: false,
       isLoading: false,
       user: {},
+      userBasic: {},
+      userPwd: {},
       /**
        * 表单的校验
        */
@@ -93,17 +97,20 @@ export default {
   },
   mounted: function () {
     let user = this.$store.state.user.user
-    this.$refs.form.resetFields()
+    this.$refs.formBasic.resetFields()
+    this.$refs.formPassword.resetFields()
     let avatar = user.avatar
     if (avatar) {
       avatar = baseURL + avatar
     } else {
       avatar = require('@/assets/images/logo.jpg')
     }
-    this.user = {
+    this.user.avatar = avatar
+    this.userBasic = {
       username: user.username,
-      avatar: avatar,
-      name: user.name,
+      name: user.name
+    }
+    this.userPwd = {
       password: ''
     }
   },
@@ -117,7 +124,7 @@ export default {
     handleBeforeUpload: function (file) {
       let formData = new FormData()
       formData.append('file', file)
-      httpPutUpload('consumer/info/avatar', formData).then(data => {
+      httpPutUpload('person/info/avatar', formData).then(data => {
         this.success(data.respCo)
         this.$store.state.user.user = data.user
         this.user.avatar = this.baseURL + data.user.avatar
@@ -132,7 +139,7 @@ export default {
       form.validate((valid) => {
         if (valid) {
           this.isLoading = true
-          httpPut('consumer/info', this.user).then(data => {
+          httpPut('person/info', this.user).then(data => {
             this.success(data.respCo)
             this.$store.state.user.user = data.user
             this.isLoading = false
