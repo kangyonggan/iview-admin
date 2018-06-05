@@ -23,7 +23,7 @@
               <Button @click="submit" :loading="loading" type="primary" long>{{ $t('login.submit') }}</Button>
             </FormItem>
           </Form>
-          <p class="login-tip">{{ $t('login.experience') }}：guest/123456</p>
+          <p class="login-tip">{{ $t('login.experience') }}：guest/vue123</p>
         </div>
       </Card>
     </div>
