@@ -1,10 +1,62 @@
 <template>
-  <div style="text-align: center;" class="bg-white">
+  <div class="bg-white">
     <div v-title>{{$t('route.home')}}</div>
-    <p>为了防止不法分子在游览本站时破坏站长的博文，所以呢，对于博客的修改和物理删除功能，把权限设置到了特定的用户（admin），客官也是可以看到物理删除按钮的，不过再最后提交时会被服务端拦截！</p>
-    <p>既然只有admin才能删除博文，那客官肯定又出新花样的，那就去修改admin的密码，不好意思，修改密码我也把权限交给的admin。</p>
-    <p>客官想了又想，那我先把admin删除，在新增admin的时候可以指定密码。不好意思，删除用户的功能我也给了admin。</p>
-    <p>我给你这么大的权限，不是让你来搞破坏的，而是让你可以尽情的游览的，去好好看看吧。</p>
+
+    <div class="content">
+      <h3>一、基本功能</h3>
+      <ul>
+        <li>登录</li>
+        <li>退出</li>
+        <li>全屏</li>
+        <li>锁屏</li>
+        <li>
+          系统
+          <ul>
+            <li>用户管理</li>
+            <li>角色管理</li>
+            <li>菜单管理</li>
+          </ul>
+        </li>
+        <li>
+          内容
+          <ul>
+            <li>文章审核</li>
+            <li>小说管理</li>
+          </ul>
+        </li>
+        <li>
+          我的
+          <ul>
+            <li>基本信息</li>
+            <li>文章发布</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="line"></div>
+    </div>
+
+    <div class="content">
+      <h3>二、系统特色</h3>
+      <ol>
+        <li>单页面</li>
+        <li>组件化</li>
+        <li>动态路由</li>
+        <li>多维度的权限控制</li>
+        <li>Tab多页面</li>
+        <li>多级菜单</li>
+        <li>国际化</li>
+        <li>...</li>
+      </ol>
+      <div class="line"></div>
+    </div>
+
+    <div class="content">
+      <h3>三、中文文档</h3>
+      <ul>
+        <li><a target="_blank" href="https://cn.vuejs.org/v2/guide/">vue</a></li>
+        <li><a target="_blank" href="https://www.iviewui.com/docs/guide/introduce">iview</a></li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -15,7 +67,17 @@ export default {
 </script>
 
 <style scoped>
-p {
-  margin-top: 20px;
+.content {
+  padding-left: 20px;
+}
+
+ul,ol {
+  margin-left: 30px;
+}
+
+.line {
+  margin: 20px 0;
+  height: 1px;
+  border-bottom: 1px dashed #ccc;
 }
 </style>
