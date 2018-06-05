@@ -101,11 +101,11 @@ export default {
      */
     sortChange: function (e) {
       if (e.order !== 'normal') {
-        this.params.sort = e.key
-        this.params.order = e.order
+        this.params._sort = e.key
+        this.params._order = e.order
       } else {
-        this.params.sort = null
-        this.params.order = null
+        this.params._sort = null
+        this.params._order = null
       }
 
       this.jump(1)
