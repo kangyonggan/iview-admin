@@ -110,12 +110,14 @@ export default {
         required: 'username can not be none',
         min: 'username min length is {0}',
         max: 'username max length is {0}',
+        pattern: 'start with word, and only word, number or underline',
         exists: 'username already exists'
       },
       password: {
         required: 'password can not be none',
         min: 'password min length is {0}',
-        max: 'password max length is {0}'
+        max: 'password max length is {0}',
+        pattern: 'start with word, and only word or number'
       },
       name: {
         required: 'user name can not be none',
@@ -150,6 +152,7 @@ export default {
         required: 'role code can not be none',
         min: 'role code min length is {0}',
         max: 'role code max length is {0}',
+        pattern: 'start with upper word, and only upper word, number or underline',
         exists: 'role code already exists'
       },
       name: {
@@ -180,6 +183,7 @@ export default {
         required: 'menu code can not be none',
         min: 'menu code min length is {0}',
         max: 'menu code max length is {0}',
+        pattern: 'start with lower word, and only lower word, number or underline',
         exists: 'menu code already exists'
       },
       icon: {
@@ -187,7 +191,7 @@ export default {
         max: 'menu icon max length is {0}'
       },
       sort: {
-        number: 'menu sort must be number between 0 and 99'
+        pattern: 'menu sort must be number between 0 and 99'
       }
     }
   }

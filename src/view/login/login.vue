@@ -41,12 +41,14 @@ export default {
         username: [
           {required: true, message: this.$t('login.valid.username.required'), trigger: 'blur'},
           {min: 5, message: this.$t('login.valid.username.min', 5), trigger: 'blur'},
-          {max: 32, message: this.$t('login.valid.username.max', 32), trigger: 'blur'}
+          {max: 32, message: this.$t('login.valid.username.max', 32), trigger: 'blur'},
+          {pattern: /^[a-zA-Z][a-zA-Z0-9_]*$/, message: this.$t('user.valid.username.pattern'), trigger: 'blur'}
         ],
         password: [
           {required: true, message: this.$t('login.valid.password.required'), trigger: 'blur'},
           {min: 6, message: this.$t('login.valid.password.min', 6), trigger: 'blur'},
-          {max: 32, message: this.$t('login.valid.password.max', 32), trigger: 'blur'}
+          {max: 32, message: this.$t('login.valid.password.max', 32), trigger: 'blur'},
+          {pattern: /^[a-zA-Z][a-zA-Z0-9]*$/, message: this.$t('user.valid.password.pattern'), trigger: 'blur'}
         ]
       }
     }

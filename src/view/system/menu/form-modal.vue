@@ -41,6 +41,7 @@ export default {
           {required: true, message: this.$t('menu.valid.code.required'), trigger: 'blur'},
           {min: 1, message: this.$t('menu.valid.code.min', 5), trigger: 'blur'},
           {max: 32, message: this.$t('menu.valid.code.max', 32), trigger: 'blur'},
+          {pattern: /^[a-z][a-z0-9_]*$/, message: this.$t('menu.valid.code.pattern'), trigger: 'blur'},
           {validator: this.validateMenu, trigger: 'blur'}
         ],
         icon: [
@@ -48,7 +49,7 @@ export default {
           {max: 32, message: this.$t('menu.valid.icon.max', 32), trigger: 'blur'}
         ],
         sort: [
-          {pattern: /^[0-9]+$/, message: this.$t('menu.valid.sort.number'), trigger: 'blur'}
+          {pattern: /^[0-9]{1,2}$/, message: this.$t('menu.valid.sort.pattern'), trigger: 'blur'}
         ]
       }
     }

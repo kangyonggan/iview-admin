@@ -110,12 +110,14 @@ export default {
         required: '用户名为必填项',
         min: '用户名最少为{0}位',
         max: '用户名最多为{0}位',
+        pattern: '必须以字母开头，且是字母数字或下划线',
         exists: '用户名已存在'
       },
       password: {
         required: '密码为必填项',
         min: '密码最少为{0}位',
-        max: '密码最多为{0}位'
+        max: '密码最多为{0}位',
+        pattern: '必须以字母开头，且是字母或数字'
       },
       name: {
         required: '姓名为必填项',
@@ -150,6 +152,7 @@ export default {
         required: '角色代码为必填项',
         min: '角色代码最少为{0}位',
         max: '角色代码最多为{0}位',
+        pattern: '必须以大写字母开头，且是大写字母数字或下划线',
         exists: '角色代码已存在'
       },
       name: {
@@ -183,6 +186,7 @@ export default {
         required: '菜单代码为必填项',
         min: '菜单代码最少为{0}位',
         max: '菜单代码最多为{0}位',
+        pattern: '必须以小写字母开头，且是小写字母数字或下划线',
         exists: '菜单代码已存在'
       },
       icon: {
@@ -190,7 +194,7 @@ export default {
         max: '菜单图标最多为{0}位'
       },
       sort: {
-        number: '排序必须为0~99之间的整数'
+        pattern: '排序必须为0~99之间的整数'
       }
     }
   }

@@ -22,7 +22,8 @@ export default {
         password: [
           {required: true, message: this.$t('user.valid.password.required'), trigger: 'blur'},
           {min: 6, message: this.$t('user.valid.password.min', 6), trigger: 'blur'},
-          {max: 32, message: this.$t('user.valid.password.max', 32), trigger: 'blur'}
+          {max: 32, message: this.$t('user.valid.password.max', 32), trigger: 'blur'},
+          {pattern: /^[a-zA-Z][a-zA-Z0-9]*$/, message: this.$t('user.valid.password.pattern'), trigger: 'blur'}
         ]
       }
     }

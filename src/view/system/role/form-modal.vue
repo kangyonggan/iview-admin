@@ -33,6 +33,7 @@ export default {
           {required: true, message: this.$t('role.valid.code.required'), trigger: 'blur'},
           {min: 1, message: this.$t('role.valid.code.min', 5), trigger: 'blur'},
           {max: 32, message: this.$t('role.valid.code.max', 32), trigger: 'blur'},
+          {pattern: /^[A-Z][A-Z0-9_]*$/, message: this.$t('role.valid.code.pattern'), trigger: 'blur'},
           {validator: this.validateRole, trigger: 'blur'}
         ],
         name: [
