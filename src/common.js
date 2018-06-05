@@ -14,6 +14,7 @@ Vue.prototype.status = status
 Vue.prototype.delete = deleteItem
 Vue.prototype.error = error
 Vue.prototype.success = success
+Vue.prototype.warning = warning
 
 function status (h, params, url, table) {
   let that = this
@@ -129,4 +130,12 @@ function error (respCo, notShowNotice) {
 
 function success (respCo) {
   this.$Notice.success({title: this.$t('notice.title'), desc: this.$t('respCode.' + respCo)})
+}
+
+function warning (msg) {
+  this.$Notice.warning({
+    title: this.$t('notice.warning'),
+    desc: msg,
+    duration: 3
+  })
 }

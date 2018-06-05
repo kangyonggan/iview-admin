@@ -15,7 +15,8 @@ export default {
     '0000': 'Operate Success!'
   },
   notice: {
-    title: 'Notice'
+    title: 'Notice',
+    warning: 'Warning'
   },
   confirm: {
     recoveryTitle: 'Recovery Confirm',
@@ -195,5 +196,17 @@ export default {
         pattern: 'menu sort must be number between 0 and 99'
       }
     }
+  },
+  info: {
+    msg: {
+      format: 'File format is incorrect, please select jpg or png',
+      size: 'File size is too large, no more than 2M'
+    },
+    tag: {
+      basic: 'Basic Info',
+      avatar: 'Upload Avatar',
+      password: 'Edit Password'
+    },
+    tip: 'Click or drag files here to upload'
   }
 }

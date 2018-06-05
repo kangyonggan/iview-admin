@@ -57,6 +57,34 @@ export const httpPut = (url, data) => {
   })
 }
 
+// 文件上传POST请求
+export const httpPostUpload = (url, data) => {
+  return new Promise((resolve, reject) => {
+    axios.postUpload(url, data).then(data => {
+      resolve(data)
+    }).catch(respCo => {
+      reject(respCo)
+      if (respCo === '9998') {
+        removeToken()
+      }
+    })
+  })
+}
+
+// 文件上传PUT请求
+export const httpPutUpload = (url, data) => {
+  return new Promise((resolve, reject) => {
+    axios.putUpload(url, data).then(data => {
+      resolve(data)
+    }).catch(respCo => {
+      reject(respCo)
+      if (respCo === '9998') {
+        removeToken()
+      }
+    })
+  })
+}
+
 // DELETE请求
 export const httpDelete = (url, data) => {
   return new Promise((resolve, reject) => {

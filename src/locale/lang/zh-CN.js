@@ -15,7 +15,8 @@ export default {
     '0000': '操作成功！'
   },
   notice: {
-    title: '提示'
+    title: '提示',
+    warning: '警告'
   },
   confirm: {
     recoveryTitle: '恢复确认',
@@ -198,5 +199,17 @@ export default {
         pattern: '排序必须为0~99之间的整数'
       }
     }
+  },
+  info: {
+    msg: {
+      format: '文件类型错误，请选择jpg或者png',
+      size: '文件太大, 请不要超过2M'
+    },
+    tag: {
+      basic: '基本信息',
+      avatar: '头像上传',
+      password: '修改密码'
+    },
+    tip: '点击此处或拖拽上传'
   }
 }

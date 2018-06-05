@@ -24,7 +24,7 @@ class httpRequest {
       config.headers['x-access-token'] = getToken()
       // Spin.show()
       // 在发送请求之前做些什么
-      if (config.data) {
+      if (config.data && config.type !== 'upload') {
         config.data = params(config.data).join('&')
       }
 
@@ -90,6 +90,34 @@ class httpRequest {
       url: url,
       data,
       method: 'post'
+    }
+    let instance = this.create()
+    this.interceptors(instance, options.url)
+    options = Object.assign({}, options)
+    this.queue[options.url] = instance
+    return instance(options)
+  }
+  // POST文件上传请求实例
+  postUpload (url, data) {
+    let options = {
+      type: 'upload',
+      url: url,
+      data,
+      method: 'post'
+    }
+    let instance = this.create()
+    this.interceptors(instance, options.url)
+    options = Object.assign({}, options)
+    this.queue[options.url] = instance
+    return instance(options)
+  }
+  // PUT文件上传请求实例
+  putUpload (url, data) {
+    let options = {
+      type: 'upload',
+      url: url,
+      data,
+      method: 'put'
     }
     let instance = this.create()
     this.interceptors(instance, options.url)
