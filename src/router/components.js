@@ -7,6 +7,7 @@ export default {
   'user': import('@/view/system/user/index'),
   'role': import('@/view/system/role/index'),
   'menu': import('@/view/system/menu/index'),
-  'consumer': import('@/view/main'),
-  'info': import('@/view/consumer/info/index')
+  'person': import('@/view/main'),
+  'info': import('@/view/person/info/index'),
+  'article': import('@/view/person/article/index')
 }

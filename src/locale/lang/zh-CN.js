@@ -56,8 +56,9 @@ export default {
     user: '用户管理',
     role: '角色管理',
     menu: '菜单管理',
-    consumer: '我的',
-    info: '个人信息'
+    person: '我的',
+    info: '个人信息',
+    article: '文章发布'
   },
   login: {
     title: '欢迎登录',
