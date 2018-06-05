@@ -68,7 +68,6 @@ export default {
     let user = this.$store.state.user.user
     this.$refs.form.resetFields()
     this.user = {
-      id: user.id,
       username: user.username,
       name: user.name,
       password: ''
