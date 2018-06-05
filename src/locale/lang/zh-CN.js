@@ -212,5 +212,22 @@ export default {
       password: '修改密码'
     },
     tip: '点击此处或拖拽上传'
+  },
+  article: {
+    label: {
+      id: 'ID',
+      title: '标题',
+      applyStatus: '申请状态',
+      replyMsg: '回复信息',
+      createdTime: '创建时间',
+      updatedTime: '更新时间',
+      operation: '操作'
+    },
+    placeholder: {
+      title: '请输入文章标题',
+      applyStatus: '请选择申请状态',
+      startDate: '请选择创建开始时间',
+      endDate: '请选择创建结束时间'
+    }
   }
 }

@@ -105,8 +105,8 @@ export default {
       username: 'Please Input Username',
       password: 'Please Input Password',
       name: 'Please Input Name',
-      startDate: 'Please Input Create Start Date',
-      endDate: 'Please Input Create End Date'
+      startDate: 'Please Select Create Start Date',
+      endDate: 'Please Select Create End Date'
     },
     valid: {
       username: {
@@ -147,8 +147,8 @@ export default {
     placeholder: {
       code: 'Please Input Role Code',
       name: 'Please Input Role Name',
-      startDate: 'Please Input Create Start Date',
-      endDate: 'Please Input Create End Date'
+      startDate: 'Please Select Create Start Date',
+      endDate: 'Please Select Create End Date'
     },
     valid: {
       code: {
@@ -209,5 +209,22 @@ export default {
       password: 'Edit Password'
     },
     tip: 'Click or drag files here to upload'
+  },
+  article: {
+    label: {
+      id: 'ID',
+      title: 'Title',
+      applyStatus: 'Apply Status',
+      replyMsg: 'Reply Message',
+      createdTime: 'Created Time',
+      updatedTime: 'Updated Time',
+      operation: 'Operation'
+    },
+    placeholder: {
+      title: 'Please Input Article Title',
+      applyStatus: 'Please Select Apply Status',
+      startDate: 'Please Select Create Start Date',
+      endDate: 'Please Select Create End Date'
+    }
   }
 }

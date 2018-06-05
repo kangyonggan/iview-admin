@@ -5,7 +5,7 @@
            @on-sort-change="sortChange"/>
 
     <!--分页-->
-    <Page v-if="pagination" :current="params.pageNum" :total="pageInfo.total" show-total show-sizer show-elevator :style="{marginTop: '20px'}"
+    <Page v-if="pagination" v-show="pageInfo.pages > 0" :current="params.pageNum" :total="pageInfo.total" show-total show-sizer show-elevator :style="{marginTop: '20px'}"
           @on-change="jump"
           @on-page-size-change="changePageSize"></Page>
   </div>

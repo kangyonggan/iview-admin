@@ -72,7 +72,6 @@ export default {
       } else {
         avatar = require('@/assets/images/logo.jpg')
       }
-      console.log(avatar)
       return avatar
     },
     cacheList () {
