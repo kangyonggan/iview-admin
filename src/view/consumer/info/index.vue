@@ -3,6 +3,20 @@
     <div v-title>{{$t('route.info')}}</div>
     <Form ref="form" :model="user" label-position="top" class="bg-white" :rules="rules">
       <Tabs type="card">
+        <TabPane :label="$t('info.tag.basic')">
+          <div class="content">
+            <FormItem prop="username" :label="$t('user.label.username')">
+              <Input v-model="user.username" :readonly="true" :placeholder="$t('user.placeholder.username')"/>
+            </FormItem>
+            <FormItem prop="name" :label="$t('user.label.name')">
+              <Input v-model="user.name" :placeholder="$t('user.placeholder.name')" clearable/>
+            </FormItem>
+          </div>
+
+          <div class="content">
+            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.form)">{{$t('btn.submit')}}</Button>
+          </div>
+        </TabPane>
         <TabPane :label="$t('info.tag.avatar')">
           <div class="content">
             <div style="text-align: center;">
@@ -26,20 +40,6 @@
                 <p>{{$t('info.tip')}}</p>
               </div>
             </Upload>
-          </div>
-        </TabPane>
-        <TabPane :label="$t('info.tag.basic')">
-          <div class="content">
-            <FormItem prop="username" :label="$t('user.label.username')">
-              <Input v-model="user.username" :readonly="true" :placeholder="$t('user.placeholder.username')"/>
-            </FormItem>
-            <FormItem prop="name" :label="$t('user.label.name')">
-              <Input v-model="user.name" :placeholder="$t('user.placeholder.name')" clearable/>
-            </FormItem>
-          </div>
-
-          <div class="content">
-            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.form)">{{$t('btn.submit')}}</Button>
           </div>
         </TabPane>
         <TabPane :label="$t('info.tag.password')">
@@ -98,7 +98,7 @@ export default {
     if (avatar) {
       avatar = baseURL + avatar
     } else {
-      avatar = require('@/assets/images/lock.jpg')
+      avatar = require('@/assets/images/logo.jpg')
     }
     this.user = {
       username: user.username,

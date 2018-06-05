@@ -14,7 +14,7 @@
         <lock-screen></lock-screen>
         <fullscreen v-model="isFullScreen"></fullscreen>
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user :name="name"/>
+          <user :avatar="avatar"/>
         </header-bar>
       </Header>
       <Content>
@@ -43,6 +43,7 @@ import fullscreen from './components/fullscreen'
 import user from './components/user'
 import { mapMutations, mapActions } from 'vuex'
 import { getNewTagList } from '@/libs/util'
+import baseURL from '_conf/url'
 import './main.less'
 export default {
   name: 'Main',
@@ -64,8 +65,15 @@ export default {
     tagNavList () {
       return this.$store.state.app.tagNavList
     },
-    name () {
-      return this.$store.state.user.user.name
+    avatar () {
+      let avatar = this.$store.state.user.user.avatar
+      if (avatar) {
+        avatar = baseURL + avatar
+      } else {
+        avatar = require('@/assets/images/logo.jpg')
+      }
+      console.log(avatar)
+      return avatar
     },
     cacheList () {
       return this.tagNavList.length ? this.tagNavList.map(item => item.name).filter(item => !(item.meta && item.meta.notCache)) : []

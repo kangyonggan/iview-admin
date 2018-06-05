@@ -3,8 +3,8 @@
     <Dropdown transfer trigger="click" @on-click="handleClick" placement="bottom-end">
       <a href="javascript:void(0)">
         <span class="main-user-name">
-          {{ name }}
-          <Icon type="arrow-down-b"></Icon>
+          <Avatar :src="avatar"/>
+          <Icon type="arrow-down-b" style="color: #999"></Icon>
         </span>
       </a>
       <DropdownMenu slot="list">
@@ -23,7 +23,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'user',
   props: {
-    name: {
+    avatar: {
       required: true,
       type: String
     }

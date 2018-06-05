@@ -7,7 +7,7 @@
     <div class="unlock-body-con" v-if="showUnlock" @keydown.enter="handleUnlock">
       <div v-title>{{$t('route.lock')}}</div>
       <div @click="handleClickAvator" class="unlock-avator-con" :style="{marginLeft: avatorLeft}">
-        <img class="unlock-avator-img" :src="require('@/assets/images/lock.jpg')">
+        <img class="unlock-avator-img" :src="require('@/assets/images/logo.jpg')">
         <div class="unlock-avator-cover">
           <span><Icon type="unlocked" :size="30"></Icon></span>
           <p>{{$t('lock.unlock')}}</p>
