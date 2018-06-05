@@ -49,7 +49,21 @@ export default {
           title: this.$t('article.label.title'),
           key: 'title',
           minWidth: 240,
-          sortable: true
+          sortable: true,
+          render: (h, params) => {
+            let that = this
+            return h('a', {
+              on: {
+                click: function () {
+                  let query = {id: params.row.id}
+                  that.$router.push({
+                    name: 'articleDetail',
+                    query: query
+                  })
+                }
+              }
+            }, params.row.title)
+          }
         },
         {
           title: this.$t('article.label.replyMsg'),

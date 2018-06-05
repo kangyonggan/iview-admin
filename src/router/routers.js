@@ -64,11 +64,30 @@ export const loadRoutes = (router) => {
   }
 }
 
+// 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
+export const otherRouter = {
+  path: '/',
+  name: 'other',
+  redirect: '/home',
+  meta: {
+    hideInMenu: true,
+    notCache: true
+  },
+  component: import('@/view/main'),
+  children: [{
+    path: '/article/detail',
+    name: 'articleDetail',
+    component: () => import('@/view/person/article/detail')
+  }]
+}
+
 function loadCommonRoutes (userRoutes) {
+  userRoutes.push(otherRouter)
+
   userRoutes.push({
     path: '/locking',
     name: 'locking',
-    component: () => components['locking']
+    component: () => import('@/view/main/components/lockscreen/components/locking')
   })
   userRoutes.push({
     path: '/401',
