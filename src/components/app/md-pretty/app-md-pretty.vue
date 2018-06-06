@@ -38,7 +38,7 @@ export default {
         }
         let pres = markdown.getElementsByTagName('pre')
         for (let i = 0; i < pres.length; i++) {
-          pres[i].className = 'prettyprint linenums'
+          pres[i].className = 'prettyprint'
         }
       })
     }
