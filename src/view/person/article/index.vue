@@ -23,7 +23,7 @@
     </Form>
 
     <!--表格-->
-    <AppTable ref="table" url="person/article" :columns="columns" :form="$refs.queryForm" sort="id"/>
+    <AppTable ref="table" url="person/article" :columns="columns" :form="$refs.queryForm" sort="updatedTime"/>
   </div>
 </template>
 

@@ -36,7 +36,6 @@ export default {
       let id = this.$route.query.id
       if (id) {
         httpGet('person/article/' + id).then(data => {
-          console.log(data)
           this.article = {
             id: data.article.id,
             title: data.article.title,

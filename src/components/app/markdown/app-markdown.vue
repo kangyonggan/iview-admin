@@ -27,7 +27,6 @@ export default {
     }
   },
   mounted: function () {
-    console.log(this.randomId)
     this.simplemde = new SimpleMDE({
       element: document.getElementById(this.randomId),
       placeholder: this.placeholder,
