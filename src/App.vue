@@ -29,4 +29,17 @@ html,body{
   background: #fff;
   padding: 8px;
 }
+
+.inner-content {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.inner-content-lg {
+  max-width: 900px;
+  margin: 20px auto;
+}
+.ivu-menu {
+  z-index: 9 !important;
+}
 </style>

@@ -219,6 +219,7 @@ export default {
     label: {
       id: 'ID',
       title: '标题',
+      content: '文章内容',
       applyStatus: '申请状态',
       replyMsg: '审批信息',
       createdTime: '创建时间',
@@ -227,9 +228,20 @@ export default {
     },
     placeholder: {
       title: '请输入文章标题',
+      content: '请输入文章内容，支持Markdown语法',
       applyStatus: '请选择申请状态',
       startDate: '请选择创建开始时间',
       endDate: '请选择创建结束时间'
+    },
+    valid: {
+      title: {
+        required: '文章标题为必填项',
+        min: '文章标题最少为{0}位',
+        max: '文章标题最多为{0}位'
+      },
+      content: {
+        required: '文章内容为必填项'
+      }
     }
   }
 }

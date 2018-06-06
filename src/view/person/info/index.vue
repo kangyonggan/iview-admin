@@ -3,8 +3,8 @@
     <div v-title>{{$t('route.info')}}</div>
       <Tabs type="card">
         <TabPane :label="$t('info.tag.basic')" class="bg-white">
-          <div class="content">
-            <Form ref="formBasic" :model="userBasic" label-position="top" :rules="rules">
+          <div class="inner-content">
+            <Form ref="formBasic" :model="userBasic" label-position="top" :rules="rules" :large="false">
               <FormItem prop="username" :label="$t('user.label.username')">
                 <Input v-model="userBasic.username" :readonly="true" :placeholder="$t('user.placeholder.username')"/>
               </FormItem>
@@ -14,12 +14,12 @@
             </Form>
           </div>
 
-          <div class="content">
+          <div class="inner-content">
             <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.formBasic)">{{$t('btn.submit')}}</Button>
           </div>
         </TabPane>
         <TabPane :label="$t('info.tag.avatar')" class="bg-white">
-          <div class="content">
+          <div class="inner-content">
             <div style="text-align: center;">
               <img :src="user.avatar" class="avatar" @click="showBigAvatar = !showBigAvatar"/>
 
@@ -44,8 +44,8 @@
           </div>
         </TabPane>
         <TabPane :label="$t('info.tag.password')" class="bg-white">
-          <div class="content">
-            <Form ref="formPassword" :model="userPwd" label-position="top" :rules="rules">
+          <div class="inner-content">
+            <Form ref="formPassword" :model="userPwd" label-position="top" :rules="rules" :large="false">
               <FormItem prop="password" :label="$t('user.label.newPassword')">
                 <Input :type="showPwd ? 'text' : 'password'" v-model="userPwd.password" :placeholder="$t('user.placeholder.password')">
                   <span slot="append">
@@ -56,7 +56,7 @@
             </Form>
           </div>
 
-          <div class="content">
+          <div class="inner-content">
             <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.formPassword)">{{$t('btn.submit')}}</Button>
           </div>
         </TabPane>
@@ -155,11 +155,6 @@ export default {
 </script>
 
 <style scoped>
-  .content {
-    max-width: 600px;
-    margin: 20px auto;
-  }
-
   .showPwd {
     cursor: pointer;
   }

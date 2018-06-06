@@ -216,6 +216,7 @@ export default {
     label: {
       id: 'ID',
       title: 'Title',
+      content: 'Content',
       applyStatus: 'Apply Status',
       replyMsg: 'Reply Message',
       createdTime: 'Created Time',
@@ -224,9 +225,20 @@ export default {
     },
     placeholder: {
       title: 'Please Input Article Title',
+      content: 'Please Input Article Content, Supports Markdown Language',
       applyStatus: 'Please Select Apply Status',
       startDate: 'Please Select Create Start Date',
       endDate: 'Please Select Create End Date'
+    },
+    valid: {
+      title: {
+        required: 'article title can not be none',
+        min: 'article title min length is {0}',
+        max: 'article title max length is {0}'
+      },
+      content: {
+        required: 'article content can not be none'
+      }
     }
   }
 }
