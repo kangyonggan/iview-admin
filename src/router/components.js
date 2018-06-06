@@ -12,7 +12,8 @@ export const components = {
 }
 
 /**
- * 动态路由。不在左侧菜单中显示
+ * 动态路由。不在左侧菜单中显示。
+ * 注意：带有通配符的放下面。
  */
 export const dynamicRouter = [
   {
@@ -25,6 +26,14 @@ export const dynamicRouter = [
       notCache: true
     },
     children: [
+      {
+        path: 'article/form',
+        name: 'articleForm',
+        meta: {
+          active: 'person'
+        },
+        component: () => import('@/view/person/article/form')
+      },
       {
         path: 'article/:id',
         name: 'articleDetail',

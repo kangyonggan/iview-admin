@@ -1,15 +1,17 @@
 <template>
   <div>
-    <div v-title>{{$t('route.articleDetail')}}</div>
-    文章详情
+    <div v-title>{{$t('route.articleForm')}}</div>
+    文章form
   </div>
 </template>
 
 <script>
 export default {
-  name: 'articleDetail',
+  name: 'articleForm',
   methods: {
     init () {
+      let id = this.$route.query.id
+      console.log(id)
     }
   },
   mounted () {

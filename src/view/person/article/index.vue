@@ -18,7 +18,7 @@
       <Row>
         <Button type="info" icon="ios-search" @click="$refs.table.refresh()">{{$t('btn.query')}}</Button>
         <Button type="warning" icon="ios-refresh-empty" @click="$refs.queryForm.resetFields()">{{$t('btn.clear')}}</Button>
-        <Button type="primary" icon="plus" @click="$refs.formModal.show({})">{{$t('btn.create')}}</Button>
+        <Button type="primary" icon="plus" @click="create">{{$t('btn.create')}}</Button>
       </Row>
     </Form>
 
@@ -76,7 +76,10 @@ export default {
               props: {text: this.$t('btn.edit')},
               on: {
                 click: () => {
-                  this.$Message.success('待开发')
+                  this.$router.push({
+                    name: 'articleForm',
+                    query: {id: params.row.id}
+                  })
                 }
               },
               select: (name) => {
@@ -91,6 +94,14 @@ export default {
             ])
           }
         }]
+    }
+  },
+  methods: {
+    create: function () {
+      this.$router.push({
+        name: 'articleForm',
+        query: {}
+      })
     }
   }
 }

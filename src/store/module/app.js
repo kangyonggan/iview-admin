@@ -19,7 +19,9 @@ export default {
       if (list) {
         state.tagNavList = [...list]
         setTagNavListInLocalstorage([...list])
-      } else state.tagNavList = getTagNavListFromLocalstorage()
+      } else {
+        state.tagNavList = getTagNavListFromLocalstorage()
+      }
     },
     addTag (state, item, type = 'unshift') {
       if (state.tagNavList.findIndex(tag => tag.name === item.name) < 0) {
