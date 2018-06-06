@@ -2,7 +2,7 @@ export default {
   app: {
     name: 'BManagerS',
     shortName: 'BMS',
-    '401': 'Oh~~You do not have permission to do this!~',
+    '403': 'Oh~~You do not have permission to do this!~',
     '404': 'Oh~~Your page was missing!~'
   },
   respCode: {

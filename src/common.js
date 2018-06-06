@@ -123,7 +123,7 @@ function error (respCo, notShowNotice) {
   } else if (respCo === '9997') {
     // 权限不足
     router.push({
-      path: '401'
+      path: '403'
     })
   }
 }

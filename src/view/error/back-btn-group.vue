@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Button size="large" type="text" @click="backHome">{{$t('btn.backHome')}}</Button>
-    <Button size="large" type="text" @click="backPrev">{{$t('btn.backPrev')}}({{ second }}s)</Button>
+    <Button @click="backHome" size="large" style="width: 200px;" type="text">{{$t('btn.backHome')}}</Button>
+    <Button @click="backPrev" size="large" style="width: 200px;margin-left: 40px;" type="primary">{{$t('btn.backPrev')}}({{ second }}s)</Button>
   </div>
 </template>
 
@@ -27,8 +27,11 @@ export default {
   },
   mounted () {
     this.timer = setInterval(() => {
-      if (this.second === 0) this.backPrev()
-      else this.second--
+      if (this.second === 0) {
+        this.backPrev()
+      } else {
+        this.second--
+      }
     }, 1000)
   },
   beforeDestroy () {

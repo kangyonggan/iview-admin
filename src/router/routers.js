@@ -1,5 +1,5 @@
 import { httpGet } from '@/api/common'
-import components from './components'
+import {components, dynamicRouter} from './components'
 import { getToken } from '@/libs/util'
 
 // 登录
@@ -14,7 +14,7 @@ export const routeLogin = {
 
 // 404
 export const route404 = {
-  path: '/404',
+  path: '/*',
   name: 'error-404',
   component: () => import('@/view/error/404')
 }
@@ -72,7 +72,7 @@ export const loadRoutes = (router) => {
       router.addRoutes(dynamicRouter)
 
       // 加载通用路由，如：403，404等
-      defaultRoutes = defaultRoutes.concat(commonRoutes)
+      defaultRoutes.push(...commonRoutes)
       router.addRoutes(defaultRoutes)
     }).catch(() => {
       // 按权加载时出现异常，只加载未登录的路由
@@ -84,30 +84,6 @@ export const loadRoutes = (router) => {
   }
 }
 
-// 动态路由。不在左侧菜单中显示
-export const dynamicRouter = [
-  {
-    path: '/',
-    name: 'dynamic',
-    redirect: '/home',
-    component: () => import('@/view/main'),
-    meta: {
-      hideInMenu: true,
-      notCache: true
-    },
-    children: [
-      {
-        path: 'article/:id',
-        name: 'articleDetail',
-        meta: {
-          active: 'person'
-        },
-        component: () => import('@/view/person/article/detail')
-      }
-    ]
-  }
-]
-
 // 通用路由
 export const commonRoutes = [
   {
@@ -115,9 +91,9 @@ export const commonRoutes = [
     name: 'locking',
     component: () => import('@/view/main/components/lockscreen/components/locking')
   }, {
-    path: '/401',
-    name: 'error-401',
-    component: () => import('@/view/error/401')
+    path: '/403',
+    name: 'error-403',
+    component: () => import('@/view/error/403')
   },
   routeLogin,
   route404
