@@ -6,9 +6,11 @@
 
 <script>
 export default {
+  name: 'articleDetail',
   methods: {
     init () {
-      console.log('init')
+      let id = this.$route.params.id
+      this.$Message.success(id)
     }
   },
   mounted () {

@@ -2,15 +2,31 @@ import { httpGet } from '@/api/common'
 import components from './components'
 import { getToken } from '@/libs/util'
 
+// 登录
+export const routeLogin = {
+  path: '/login',
+  name: 'login',
+  component: () => import('@/view/login/login.vue'),
+  meta: {
+    hideInMenu: true
+  }
+}
+
+// 404
+export const route404 = {
+  path: '/404',
+  name: 'error-404',
+  component: () => import('@/view/error/404')
+}
+
+// 未登录之前的路由
+export const unLoginRoutes = [
+  routeLogin,
+  route404
+]
+
+// 显示在左侧菜单中的路由（动态根据用户权限从服务端加载）
 let defaultRoutes = [
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/view/login/login.vue'),
-    meta: {
-      hideInMenu: true
-    }
-  },
   {
     path: '/',
     name: 'index',
@@ -34,15 +50,15 @@ let defaultRoutes = [
   }
 ]
 
-export default defaultRoutes
-
 /**
  * 加载路由
  *
  * @param router
  */
 export const loadRoutes = (router) => {
+  // 判断是否登录
   if (getToken()) {
+    // 已登录，按权加载路由，这些路由将显示在菜单中
     httpGet('menus').then(data => {
       if (data && data.menus) {
         for (let i in data.menus) {
@@ -52,54 +68,60 @@ export const loadRoutes = (router) => {
           }
         }
       }
-      loadCommonRoutes(defaultRoutes)
+      // 加载动态路由。不在左侧菜单中显示
+      router.addRoutes(dynamicRouter)
+
+      // 加载通用路由，如：403，404等
+      defaultRoutes = defaultRoutes.concat(commonRoutes)
       router.addRoutes(defaultRoutes)
     }).catch(() => {
-      loadCommonRoutes(defaultRoutes)
-      router.addRoutes(defaultRoutes)
+      // 按权加载时出现异常，只加载未登录的路由
+      router.addRoutes(unLoginRoutes)
     })
   } else {
-    loadCommonRoutes(defaultRoutes)
-    router.addRoutes(defaultRoutes)
+    // 未登录
+    router.addRoutes(unLoginRoutes)
   }
 }
 
-// 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
-export const otherRouter = {
-  path: '/',
-  name: 'other',
-  redirect: '/home',
-  meta: {
-    hideInMenu: true,
-    notCache: true
-  },
-  component: import('@/view/main'),
-  children: [{
-    path: '/article/detail',
-    name: 'articleDetail',
-    component: () => import('@/view/person/article/detail')
-  }]
-}
+// 动态路由。不在左侧菜单中显示
+export const dynamicRouter = [
+  {
+    path: '/',
+    name: 'dynamic',
+    redirect: '/home',
+    component: () => import('@/view/main'),
+    meta: {
+      hideInMenu: true,
+      notCache: true
+    },
+    children: [
+      {
+        path: 'article/:id',
+        name: 'articleDetail',
+        meta: {
+          active: 'article'
+        },
+        component: () => import('@/view/person/article/detail')
+      }
+    ]
+  }
+]
 
-function loadCommonRoutes (userRoutes) {
-  userRoutes.push(otherRouter)
-
-  userRoutes.push({
+// 通用路由
+export const commonRoutes = [
+  {
     path: '/locking',
     name: 'locking',
     component: () => import('@/view/main/components/lockscreen/components/locking')
-  })
-  userRoutes.push({
+  }, {
     path: '/401',
     name: 'error-401',
     component: () => import('@/view/error/401')
-  })
-  userRoutes.push({
-    path: '*',
-    name: 'error-404',
-    component: () => import('@/view/error/404')
-  })
-}
+  },
+  routeLogin,
+  route404
+]
 
 /**
  * 加载菜单的路由及子路由
@@ -130,3 +152,6 @@ function loadMenuRoutes (menu) {
 
   return route
 }
+
+// 显示到左侧菜单中的路由
+export default defaultRoutes

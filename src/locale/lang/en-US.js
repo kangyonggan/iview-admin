@@ -58,7 +58,8 @@ export default {
     menu: 'Menu Manage',
     person: 'Person',
     info: 'Info',
-    article: 'Article Publish'
+    article: 'Article Publish',
+    articleDetail: 'Article Detail'
   },
   login: {
     title: 'Welcome Login',

@@ -58,7 +58,8 @@ export default {
     menu: '菜单管理',
     person: '我的',
     info: '个人信息',
-    article: '文章发布'
+    article: '文章发布',
+    articleDetail: '文章详情'
   },
   login: {
     title: '欢迎登录',

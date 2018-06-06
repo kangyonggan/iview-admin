@@ -45,18 +45,7 @@ export default {
           minWidth: 240,
           sortable: true,
           render: (h, params) => {
-            let that = this
-            return h('a', {
-              on: {
-                click: function () {
-                  let query = {id: params.row.id}
-                  that.$router.push({
-                    name: 'articleDetail',
-                    query: query
-                  })
-                }
-              }
-            }, params.row.title)
+            return h('AppLink', {props: {href: '/#/article/' + params.row.id}}, params.row.title)
           }
         },
         {

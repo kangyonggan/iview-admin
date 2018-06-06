@@ -14,6 +14,7 @@ import './components/app/table'
 import './components/app/data-picker'
 import './components/app/modal'
 import './components/app/tree'
+import './components/app/link'
 import './components/app/drop-down'
 if (env === 'development') require('@/mock')
 
