@@ -23,7 +23,7 @@
     </Form>
 
     <!--表格-->
-    <AppTable ref="table" url="person/article" :columns="columns" :form="$refs.queryForm"/>
+    <AppTable ref="table" url="person/article" :columns="columns" :form="$refs.queryForm" sort="id"/>
   </div>
 </template>
 
@@ -73,24 +73,31 @@ export default {
           render: (h, params) => {
             let row = params.row
             return h('AppDropDown', {
-              props: {text: this.$t('btn.edit')},
+              props: {text: this.$t('btn.detail')},
               on: {
                 click: () => {
                   this.$router.push({
-                    name: 'articleForm',
-                    query: {id: params.row.id}
+                    name: 'articleDetail',
+                    params: {id: row.id}
                   })
                 }
               },
               select: (name) => {
-                if (name === 'delete') {
+                console.log(name)
+                if (name === 'edit') {
+                  this.$router.push({
+                    name: 'articleForm',
+                    query: {id: row.id}
+                  })
+                } else if (name === 'delete') {
                   let that = this
                   this.delete('person/article?id=' + row.id, function () {
                     that.$refs.table.jump(1)
                   })
                 }
               }}, [
-              h('DropdownItem', {props: {name: 'delete'}, style: {display: row.status ? '' : 'none'}}, this.$t('btn.delete'))
+              h('DropdownItem', {props: {name: 'edit'}, style: {display: row.applyStatus !== 'APPLY' ? '' : 'none'}}, this.$t('btn.edit')),
+              h('DropdownItem', {props: {name: 'delete'}}, this.$t('btn.delete'))
             ])
           }
         }]

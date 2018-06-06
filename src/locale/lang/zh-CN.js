@@ -40,6 +40,7 @@ export default {
     clear: '清除',
     create: '新增',
     edit: '编辑',
+    detail: '详情',
     logout: '安全退出',
     delete: '物理删除',
     backHome: '返回首页',

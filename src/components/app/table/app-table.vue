@@ -26,6 +26,13 @@ export default {
     form: {
       type: Object
     },
+    sort: {
+      type: String
+    },
+    desc: {
+      type: Boolean,
+      default: true
+    },
     pagination: {
       type: Boolean,
       default: true
@@ -54,6 +61,10 @@ export default {
     }
   },
   mounted: function () {
+    if (this.sort) {
+      this.params._sort = this.sort
+      this.params._order = this.desc ? 'desc' : 'asc'
+    }
     if (!this.pagination) {
       this.refresh()
     }

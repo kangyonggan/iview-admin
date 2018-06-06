@@ -40,6 +40,7 @@ export default {
     clear: 'Clear',
     create: 'Create',
     edit: 'Edit',
+    detail: 'Detail',
     logout: 'Logout',
     delete: 'Delete',
     backHome: 'Back To Home',
