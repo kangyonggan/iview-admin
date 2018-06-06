@@ -218,7 +218,7 @@ export default {
       id: 'ID',
       title: '标题',
       applyStatus: '申请状态',
-      replyMsg: '回复信息',
+      replyMsg: '审批信息',
       createdTime: '创建时间',
       updatedTime: '更新时间',
       operation: '操作'
