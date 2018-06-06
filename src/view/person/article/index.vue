@@ -83,20 +83,19 @@ export default {
                     name: 'articleDetail',
                     params: {id: row.id}
                   })
-                }
-              },
-              select: (name) => {
-                console.log(name)
-                if (name === 'edit') {
-                  this.$router.push({
-                    name: 'articleForm',
-                    query: {id: row.id}
-                  })
-                } else if (name === 'delete') {
-                  let that = this
-                  this.delete('person/article?id=' + row.id, function () {
-                    that.$refs.table.jump(1)
-                  })
+                },
+                select: (name) => {
+                  if (name === 'edit') {
+                    this.$router.push({
+                      name: 'articleForm',
+                      query: {id: row.id}
+                    })
+                  } else if (name === 'delete') {
+                    let that = this
+                    this.delete('person/article?id=' + row.id, function () {
+                      that.$refs.table.jump(1)
+                    })
+                  }
                 }
               }}, [
               h('DropdownItem', {props: {name: 'edit'}, style: {display: row.applyStatus !== 'APPLY' ? '' : 'none'}}, this.$t('btn.edit')),
