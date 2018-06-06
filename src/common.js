@@ -11,10 +11,22 @@ Vue.directive('title', {
 
 // 定义全局方法
 Vue.prototype.status = status
+Vue.prototype.applyStatus = applyStatus
 Vue.prototype.delete = deleteItem
 Vue.prototype.error = error
 Vue.prototype.success = success
 Vue.prototype.warning = warning
+
+function applyStatus (h, params) {
+  let row = params.row
+  let color = 'green'
+  if (row.applyStatus === 'REJECT') {
+    color = 'red'
+  } else if (row.applyStatus === 'APPLY') {
+    color = 'blue'
+  }
+  return h('Tag', {props: {type: 'dot', color: color}}, this.$t('applyStatus.' + row.applyStatus))
+}
 
 function status (h, params, url, table) {
   let that = this

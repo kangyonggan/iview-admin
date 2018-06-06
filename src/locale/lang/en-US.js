@@ -33,6 +33,11 @@ export default {
     fullScreen: 'Full Screen',
     exitFullScreen: 'Exit Full Screen'
   },
+  applyStatus: {
+    APPLY: 'Apply',
+    REJECT: 'Reject',
+    COMPLETE: 'Complete'
+  },
   btn: {
     query: 'Query',
     cancel: 'Cancel',

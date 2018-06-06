@@ -33,6 +33,11 @@ export default {
     fullScreen: '全屏',
     exitFullScreen: '跳出全屏'
   },
+  applyStatus: {
+    APPLY: '待审批',
+    REJECT: '已拒绝',
+    COMPLETE: '审批通过'
+  },
   btn: {
     query: '查询',
     cancel: '取消',

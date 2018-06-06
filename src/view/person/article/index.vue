@@ -56,7 +56,10 @@ export default {
         {
           title: this.$t('article.label.applyStatus'),
           key: 'applyStatus',
-          sortable: true
+          sortable: true,
+          render: (h, params) => {
+            return this.applyStatus(h, params)
+          }
         },
         {
           title: this.$t('article.label.createdTime'),
