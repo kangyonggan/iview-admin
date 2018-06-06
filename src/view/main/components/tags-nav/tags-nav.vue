@@ -83,19 +83,32 @@ export default {
       if (type === 'close-all') {
         // 关闭所有，除了home
         let res = this.list.filter(item => item.name === 'home')
-        this.$emit('on-close', res, 'home')
+        this.$emit('on-close', res, this.getTag('home'))
       } else {
         // 关闭除当前页和home页的其他页
         let res = this.list.filter(item => item.name === this.value.name || item.name === 'home')
-        this.$emit('on-close', res, '')
+        this.$emit('on-close', res, null)
       }
     },
     handleClose (e, name) {
       let res = this.list.filter(item => item.name !== name)
-      this.$emit('on-close', res, name === this.value.name ? res[res.length - 1].name : '')
+      let route = null
+      if (name === this.value.name) {
+        route = res[res.length - 1]
+      }
+      this.$emit('on-close', res, route)
     },
     handleClick (item) {
       this.$emit('input', item)
+    },
+    getTag (name) {
+      for (let i in this.list) {
+        if (this.list[i].name === name) {
+          return this.list[i]
+        }
+      }
+
+      return null
     },
     showTitleInside (item) {
       return showTitle(item, this)

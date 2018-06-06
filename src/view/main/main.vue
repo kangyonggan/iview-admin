@@ -98,18 +98,22 @@ export default {
     handleCollapsedChange (state) {
       this.collapsed = state
     },
-    handleCloseTag (res, name) {
+    handleCloseTag (res, route) {
       this.setTagNavList(res)
-      if (name) {
-        this.turnToPage(name)
+      if (route) {
+        this.handleClick(route)
       }
     },
     handleClick (item) {
-      this.turnToPage(item.name)
+      this.$router.push({
+        name: item.name,
+        params: item.meta.params
+      })
     }
   },
   watch: {
     '$route' (newRoute) {
+      newRoute.meta.params = this.$route.params
       this.setBreadCrumb(newRoute.matched)
       this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
     }
