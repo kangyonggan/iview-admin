@@ -7,7 +7,11 @@
         <Input v-model="article.title" :placeholder="$t('article.placeholder.title')" clearable />
       </FormItem>
       <FormItem prop="applyStatus">
-        <Input v-model="article.name" :placeholder="$t('article.placeholder.applyStatus')" clearable />
+        <Select v-model="article.applyStatus" style="min-width: 164px;" :placeholder="$t('article.placeholder.applyStatus')" clearable >
+          <Option value="APPLY" >{{$t('applyStatus.APPLY')}}</Option>
+          <Option value="REJECT" >{{$t('applyStatus.REJECT')}}</Option>
+          <Option value="COMPLETE" >{{$t('applyStatus.COMPLETE')}}</Option>
+        </Select>
       </FormItem>
       <FormItem prop="startDate">
         <AppDatePicker :model="article" prop="startDate" :placeholder="$t('article.placeholder.startDate')"/>
