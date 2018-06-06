@@ -107,13 +107,15 @@ export default {
     handleClick (item) {
       this.$router.push({
         name: item.name,
-        params: item.meta.params
+        params: item.meta.params,
+        query: item.meta.query
       })
     }
   },
   watch: {
     '$route' (newRoute) {
       newRoute.meta.params = this.$route.params
+      newRoute.meta.query = this.$route.query
       this.setBreadCrumb(newRoute.matched)
       this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
     }
