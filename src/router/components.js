@@ -8,7 +8,9 @@ export const components = {
   'menu': import('@/view/system/menu/index'),
   'person': import('@/view/main'),
   'info': import('@/view/person/info/index'),
-  'article': import('@/view/person/article/index')
+  'article': import('@/view/person/article/index'),
+  'content': import('@/view/main'),
+  'articleCheck': import('@/view/content/article-check/index')
 }
 
 /**

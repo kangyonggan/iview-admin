@@ -66,7 +66,9 @@ export default {
     info: 'Info',
     article: 'My Article',
     articleDetail: 'Article Detail',
-    articleForm: 'Publish Article'
+    articleForm: 'Publish Article',
+    content: 'Content',
+    articleCheck: 'Article Check'
   },
   login: {
     title: 'Welcome Login',

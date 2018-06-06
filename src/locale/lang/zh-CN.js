@@ -66,7 +66,9 @@ export default {
     info: '个人信息',
     article: '我的文章',
     articleDetail: '文章详情',
-    articleForm: '发布文章'
+    articleForm: '发布文章',
+    content: '内容',
+    articleCheck: '文章审核'
   },
   login: {
     title: '欢迎登录',
