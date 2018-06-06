@@ -1,7 +1,7 @@
 <template>
   <div class="side-menu-wrapper">
     <slot></slot>
-    <Menu ref="menu" v-show="!collapsed" :active-name="activeName" :open-names="openedNames" :accordion="accordion" :theme="theme" width="auto" @on-select="handleSelect">
+    <Menu ref="menu" v-show="!collapsed" :active-name="activeName.name" :open-names="openedNames" :accordion="accordion" :theme="theme" width="auto" @on-select="handleSelect">
       <template v-for="item in menuList">
         <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></side-menu-item>
         <menu-item v-else :name="`${item.name}`" :key="`menu-${item.name}`"><Icon :type="item.icon"/><span>{{ showTitle(item) }}</span></menu-item>
@@ -48,8 +48,7 @@ export default {
     },
     accordion: Boolean,
     activeName: {
-      type: String,
-      default: ''
+      type: Object
     },
     openNames: {
       type: Array,
@@ -70,9 +69,16 @@ export default {
     }
   },
   watch: {
-    activeName (name) {
-      if (this.accordion) this.openedNames = this.getOpenedNamesByActiveName(name)
-      else this.openedNames = getIntersection(this.openedNames, this.getOpenedNamesByActiveName(name))
+    activeName (route) {
+      if (this.accordion) {
+        let newOpenNames = this.getOpenedNamesByActiveName(route.name)
+        if (newOpenNames && newOpenNames.length && newOpenNames[0] === 'dynamic') {
+          newOpenNames[0] = route.meta.active || this.openedNames[0]
+        }
+        this.openedNames = newOpenNames
+      } else {
+        this.openedNames = getIntersection(this.openedNames, this.getOpenedNamesByActiveName(route.name))
+      }
     },
     openNames (newNames) {
       this.openedNames = newNames
@@ -84,7 +90,11 @@ export default {
     }
   },
   mounted () {
-    this.openedNames = getIntersection(this.openedNames, this.getOpenedNamesByActiveName(name))
+    let newOpenNames = this.getOpenedNamesByActiveName()
+    if (newOpenNames && newOpenNames.length && newOpenNames[0] === 'dynamic') {
+      newOpenNames[0] = this.$route.meta.active || ''
+    }
+    this.openedNames = getIntersection(this.openedNames, newOpenNames)
   }
 }
 </script>
