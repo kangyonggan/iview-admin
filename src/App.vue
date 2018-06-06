@@ -42,4 +42,16 @@ html,body{
 .ivu-menu {
   z-index: 9 !important;
 }
+
+.markdown {
+  margin: 20px 35px;
+  p {
+    color: #555;
+    line-height: 2;
+    font-size: 16px;
+  }
+  img {
+    max-width: 100%;
+  }
+}
 </style>

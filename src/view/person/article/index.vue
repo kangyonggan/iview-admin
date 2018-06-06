@@ -98,7 +98,7 @@ export default {
                   }
                 }
               }}, [
-              h('DropdownItem', {props: {name: 'edit'}, style: {display: row.applyStatus !== 'APPLY' ? '' : 'none'}}, this.$t('btn.edit')),
+              h('DropdownItem', {props: {name: 'edit'}}, this.$t('btn.edit')),
               h('DropdownItem', {props: {name: 'delete'}}, this.$t('btn.delete'))
             ])
           }
