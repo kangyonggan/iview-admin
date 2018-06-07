@@ -10,7 +10,8 @@ export const components = {
   'info': import('@/view/person/info/index'),
   'article': import('@/view/person/article/index'),
   'content': import('@/view/main'),
-  'articleCheck': import('@/view/content/article-check/index')
+  'articleCheck': import('@/view/content/article-check/index'),
+  'novel': import('@/view/content/novel/index')
 }
 
 /**

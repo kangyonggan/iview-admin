@@ -68,7 +68,8 @@ export default {
     articleDetail: '文章详情',
     articleForm: '发布文章',
     content: '内容',
-    articleCheck: '文章审核'
+    articleCheck: '文章审核',
+    novel: '小说管理'
   },
   login: {
     title: '欢迎登录',

@@ -59,7 +59,7 @@ export default {
     lock: 'Lock Screen',
     home: 'Home',
     system: 'System',
-    user: 'User Namage',
+    user: 'User Manage',
     role: 'Role Manage',
     menu: 'Menu Manage',
     person: 'Person',
@@ -68,7 +68,8 @@ export default {
     articleDetail: 'Article Detail',
     articleForm: 'Publish Article',
     content: 'Content',
-    articleCheck: 'Article Check'
+    articleCheck: 'Article Check',
+    novel: 'Novel Manage'
   },
   login: {
     title: 'Welcome Login',
