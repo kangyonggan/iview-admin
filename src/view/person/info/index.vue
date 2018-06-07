@@ -15,7 +15,7 @@
           </div>
 
           <div class="inner-content">
-            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.formBasic)">{{$t('btn.submit')}}</Button>
+            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($refs.formBasic, userBasic)">{{$t('btn.submit')}}</Button>
           </div>
         </TabPane>
         <TabPane :label="$t('info.tag.avatar')" class="bg-white">
@@ -57,7 +57,7 @@
           </div>
 
           <div class="inner-content">
-            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($event, $refs.formPassword)">{{$t('btn.submit')}}</Button>
+            <Button type="success" icon="checkmark" :loading="isLoading" @click="handleSubmit($refs.formPassword, userPwd)">{{$t('btn.submit')}}</Button>
           </div>
         </TabPane>
       </Tabs>
@@ -135,11 +135,11 @@ export default {
       })
       return false
     },
-    handleSubmit: function (e, form) {
+    handleSubmit: function (form, model) {
       form.validate((valid) => {
         if (valid) {
           this.isLoading = true
-          httpPut('person/info', this.user).then(data => {
+          httpPut('person/info', model).then(data => {
             this.success(data.respCo)
             this.$store.state.user.user = data.user
             this.isLoading = false
