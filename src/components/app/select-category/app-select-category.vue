@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted: function () {
-    httpGet('web/category?type=' + this.type).then(data => {
+    httpGet('category?type=' + this.type).then(data => {
       this.list = data.list
     })
   }
