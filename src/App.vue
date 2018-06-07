@@ -56,5 +56,9 @@ export default {
     ul, ol {
       margin-left: 30px;
     }
+
+    pre {
+      overflow: auto;
+    }
   }
 </style>
