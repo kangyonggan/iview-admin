@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 10px;">
+  <div style="margin-top: 10px; margin-bottom: 20px;">
     <!--表格-->
     <Table :loading="loading" border :columns="columns" :data="pageInfo.list" @on-selection-change="selectionChange"
            @on-sort-change="sortChange"/>

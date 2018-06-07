@@ -32,11 +32,6 @@ export default {
   },
   mounted () {
     this.init()
-  },
-  watch: {
-    '$route' () {
-      this.init()
-    }
   }
 }
 </script>

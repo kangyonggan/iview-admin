@@ -69,7 +69,9 @@ export default {
     articleForm: 'Publish Article',
     content: 'Content',
     articleCheck: 'Article Check',
-    novel: 'Novel Manage'
+    novel: 'Novel Manage',
+    novelDetail: 'Section List',
+    section: 'Section Detail'
   },
   login: {
     title: 'Welcome Login',
@@ -279,6 +281,9 @@ export default {
       name: 'Please Input Novel Name',
       author: 'Please Input Novel Author',
       categoryName: 'Please Select Category Name'
+    },
+    btn: {
+      pull: 'Update Last Section'
     }
   }
 }

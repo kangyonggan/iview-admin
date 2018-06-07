@@ -13,8 +13,7 @@
         <Input v-model="novel.author" :placeholder="$t('novel.placeholder.author')" clearable />
       </FormItem>
       <FormItem prop="categoryCode">
-        <Select v-model="novel.categoryCode" style="min-width: 164px;" :placeholder="$t('novel.placeholder.categoryName')" clearable >
-        </Select>
+        <AppSelectCategory :model="novel" prop="categoryCode" :placeholder="$t('novel.placeholder.categoryName')" type="NOVEL"/>
       </FormItem>
       <Row>
         <Button type="info" icon="ios-search" @click="$refs.table.refresh()">{{$t('btn.query')}}</Button>
@@ -28,6 +27,7 @@
 </template>
 
 <script>
+import {httpPut} from '@/api/common'
 export default {
   data () {
     return {
@@ -82,13 +82,28 @@ export default {
         {
           title: this.$t('novel.label.operation'),
           render: (h, params) => {
-            return h('Button', {
-              props: {type: 'primary', size: 'small'},
+            let row = params.row
+            return h('AppDropDown', {
+              props: {text: this.$t('btn.detail')},
               on: {
                 click: () => {
-                  this.$Message.warning('开发中')
+                  this.$router.push({
+                    name: 'novelDetail',
+                    params: {novelCode: row.code}
+                  })
+                },
+                select: (name) => {
+                  if (name === 'pull') {
+                    httpPut('content/novel/' + row.code + '/pull').then(data => {
+                      this.success(data.respCo)
+                    }).catch(respCo => {
+                      this.error(respCo)
+                    })
+                  }
                 }
-              }}, this.$t('btn.detail'))
+              }}, [
+              h('DropdownItem', {props: {name: 'pull'}}, this.$t('novel.btn.pull'))
+            ])
           }
         }
       ]

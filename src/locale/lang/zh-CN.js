@@ -69,7 +69,9 @@ export default {
     articleForm: '发布文章',
     content: '内容',
     articleCheck: '文章审核',
-    novel: '小说管理'
+    novel: '小说管理',
+    novelDetail: '章节列表',
+    section: '章节详情'
   },
   login: {
     title: '欢迎登录',
@@ -282,6 +284,9 @@ export default {
       name: '小说名称',
       author: '作者',
       categoryName: '栏目名称'
+    },
+    btn: {
+      pull: '拉取最新章节'
     }
   }
 }

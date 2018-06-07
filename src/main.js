@@ -17,6 +17,7 @@ import './components/app/tree'
 import './components/app/link'
 import './components/app/form'
 import './components/app/markdown'
+import './components/app/select-category'
 import './components/app/drop-down'
 import './components/app/md-pretty'
 if (env === 'development') require('@/mock')

@@ -38,6 +38,22 @@ export const dynamicRouter = [
         path: 'article/:id',
         name: 'articleDetail',
         component: () => import('@/view/person/article/detail')
+      },
+      {
+        path: 'novel/:novelCode/section/:sectionCode',
+        name: 'section',
+        meta: {
+          active: 'content'
+        },
+        component: () => import('@/view/content/novel/section')
+      },
+      {
+        path: 'novel/:novelCode',
+        name: 'novelDetail',
+        meta: {
+          active: 'content'
+        },
+        component: () => import('@/view/content/novel/detail')
       }
     ]
   }
