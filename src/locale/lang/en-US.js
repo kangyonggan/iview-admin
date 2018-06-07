@@ -263,5 +263,22 @@ export default {
     msg: {
       check: 'Must Select Article'
     }
+  },
+  novel: {
+    label: {
+      code: 'Novel Code',
+      name: 'Novel Name',
+      author: 'Author',
+      categoryName: 'Category Name',
+      status: 'Status',
+      createdTime: 'Created Time',
+      operation: 'Operation'
+    },
+    placeholder: {
+      code: 'Please Input Novel Code',
+      name: 'Please Input Novel Name',
+      author: 'Please Input Novel Author',
+      categoryName: 'Please Select Category Name'
+    }
   }
 }

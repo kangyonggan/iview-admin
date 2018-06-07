@@ -266,5 +266,22 @@ export default {
     msg: {
       check: '至少选择一篇文章'
     }
+  },
+  novel: {
+    label: {
+      code: '小说代码',
+      name: '小说名称',
+      author: '作者',
+      categoryName: '栏目名称',
+      status: '状态',
+      createdTime: '创建时间',
+      operation: '操作'
+    },
+    placeholder: {
+      code: '小说代码',
+      name: '小说名称',
+      author: '作者',
+      categoryName: '栏目名称'
+    }
   }
 }
