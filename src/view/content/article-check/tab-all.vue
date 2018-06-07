@@ -46,6 +46,12 @@ export default {
        */
       columns: [
         {
+          title: this.$t('article.label.id'),
+          key: 'id',
+          width: 70,
+          sortable: true
+        },
+        {
           title: this.$t('article.label.title'),
           key: 'title',
           width: 400,

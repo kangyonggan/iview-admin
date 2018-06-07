@@ -47,18 +47,5 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .markdown {
-    margin: 20px 35px;
-  }
-
-  p {
-    color: #555;
-    line-height: 2;
-    font-size: 16px;
-  }
-
-  img {
-    max-width: 100%;
-  }
+<style scoped lang="less">
 </style>

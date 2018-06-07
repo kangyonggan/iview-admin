@@ -39,4 +39,22 @@ export default {
   .ivu-menu {
     z-index: 9 !important;
   }
+  .markdown {
+    margin: 20px 35px;
+    font-size: 14px;
+
+    p {
+      color: #555;
+      line-height: 2;
+      font-size: 16px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    ul, ol {
+      margin-left: 30px;
+    }
+  }
 </style>
