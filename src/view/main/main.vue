@@ -4,8 +4,12 @@
       <side-menu accordion :active-name="$route" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <div class="logo-con">
-          <h1 v-show="!collapsed">{{$t('app.name')}}</h1>
-          <h1 v-show="collapsed">{{$t('app.shortName')}}</h1>
+          <h1 v-show="!collapsed">
+            <a href="https://kangyonggan.com/">{{$t('app.name')}}</a>
+          </h1>
+          <h1 v-show="collapsed">
+            <a href="https://kangyonggan.com/">{{$t('app.shortName')}}</a>
+          </h1>
         </div>
       </side-menu>
     </Sider>
