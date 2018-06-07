@@ -31,9 +31,6 @@ export const dynamicRouter = [
       {
         path: 'article/form',
         name: 'articleForm',
-        meta: {
-          active: 'person'
-        },
         component: () => import('@/view/person/article/form')
       },
       {

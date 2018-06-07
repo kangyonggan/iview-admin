@@ -254,6 +254,13 @@ export default {
     btn: {
       reject: 'Reject',
       complete: 'Complete'
+    },
+    tag: {
+      apply: 'Apply',
+      all: 'All'
+    },
+    msg: {
+      check: 'Must Select Article'
     }
   }
 }

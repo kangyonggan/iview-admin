@@ -257,6 +257,13 @@ export default {
     btn: {
       reject: '拒绝',
       complete: '通过'
+    },
+    tag: {
+      apply: '待审批',
+      all: '全部'
+    },
+    msg: {
+      check: '至少选择一篇文章'
     }
   }
 }

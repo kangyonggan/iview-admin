@@ -1,10 +1,13 @@
 <template>
   <div>
-    <div v-title>{{$t('route.article')}}</div>
+    <div v-title>{{$t('article.tag.all')}}</div>
     <!--搜索表单-->
     <Form ref="queryForm" :model="article" class="bg-white" inline>
       <FormItem prop="title">
         <Input v-model="article.title" :placeholder="$t('article.placeholder.title')" clearable />
+      </FormItem>
+      <FormItem prop="createdName">
+        <Input v-model="article.createdName" :placeholder="$t('article.placeholder.createdName')" clearable />
       </FormItem>
       <FormItem prop="applyStatus">
         <Select v-model="article.applyStatus" style="min-width: 164px;" :placeholder="$t('article.placeholder.applyStatus')" clearable >
@@ -22,12 +25,11 @@
       <Row>
         <Button type="info" icon="ios-search" @click="$refs.table.refresh()">{{$t('btn.query')}}</Button>
         <Button type="warning" icon="ios-refresh-empty" @click="$refs.queryForm.resetFields()">{{$t('btn.clear')}}</Button>
-        <Button type="primary" icon="plus" @click="create">{{$t('btn.create')}}</Button>
       </Row>
     </Form>
 
     <!--表格-->
-    <AppTable ref="table" url="person/article" :columns="columns" :form="$refs.queryForm" sort="updatedTime"/>
+    <AppTable ref="table" url="content/articleCheck" :columns="columns" :form="$refs.queryForm" sort="id"/>
   </div>
 </template>
 
@@ -58,8 +60,15 @@ export default {
           sortable: true
         },
         {
+          title: this.$t('article.label.createdName'),
+          key: 'createdName',
+          width: 120,
+          sortable: true
+        },
+        {
           title: this.$t('article.label.applyStatus'),
           key: 'applyStatus',
+          width: 140,
           sortable: true,
           render: (h, params) => {
             return this.applyStatus(h, params)
@@ -71,44 +80,22 @@ export default {
           sortable: true
         },
         {
-          title: this.$t('article.label.updatedTime'),
-          key: 'updatedTime',
-          sortable: true
-        },
-        {
           title: this.$t('article.label.operation'),
           render: (h, params) => {
             let row = params.row
-            return h('AppDropDown', {
-              props: {text: this.$t('btn.edit')},
+            return h('Button', {
+              props: {type: 'primary', size: 'small'},
               on: {
                 click: () => {
                   this.$router.push({
                     name: 'articleForm',
                     query: {id: row.id}
                   })
-                },
-                select: (name) => {
-                  if (name === 'delete') {
-                    let that = this
-                    this.delete('person/article?id=' + row.id, function () {
-                      that.$refs.table.jump(1)
-                    })
-                  }
                 }
-              }}, [
-              h('DropdownItem', {props: {name: 'delete'}}, this.$t('btn.delete'))
-            ])
+              }}, this.$t('btn.edit'))
           }
-        }]
-    }
-  },
-  methods: {
-    create: function () {
-      this.$router.push({
-        name: 'articleForm',
-        query: {}
-      })
+        }
+      ]
     }
   }
 }
