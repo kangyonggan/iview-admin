@@ -31,7 +31,7 @@ export default {
     disable: '禁用',
     locked: '已锁定',
     fullScreen: '全屏',
-    exitFullScreen: '跳出全屏'
+    exitFullScreen: '退出全屏'
   },
   applyStatus: {
     APPLY: '待审批',
