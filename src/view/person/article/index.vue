@@ -46,7 +46,7 @@ export default {
         {
           title: this.$t('article.label.title'),
           key: 'title',
-          minWidth: 240,
+          width: 400,
           sortable: true,
           render: (h, params) => {
             return h('AppLink', {props: {href: '/#/article/' + params.row.id}}, params.row.title)

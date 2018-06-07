@@ -229,17 +229,20 @@ export default {
       title: '标题',
       content: '文章内容',
       applyStatus: '申请状态',
-      replyMsg: '审批信息',
+      replyMsg: '审批意见',
+      createdName: '申请人',
       createdTime: '创建时间',
       updatedTime: '更新时间',
       operation: '操作'
     },
     placeholder: {
       title: '请输入文章标题',
+      createdName: '请输入申请人',
       content: '请输入文章内容，支持Markdown语法',
       applyStatus: '请选择申请状态',
       startDate: '请选择创建开始时间',
-      endDate: '请选择创建结束时间'
+      endDate: '请选择创建结束时间',
+      check: '请输入审批信息'
     },
     valid: {
       title: {
@@ -250,6 +253,10 @@ export default {
       content: {
         required: '文章内容为必填项'
       }
+    },
+    btn: {
+      reject: '拒绝',
+      complete: '通过'
     }
   }
 }

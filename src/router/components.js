@@ -39,9 +39,6 @@ export const dynamicRouter = [
       {
         path: 'article/:id',
         name: 'articleDetail',
-        meta: {
-          active: 'person'
-        },
         component: () => import('@/view/person/article/detail')
       }
     ]

@@ -138,6 +138,23 @@ export default {
       return this.selection
     },
     /**
+     * 获取选中的行(带有筛选条件)
+     *
+     * @param name
+     * @param value
+     * @returns {*|Array}
+     */
+    getSelectionWithCondition: function (name, value) {
+      let arr = []
+      for (let i = 0; i < this.selection.length; i++) {
+        if (this.selection[i][name] === value) {
+          arr.push(this.selection[i])
+        }
+      }
+
+      return arr
+    },
+    /**
      * 获取选中的行（指定字段）
      *
      * @param field
@@ -147,6 +164,24 @@ export default {
       let arr = []
       for (let i = 0; i < this.selection.length; i++) {
         arr.push(this.selection[i][field])
+      }
+
+      return arr
+    },
+    /**
+     * 获取选中的行（指定字段,并带有筛选条件）
+     *
+     * @param field
+     * @param name
+     * @param value
+     * @returns {Array}
+     */
+    getSelectionFieldsWithCondition: function (field, name, value) {
+      let arr = []
+      for (let i = 0; i < this.selection.length; i++) {
+        if (this.selection[i][name] === value) {
+          arr.push(this.selection[i][field])
+        }
       }
 
       return arr

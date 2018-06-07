@@ -225,6 +225,7 @@ export default {
       id: 'ID',
       title: 'Title',
       content: 'Content',
+      createdName: 'Apply Man',
       applyStatus: 'Apply Status',
       replyMsg: 'Reply Message',
       createdTime: 'Created Time',
@@ -233,10 +234,12 @@ export default {
     },
     placeholder: {
       title: 'Please Input Article Title',
+      createdName: 'Please Input Apply Man',
       content: 'Please Input Article Content, Supports Markdown Language',
       applyStatus: 'Please Select Apply Status',
       startDate: 'Please Select Create Start Date',
-      endDate: 'Please Select Create End Date'
+      endDate: 'Please Select Create End Date',
+      check: 'Please Input Check Message'
     },
     valid: {
       title: {
@@ -247,6 +250,10 @@ export default {
       content: {
         required: 'article content can not be none'
       }
+    },
+    btn: {
+      reject: 'Reject',
+      complete: 'Complete'
     }
   }
 }
