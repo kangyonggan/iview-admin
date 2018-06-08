@@ -66,11 +66,10 @@
 
 <script>
 import { httpPut, httpPutUpload } from '@/api/common'
-import baseURL from '_conf/url'
+import {domain} from '_conf/url'
 export default {
   data () {
     return {
-      baseURL: baseURL,
       showBigAvatar: false,
       showPwd: false,
       isLoading: false,
@@ -101,7 +100,7 @@ export default {
     this.$refs.formPassword.resetFields()
     let avatar = user.avatar
     if (avatar) {
-      avatar = baseURL + avatar
+      avatar = domain + avatar
     } else {
       avatar = require('@/assets/images/logo.jpg')
     }
@@ -127,7 +126,7 @@ export default {
       httpPutUpload('person/info/avatar', formData).then(data => {
         this.success(data.respCo)
         this.$store.state.user.user = data.user
-        this.user.avatar = this.baseURL + data.user.avatar
+        this.user.avatar = domain + data.user.avatar
         this.isLoading = false
       }).catch(respCo => {
         this.isLoading = false
