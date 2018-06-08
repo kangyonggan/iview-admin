@@ -65,7 +65,12 @@ export default {
           width: 400,
           sortable: true,
           render: (h, params) => {
-            return h('AppLink', {props: {href: '/#/article/' + params.row.id}}, params.row.title)
+            return h('a', {on: {click: () => {
+              this.$router.push({
+                name: 'articleDetail',
+                params: {id: params.row.id}
+              })
+            }}}, params.row.title)
           }
         },
         {

@@ -8,7 +8,7 @@
       </div>
       <ul>
         <li v-for="(section, index) in sections" :key="index">
-          <a :href="'/#/novel/' + novel.code + '/section/' + section.code">{{section.title}}</a>
+          <a @click="click(section)">{{section.title}}</a>
         </li>
       </ul>
       <div style="clear: both;height: 1px"></div>
@@ -36,6 +36,12 @@ export default {
           this.error(respCo)
         })
       }
+    },
+    click: function (section) {
+      this.$router.push({
+        name: 'section',
+        params: {novelCode: section.novelCode, sectionCode: section.code}
+      })
     }
   },
   mounted () {
@@ -55,7 +61,9 @@ export default {
         float: left;
         display: inline-block;
         width: 220px;
+        height: 30px;
         margin-top: 15px;
+        overflow: hidden;
       }
     }
   }

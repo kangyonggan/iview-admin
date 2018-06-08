@@ -42,6 +42,8 @@ router.beforeEach((to, from, next) => {
     } else {
       store.dispatch('getUserInfo').then(data => {
         if (data.respCo === '0000') {
+          console.log('生产环境白屏')
+          console.log(data)
           next()
         } else if (data.respCo === '9998') {
           if (Vue.config.lang === 'zh-CN') {
