@@ -5,10 +5,10 @@
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <div class="logo-con">
           <h1 v-show="!collapsed">
-            <a href="https://kangyonggan.com/" style="color: #f5f5f5">{{$t('app.name')}}</a>
+            <a :href="serverUrl" style="color: #f5f5f5">{{$t('app.name')}}</a>
           </h1>
           <h1 v-show="collapsed">
-            <a href="https://kangyonggan.com/" style="color: #f5f5f5">{{$t('app.shortName')}}</a>
+            <a :href="serverUrl" style="color: #f5f5f5">{{$t('app.shortName')}}</a>
           </h1>
         </div>
       </side-menu>
@@ -47,7 +47,7 @@ import fullscreen from './components/fullscreen'
 import user from './components/user'
 import { mapMutations, mapActions } from 'vuex'
 import { getNewTagList } from '@/libs/util'
-import {uploadUrl} from '_conf/url'
+import {domain} from '_conf/url'
 import './main.less'
 export default {
   name: 'Main',
@@ -62,7 +62,8 @@ export default {
   data () {
     return {
       isFullScreen: false,
-      collapsed: false
+      collapsed: false,
+      serverUrl: domain
     }
   },
   computed: {
@@ -72,7 +73,7 @@ export default {
     avatar () {
       let avatar = this.$store.state.user.user.avatar
       if (avatar) {
-        avatar = uploadUrl + avatar
+        avatar = domain + avatar
       } else {
         avatar = require('@/assets/images/logo.jpg')
       }
