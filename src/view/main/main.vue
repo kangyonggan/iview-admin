@@ -47,7 +47,6 @@ import fullscreen from './components/fullscreen'
 import user from './components/user'
 import { mapMutations, mapActions } from 'vuex'
 import { getNewTagList } from '@/libs/util'
-import baseURL from '_conf/url'
 import './main.less'
 export default {
   name: 'Main',
@@ -71,9 +70,7 @@ export default {
     },
     avatar () {
       let avatar = this.$store.state.user.user.avatar
-      if (avatar) {
-        avatar = baseURL + avatar
-      } else {
+      if (!avatar) {
         avatar = require('@/assets/images/logo.jpg')
       }
       return avatar
