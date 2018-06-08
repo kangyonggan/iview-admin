@@ -14,6 +14,8 @@ const LOGIN_PAGE_NAME = 'login'
 const IS_LOCKED = getLockStatus()
 
 router.beforeEach((to, from, next) => {
+  console.log('router beforeEach:')
+  console.log(to)
   iView.LoadingBar.start()
   if (IS_LOCKED && to.name !== LOCK_PAGE_NAME) {
     // 当前是锁定状态并且用户要跳转到的页面不是解锁页面
@@ -61,6 +63,8 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(to => {
+  console.log('router afterEach:')
+  console.log(to)
   iView.LoadingBar.finish()
   window.scrollTo(0, 0)
 })
