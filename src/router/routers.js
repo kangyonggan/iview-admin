@@ -74,7 +74,6 @@ export const loadRoutes = (router) => {
       // 加载通用路由，如：403，404等
       defaultRoutes.push(...commonRoutes)
       router.addRoutes(defaultRoutes)
-      console.log('routers init ok')
     }).catch(() => {
       // 按权加载时出现异常，只加载未登录的路由
       router.addRoutes(unLoginRoutes)
