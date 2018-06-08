@@ -55,10 +55,10 @@ class httpRequest {
   create () {
     let conf = {
       baseURL: baseURL,
-      // timeout: 2000,
+      timeout: 2000,
       headers: {
-        // 'Content-Type': 'application/json; charset=utf-8',
-        // 'X-URL-PATH': location.pathname
+        'Content-Type': 'application/json; charset=utf-8',
+        'X-URL-PATH': location.pathname
       }
     }
     return Axios.create(conf)
