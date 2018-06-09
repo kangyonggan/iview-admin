@@ -2,12 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
 import iView from 'iview'
-import {loadRoutes} from './routers'
+import {pushAllRoutes} from './routers'
 import {getToken, getLockStatus} from '@/libs/util'
 
 Vue.use(Router)
+
 const router = new Router()
-loadRoutes(router)
+pushAllRoutes(router)
+
+export default router
 
 const LOCK_PAGE_NAME = 'lock_page'
 const LOGIN_PAGE_NAME = 'login'
@@ -62,5 +65,3 @@ router.afterEach(to => {
   iView.LoadingBar.finish()
   window.scrollTo(0, 0)
 })
-
-export default router

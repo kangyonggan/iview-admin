@@ -66,10 +66,11 @@
 
 <script>
 import { httpPut, httpPutUpload } from '@/api/common'
-import {domain} from '_conf/url'
+import baseURL, {domain} from '_conf/url'
 export default {
   data () {
     return {
+      baseURL: baseURL,
       showBigAvatar: false,
       showPwd: false,
       isLoading: false,

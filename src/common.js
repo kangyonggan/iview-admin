@@ -130,12 +130,12 @@ function error (respCo, notShowNotice) {
   if (respCo === '9998') {
     // 登录已失效
     router.push({
-      path: 'login'
+      path: '/login'
     })
   } else if (respCo === '9997') {
     // 权限不足
     router.push({
-      path: '403'
+      path: '/403'
     })
   }
 }

@@ -63,10 +63,12 @@ export default {
         if (valid) {
           this.loading = true
           this.login(this.user, this.loading).then(data => {
+            this.loading = false
             if (data.respCo === '0000') {
-              window.location.reload()
+              this.$router.push({
+                name: 'home'
+              })
             } else {
-              this.loading = false
               this.error(data.respCo)
             }
           })

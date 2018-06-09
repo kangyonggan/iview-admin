@@ -1,37 +1,12 @@
-import { httpGet } from '@/api/common'
-import {components, dynamicRouter} from './components'
-import { getToken } from '@/libs/util'
+import Main from '@/view/main'
 
-// 登录
-export const routeLogin = {
-  path: '/login',
-  name: 'login',
-  component: () => import('@/view/login/login.vue'),
-  meta: {
-    hideInMenu: true
-  }
-}
-
-// 404
-export const route404 = {
-  path: '/*',
-  name: 'error-404',
-  component: () => import('@/view/error/404')
-}
-
-// 未登录之前的路由
-export const unLoginRoutes = [
-  routeLogin,
-  route404
-]
-
-// 显示在左侧菜单中的路由（动态根据用户权限从服务端加载）
-let defaultRoutes = [
+// 菜单路由
+let menuRoutes = [
   {
     path: '/',
     name: 'index',
     redirect: '/home',
-    component: () => import('@/view/main'),
+    component: Main,
     meta: {
       hideInMenu: true,
       notCache: true
@@ -47,69 +22,75 @@ let defaultRoutes = [
         component: () => import('@/view/home/index')
       }
     ]
+  },
+  {
+    path: '/system',
+    name: 'system',
+    component: Main,
+    children: [
+      {
+        path: 'user',
+        name: 'user',
+        component: () => import('@/view/system/user/index')
+      },
+      {
+        path: 'role',
+        name: 'role',
+        component: () => import('@/view/system/role/index')
+      },
+      {
+        path: 'menu',
+        name: 'menu',
+        component: () => import('@/view/system/menu/index')
+      }
+    ]
+  },
+  {
+    path: '/content',
+    name: 'content',
+    component: Main,
+    children: [
+      {
+        path: 'articleCheck',
+        name: 'articleCheck',
+        component: () => import('@/view/content/article-check/index')
+      },
+      {
+        path: 'novel',
+        name: 'novel',
+        component: () => import('@/view/content/novel/index')
+      }
+    ]
+  },
+  {
+    path: '/person',
+    name: 'person',
+    component: Main,
+    children: [
+      {
+        path: 'info',
+        name: 'info',
+        component: () => import('@/view/person/info/index')
+      },
+      {
+        path: 'article',
+        name: 'article',
+        component: () => import('@/view/person/article/index')
+      }
+    ]
   }
 ]
-
-/**
- * 加载路由
- *
- * @param router
- */
-export const loadRoutes = (router) => {
-  // 判断是否登录
-  if (getToken()) {
-    // 先加载一些登录后的通用路由
-    router.addRoutes(commonRoutes)
-
-    // 加载动态路由。不在左侧菜单中显示
-    router.addRoutes(dynamicRouter)
-
-    // 已登录，按权加载路由，这些路由将显示在菜单中
-    httpGet('menus').then(data => {
-      if (data && data.menus) {
-        for (let i in data.menus) {
-          let route = loadMenuRoutes(data.menus[i])
-          if (route) {
-            defaultRoutes.push(route)
-          }
-        }
-      }
-
-      // 加载404(要放在最后)
-      defaultRoutes.push(route404)
-      router.addRoutes(defaultRoutes)
-      defaultRoutes.push(...commonRoutes)
-    }).catch(() => {
-      // 加载404(要放在最后)
-      defaultRoutes.push(route404)
-      router.addRoutes(defaultRoutes)
-    })
-  } else {
-    // 未登录
-    router.addRoutes(unLoginRoutes)
-  }
-}
-
-// 根据路径查找路由
-export const findRouteByPath = function (path, routers) {
-  for (let i in routers) {
-    let route = routers[i]
-    if (route.path === path) {
-      return route
-    } else if (route.children && route.children.length) {
-      let r = findRouteByPath(path, route.children)
-      if (r) {
-        return r
-      }
-    }
-  }
-
-  return routeLogin
-}
 
 // 通用路由
 export const commonRoutes = [
   {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/view/login/login.vue'),
+    meta: {
+      hideInMenu: true
+    }
+  }, {
     path: '/locking',
     name: 'locking',
     component: () => import('@/view/main/components/lockscreen/components/locking')
@@ -117,39 +98,61 @@ export const commonRoutes = [
     path: '/403',
     name: 'error-403',
     component: () => import('@/view/error/403')
-  },
-  routeLogin
+  }, {
+    path: '/*',
+    name: 'error-404',
+    component: () => import('@/view/error/404')
+  }
 ]
 
 /**
- * 加载菜单的路由及子路由
- *
- * @param menu
+ * 动态路由。不在左侧菜单中显示。
  */
-function loadMenuRoutes (menu) {
-  let children = []
-  let route = {
-    path: '/' + menu.code,
-    name: menu.code,
+export const dynamicRouter = [
+  {
+    path: '/',
+    name: 'dynamic',
+    redirect: '/home',
+    component: Main,
     meta: {
-      icon: menu.icon,
-      title: menu.name
+      hideInMenu: true,
+      notCache: true
     },
-    component: () => components[menu.code]
+    children: [
+      {
+        path: 'article/form',
+        name: 'articleForm',
+        component: () => import('@/view/person/article/form')
+      },
+      {
+        path: 'article/:id',
+        name: 'articleDetail',
+        component: () => import('@/view/person/article/detail')
+      },
+      {
+        path: 'novel/:novelCode/section/:sectionCode',
+        name: 'section',
+        meta: {
+          active: 'content'
+        },
+        component: () => import('@/view/content/novel/section')
+      },
+      {
+        path: 'novel/:novelCode',
+        name: 'novelDetail',
+        meta: {
+          active: 'content'
+        },
+        component: () => import('@/view/content/novel/detail')
+      }
+    ]
   }
+]
 
-  if (menu.children && menu.children.length) {
-    for (let i in menu.children) {
-      children.push(loadMenuRoutes(menu.children[i]))
-    }
-  }
+export default menuRoutes
 
-  if (children.length > 0) {
-    route.children = children
-  }
-
-  return route
+export const pushAllRoutes = function (router) {
+  router.addRoutes(menuRoutes)
+  router.addRoutes(dynamicRouter)
+  router.addRoutes(commonRoutes)
 }
-
-// 显示到左侧菜单中的路由
-export default defaultRoutes

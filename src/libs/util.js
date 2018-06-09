@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 // cookie保存的天数
 import config from '@/config'
-import { forEach, hasOneOf } from '@/libs/tools'
+import { hasOneOf } from '@/libs/tools'
 
 export const TOKEN_KEY = 'token'
 export const LANG_KEY = 'lang'
@@ -58,8 +58,9 @@ export const hasChild = (item) => {
  */
 export const getMenuByRouter = (list) => {
   let res = []
-  forEach(list, item => {
-    if (item.meta && !item.meta.hideInMenu) {
+  for (let i in list) {
+    let item = list[i]
+    if (!(item.meta && item.meta.hideInMenu)) {
       let obj = {
         icon: (item.meta && item.meta.icon) || '',
         name: item.name,
@@ -70,7 +71,8 @@ export const getMenuByRouter = (list) => {
       }
       res.push(obj)
     }
-  })
+  }
+
   return res
 }
 

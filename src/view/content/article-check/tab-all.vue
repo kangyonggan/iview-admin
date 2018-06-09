@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div v-title>{{$t('article.tag.all')}}</div>
     <!--搜索表单-->
     <Form ref="queryForm" :model="article" class="bg-white" inline>
       <FormItem prop="title">
