@@ -61,7 +61,7 @@ export default {
         float: left;
         display: inline-block;
         width: 220px;
-        height: 30px;
+        height: 25px;
         margin-top: 15px;
         overflow: hidden;
       }
