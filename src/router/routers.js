@@ -58,6 +58,12 @@ let defaultRoutes = [
 export const loadRoutes = (router) => {
   // 判断是否登录
   if (getToken()) {
+    // 先加载一些登录后的通用路由
+    router.addRoutes(commonRoutes)
+
+    // 加载动态路由。不在左侧菜单中显示
+    router.addRoutes(dynamicRouter)
+
     // 已登录，按权加载路由，这些路由将显示在菜单中
     httpGet('menus').then(data => {
       if (data && data.menus) {
@@ -68,20 +74,37 @@ export const loadRoutes = (router) => {
           }
         }
       }
-      // 加载动态路由。不在左侧菜单中显示
-      router.addRoutes(dynamicRouter)
 
-      // 加载通用路由，如：403，404等
-      defaultRoutes.push(...commonRoutes)
+      // 加载404(要放在最后)
+      defaultRoutes.push(route404)
       router.addRoutes(defaultRoutes)
+      defaultRoutes.push(...commonRoutes)
     }).catch(() => {
-      // 按权加载时出现异常，只加载未登录的路由
-      router.addRoutes(unLoginRoutes)
+      // 加载404(要放在最后)
+      defaultRoutes.push(route404)
+      router.addRoutes(defaultRoutes)
     })
   } else {
     // 未登录
     router.addRoutes(unLoginRoutes)
   }
+}
+
+// 根据路径查找路由
+export const findRouteByPath = function (path, routers) {
+  for (let i in routers) {
+    let route = routers[i]
+    if (route.path === path) {
+      return route
+    } else if (route.children && route.children.length) {
+      let r = findRouteByPath(path, route.children)
+      if (r) {
+        return r
+      }
+    }
+  }
+
+  return routeLogin
 }
 
 // 通用路由
@@ -95,8 +118,7 @@ export const commonRoutes = [
     name: 'error-403',
     component: () => import('@/view/error/403')
   },
-  routeLogin,
-  route404
+  routeLogin
 ]
 
 /**
