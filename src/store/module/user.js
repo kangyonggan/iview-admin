@@ -4,11 +4,15 @@ import { getToken, setToken } from '@/libs/util'
 export default {
   state: {
     user: {},
+    menus: {},
     token: getToken()
   },
   mutations: {
     setUser (state, user) {
       state.user = user
+    },
+    setMenus (state, menus) {
+      state.menus = menus
     },
     setToken (state, token) {
       state.token = token
@@ -35,6 +39,7 @@ export default {
             resolve({respCo: '9998'})
           } else {
             commit('setUser', data.user)
+            commit('setMenus', data.menus)
             resolve(data)
           }
         }).catch(respCo => {

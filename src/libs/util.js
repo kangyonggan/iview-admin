@@ -56,24 +56,41 @@ export const hasChild = (item) => {
  * @param {Array} list 通过路由列表得到菜单列表
  * @returns {Array}
  */
-export const getMenuByRouter = (list) => {
+export const getMenuByRouter = (list, menus) => {
   let res = []
-  for (let i in list) {
-    let item = list[i]
-    if (!(item.meta && item.meta.hideInMenu)) {
+
+  for (let i in menus) {
+    let menu = menus[i]
+    let route = menuInRouters(list, menu.code)
+    if (route) {
       let obj = {
-        icon: (item.meta && item.meta.icon) || '',
-        name: item.name,
-        meta: item.meta
+        icon: menu.icon || '',
+        name: menu.code
       }
-      if (hasChild(item)) {
-        obj.children = getMenuByRouter(item.children)
+      if (hasChild(menu)) {
+        obj.children = getMenuByRouter(list, menu.children)
       }
       res.push(obj)
     }
   }
 
   return res
+}
+
+function menuInRouters (list, code) {
+  for (let i in list) {
+    let route = list[i]
+    if (route.name === code) {
+      return route
+    } else if (hasChild(route)) {
+      let rt = menuInRouters(route.children, code)
+      if (rt) {
+        return rt
+      }
+    }
+  }
+
+  return null
 }
 
 /**

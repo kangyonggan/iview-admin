@@ -8,7 +8,7 @@ export default {
   },
   getters: {
     menuList: (state, getters, rootState) => {
-      return getMenuByRouter(routers)
+      return getMenuByRouter(routers, rootState.user.menus)
     }
   },
   mutations: {
