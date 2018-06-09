@@ -199,7 +199,7 @@ export default {
         required: 'menu code can not be none',
         min: 'menu code min length is {0}',
         max: 'menu code max length is {0}',
-        pattern: 'start with lower word, and only lower word, number or underline',
+        pattern: 'start with lower word, and only word, number or underline',
         exists: 'menu code already exists'
       },
       icon: {

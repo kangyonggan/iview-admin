@@ -41,7 +41,7 @@ export default {
           {required: true, message: this.$t('menu.valid.code.required'), trigger: 'blur'},
           {min: 1, message: this.$t('menu.valid.code.min', 5), trigger: 'blur'},
           {max: 32, message: this.$t('menu.valid.code.max', 32), trigger: 'blur'},
-          {pattern: /^[a-z][a-z0-9_]*$/, message: this.$t('menu.valid.code.pattern'), trigger: 'blur'},
+          {pattern: /^[a-z][a-zA-Z0-9_]*$/, message: this.$t('menu.valid.code.pattern'), trigger: 'blur'},
           {validator: this.validateMenu, trigger: 'blur'}
         ],
         icon: [
