@@ -43,18 +43,24 @@ router.beforeEach((to, from, next) => {
         name: 'home' // 跳转到home页
       })
     } else {
-      store.dispatch('getUserInfo').then(data => {
-        if (data.respCo === '0000') {
-          next()
-        } else if (data.respCo === '9998') {
-          if (Vue.config.lang === 'zh-CN') {
-            iView.Message.error('您尚未登录或登录已失效！')
-          } else {
-            iView.Message.error('Has Not Login Or Invalid Login!')
-          }
-          router.push({
-            path: 'login'
+      store.dispatch('getCurrentUser').then(data => {
+        if (!data || !data.id) {
+          store.dispatch('getUserInfo').then(data => {
+            if (data.respCo === '0000') {
+              next()
+            } else if (data.respCo === '9998') {
+              if (Vue.config.lang === 'zh-CN') {
+                iView.Message.error('您尚未登录或登录已失效！')
+              } else {
+                iView.Message.error('Has Not Login Or Invalid Login!')
+              }
+              router.push({
+                path: 'login'
+              })
+            }
           })
+        } else {
+          next()
         }
       })
     }

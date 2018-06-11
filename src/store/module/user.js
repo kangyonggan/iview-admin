@@ -31,6 +31,10 @@ export default {
         })
       })
     },
+    // 获取当前用户
+    getCurrentUser ({commit}) {
+      return this.state.user.user
+    },
     // 获取用户信息
     getUserInfo ({commit}) {
       return new Promise((resolve) => {
