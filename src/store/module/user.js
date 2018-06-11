@@ -4,7 +4,7 @@ import { getToken, setToken } from '@/libs/util'
 export default {
   state: {
     user: {},
-    menus: {},
+    menus: [],
     token: getToken()
   },
   mutations: {
@@ -39,8 +39,16 @@ export default {
             resolve({respCo: '9998'})
           } else {
             commit('setUser', data.user)
-            commit('setMenus', data.menus)
-            resolve(data)
+
+            let menus = this.state.user.menus
+            if (menus && menus.length) {
+              resolve(data)
+            } else {
+              httpGet('menus').then(data => {
+                commit('setMenus', data.menus)
+                resolve(data)
+              })
+            }
           }
         }).catch(respCo => {
           resolve({respCo: respCo})
