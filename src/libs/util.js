@@ -41,7 +41,7 @@ export const setLang = (lang) => {
 export const getLang = () => {
   const lang = Cookies.get(LANG_KEY)
   if (lang) return lang
-  else return 'en-US'
+  else return null
 }
 
 export const removeToken = () => {
