@@ -1,5 +1,6 @@
 import Axios from 'axios'
 import baseURL from '_conf/url'
+import qs from 'qs'
 import { getToken, params } from '@/libs/util'
 
 class httpRequest {
@@ -25,7 +26,7 @@ class httpRequest {
       // Spin.show()
       // 在发送请求之前做些什么
       if (config.data && config.type !== 'upload') {
-        config.data = params(config.data).join('&')
+        config.data = qs.stringify(config.data)
       }
 
       return config
@@ -55,7 +56,10 @@ class httpRequest {
   create () {
     let conf = {
       baseURL: baseURL,
-      timeout: 2000
+      timeout: 2000,
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      }
     }
     return Axios.create(conf)
   }

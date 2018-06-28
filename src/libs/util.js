@@ -248,13 +248,13 @@ export const params = (data) => {
     if (obj.constructor === Array) {
       let a = []
       for (let i in obj) {
-        a.push(params(obj[i]))
+        a.push(encodeURI(params(obj[i])))
       }
       arr.push(key + '=' + a.join(','))
     } else if (obj.constructor === Object) {
       arr.push(key + '=' + params(obj))
     } else {
-      arr.push(key + '=' + obj)
+      arr.push(key + '=' + encodeURI(obj))
     }
   }
   return arr
