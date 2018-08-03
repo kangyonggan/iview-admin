@@ -1,7 +1,7 @@
 import env from './env'
 
 const DEV_URL = 'https://kangyonggan.com/'
-const UAT_URL = 'http://localhost:8027/api/'
+const UAT_URL = 'http://localhost:8028/api/'
 const PRO_URL = 'https://kangyonggan.com/api/'
 
 export const domain = 'https://kangyonggan.com/'
